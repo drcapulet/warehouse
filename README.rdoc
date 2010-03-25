@@ -24,6 +24,7 @@ I'm working on this section :)
 == Screenshots
 
 Multi-View:
+
 link:screens/screen-multi.jpg
 
 == Contributing
