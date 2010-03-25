@@ -1,10 +1,30 @@
-= Warehouse 2.0
+= Warehouse 2.0 (beta)
 
 Re-Written from the ground-up for use with Git. I imagined it a "local" version of GitHub for your repositories
 
 == Getting Started
 
 I'm working on this section :)
+
+== Features
+	* Commits for a repository
+	* History and Blame for a file
+	* Multi-View
+	* Command-Line Syncer
+
+== Not Done
+
+	* Admin
+	* Dashboard
+	* Authentication
+	* Git Post-Commit/Post-Push/Post-something hook to sync the repo
+	* Tests
+	* Error Handling
+	
+== Screenshots
+
+Multi-View:
+link:screens/screen-multi.jpg
 
 == Contributing
 

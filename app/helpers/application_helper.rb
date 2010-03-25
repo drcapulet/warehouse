@@ -53,7 +53,7 @@ module ApplicationHelper
   
   def current_navigation?(navigation)
     @current_navigation ||= \
-      if controller.controller_name == 'broswer' && controller.action_name == 'multi'
+      if (controller.controller_name == 'browser' && controller.action_name == 'multi')
         :multi
       else
         case controller.controller_name
