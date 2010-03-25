@@ -25,7 +25,7 @@ I'm working on this section :)
 
 Multi-View:
 
-{Multi-View Screen}[link:http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg]
+http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg
 
 == Contributing
 
