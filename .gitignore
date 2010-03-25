@@ -1,0 +1,6 @@
+.DS_Store
+doc/
+features/
+tmp/
+vendor/
+log/
