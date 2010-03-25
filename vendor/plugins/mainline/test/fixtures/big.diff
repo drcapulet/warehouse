@@ -1,0 +1,590 @@
+--- unified.rb	(revision 620)
++++ unified.rb	(revision 644)
+@@ -1,298 +1,390 @@
+ module Diff
+   module Display
+     module Unified
+-
+-      LINE_RE  = /@@ [+-]([0-9]+),([0-9]+) [+-]([0-9]+),([0-9]+) @@/
+-      TABWIDTH = 4
+-      SPACE    = ' ' #'&nbsp;'
+-      # By defaul don't wrap inline diffs in anything
+-      INLINE_REM_OPEN  = "\e[4;33m"
+-      INLINE_REM_CLOSE = "\e[m"
+-      INLINE_ADD_OPEN  = "\e[4;35m"
+-      INLINE_ADD_CLOSE = "\e[m"
+-      ESCAPE_HTML      = false
+-
+       class Line < String
+-        attr_reader :add_lineno, :rem_lineno
+-        def initialize(line, type, add_lineno, rem_lineno = add_lineno)
++        def initialize(line, line_number)
+           super(line)
+-          @type = type
+-          @add_lineno = add_lineno
+-          @rem_lineno = rem_lineno
++          @line_number = line_number
++          self
+         end
+ 
++        def contains_inline_change?
++          @inline
++        end
++
+         def number
+-          add_lineno ? add_lineno : rem_lineno
++          @line_number
+         end
+ 
+-        def type
+-          @type
++        def decorate(&block)
++          yield self
+         end
+ 
+-        class << self
+-          def add(line, add_lineno)
+-            AddLine.new(line, add_lineno)
++        def inline_add_open;  '' end
++        def inline_add_close; '' end
++        def inline_rem_open;  '' end
++        def inline_rem_close; '' end
++
++        protected 
++
++          def escape
++            self
+           end
+ 
+-          def rem(line, rem_lineno)
+-            RemLine.new(line, rem_lineno)
++          def expand
++            escape.gsub("\t", ' ' * tabwidth).gsub(/ ( +)|^ /) do |match|
++              (space + ' ') * (match.size / 2) + 
++               space        * (match.size % 2)
++            end
+           end
+ 
+-          def unmod(line, lineno)
+-            UnModLine.new(line, lineno)
++          def tabwidth
++            4
+           end
+ 
+-          def mod(line, lineno)
+-            ModLine.new(line, lineno)
++
++          def space
++            ' '
+           end
++
++        class << self
++          def add(line, line_number, inline = false)
++            AddLine.new(line, line_number, inline)
++          end
++
++          def rem(line, line_number, inline = false)
++            RemLine.new(line, line_number, inline)
++          end
++
++          def unmod(line, line_number)
++            UnModLine.new(line, line_number)
++          end
+         end
+       end
+ 
+       class AddLine < Line
+-        def initialize(line, add_lineno)
+-          super(line, 'add', add_lineno, nil)
++        def initialize(line, line_number, inline = false)
++          line = inline ? line % [inline_add_open, inline_add_close] : line
++          super(line, line_number)
++          @inline = inline
++          self
+         end
+       end
+ 
+       class RemLine < Line
+-        def initialize(line, rem_lineno)
+-          super(line, 'rem', nil, rem_lineno)
++        def initialize(line, line_number, inline = false)
++          line = inline ? line % [inline_rem_open, inline_rem_close] : line
++          super(line, line_number)
++          @inline = inline
++          self
+         end
+       end
+ 
+       class UnModLine < Line
+-        def initialize(line, lineno)
+-          super(line, 'unmod', lineno)
++        def initialize(line, line_number)
++          super(line, line_number)
+         end
+       end
+ 
+-      class ModLine < Line
+-        def initialize(line, lineno)
+-          super(line, 'mod', lineno)
++      class SepLine < Line
++        def initialize(line = '...')
++          super(line, nil)
+         end
+       end
+ 
++      # This class is an array which contains Line objects. Just like Line
++      # classes, several Block classes inherit from Block. If all the lines
++      # in the block are added lines then it is an AddBlock. If all lines
++      # in the block are removed lines then it is a RemBlock. If the lines
++      # in the block are all unmodified then it is an UnMod block. If the
++      # lines in the block are a mixture of added and removed lines then
++      # it is a ModBlock. There are no blocks that contain a mixture of
++      # modified and unmodified lines.
+       class Block < Array
+-        def initialize(type)
+-          super(0)
+-          @type = type
++        def initialize
++          super
++          @line_types = []
+         end
+ 
+         def <<(line_object)
+           super(line_object)
+-          (@line_types ||= []).push(line_object.type)
+-          @line_types.uniq!
++          line_class = line_object.class.name[/\w+$/]
++          @line_types.push(line_class) unless @line_types.include?(line_class)
+           self
+         end
+ 
++        def decorate(&block)
++          yield self
++        end
++
+         def line_types
+           @line_types
+         end
+ 
+-        def type
+-          @type
++        class << self
++          def add;   AddBlock.new   end
++          def rem;   RemBlock.new   end
++          def mod;   ModBlock.new   end
++          def unmod; UnModBlock.new end
+         end
+       end
+ 
+-      class Generator < Array
++      class AddBlock   < Block;   end
++      class RemBlock   < Block;   end
++      class ModBlock   < Block;   end
++      class UnModBlock < Block;   end
++      class SepBlock   < Block;   end
+ 
++      # This data object contains the generated diff data structure. It is an
++      # array of Block objects which are themselves arrays of Line objects. The
++      # Generator class returns a Data instance object after it is done
++      # processing the diff.
++      class Data < Array
++        def initialize
++          super
++        end
++
++        def debug
++          demodularize = Proc.new {|obj| obj.class.name[/\w+$/]}
++          each do |diff_block|
++            print "*" * 40, ' ', demodularize.call(diff_block)
++            puts
++            puts diff_block.map {|line| 
++              "%5d" % line.number             + 
++              " [#{demodularize.call(line)}]" +
++              line
++            }.join("\n")
++            puts "*" * 40, ' ' 
++          end
++        end
++
++      end
++
++      # Processes the diff and generates a Data object which contains the
++      # resulting data structure.
++      class Generator
++
++        # Extracts the line number info for a given diff section
++        LINE_NUM_RE = /@@ [+-]([0-9]+),([0-9]+) [+-]([0-9]+),([0-9]+) @@/
++        LINE_TYPES  = {'+' => :add, '-' => :rem, ' ' => :unmod}
++
+         class << self
+-          def run(udiff, options = {})
+-            generator = new(options)
+-            udiff.split("\n").each {|line| generator.build(line) }
+-            generator.close
+-            generator
++
++          # Runs the generator on a diff and returns a Data object without
++          # instantiating a Generator object
++          def run(udiff)
++            raise ArgumentError, "Object must be enumerable" unless udiff.respond_to?(:each)
++            generator = new
++            udiff.each {|line| generator.process(line.chomp)}
++            generator.render
+           end
+         end
+ 
+-        def initialize(options = {})
+-          super(0)
+-          default_options = {:inline_add_open  => INLINE_ADD_OPEN,
+-                             :inline_add_close => INLINE_ADD_CLOSE,
+-                             :inline_rem_open  => INLINE_REM_OPEN,
+-                             :inline_rem_close => INLINE_REM_CLOSE,
+-                             :escape_html      => ESCAPE_HTML,
+-                             :tabwidth         => TABWIDTH,
+-                             :space => SPACE}
+-
+-          @options = default_options.merge(options)
+-          @block          = []
+-          @ttype          = nil
+-          @p_block        = []
+-          @p_type         = nil
+-          @changeno       = -1
+-          @blockno        = 0
++        def initialize
++          @buffer         = []
++          @prev_buffer    = []
++          @line_type      = nil
++          @prev_line_type = nil
+           @offset_base    = 0
+           @offset_changed = 0
++          @data           = Diff::Display::Unified::Data.new
++          self
+         end
+ 
+-        def current_block
+-          last
++        # Operates on a single line from the diff and passes along the
++        # collected data to the appropriate method for further processing. The
++        # cycle of processing is in general:
++        #
++        #   process --> identify_block --> process_block --> process_line 
++        #
++        def process(line)
++          return if ['++', '--'].include?(line[0,2])
++
++          if match = LINE_NUM_RE.match(line) 
++            identify_block
++            push SepBlock.new and current_block << SepLine.new unless @offset_changed.zero? 
++            @line_type      = nil
++            @offset_base    = match[1].to_i - 1
++            @offset_changed = match[3].to_i - 1
++            return
++          end
++
++          new_line_type, line = LINE_TYPES[car(line)], cdr(line)
++
++          # Add line to the buffer if it's the same diff line type
++          # as the previous line
++          # 
++          # e.g. 
++          #
++          #   + This is a new line
++          #   + As is this one
++          #   + And yet another one...
++          #
++          if new_line_type.eql?(@line_type)
++            @buffer.push(line)
++          else
++            # Side by side inline diff
++            #
++            # e.g.
++            #
++            #   - This line just had to go
++            #   + This line is on the way in
++            #
++            if new_line_type.eql?(LINE_TYPES['+']) and @line_type.eql?(LINE_TYPES['-'])
++              @prev_buffer = @buffer
++              @prev_line_type = @line_type
++            else
++              identify_block
++            end
++            @buffer = [line]
++            @line_type = new_line_type
++          end
+         end
+ 
++        # Finishes up with the generation and returns the Data object (could
++        # probably use a better name...maybe just #data?)
+         def render
+           close
+-          self
++          @data
+         end
+-        
+-        def escape(text)
+-          return '' unless text
+-          return text unless @options[:escape_html]
+-          text.gsub('&', '&amp;').
+-               gsub('<', '&lt;' ). 
+-               gsub('>', '&gt;' ).
+-               gsub('"', '&#34;')
+-        end
+ 
+-        def expand(text)
+-          escape(text).gsub(/ ( +)|^ /) do |match|
+-            (@options[:space] + ' ') * (match.size / 2) + 
+-             @options[:space]        * (match.size % 2)
+-          end
+-        end
++        protected 
+ 
+-        def inline_diff(line, start, ending, change)
+-          expand(line[0, start])           + 
+-          change                           + 
+-          expand(line[ending, ending.abs])
+-        end
++          def identify_block
++            if @prev_line_type.eql?(LINE_TYPES['-']) and @line_type.eql?(LINE_TYPES['+'])
++              process_block(:mod, {:old => @prev_buffer, :new => @buffer})
++            else
++              if LINE_TYPES.values.include?(@line_type)
++                process_block(@line_type, {:new => @buffer})
++              end
++            end
+ 
+-        def write_line(oldline, newline)
+-          start, ending = get_change_extent(oldline, newline)
+-          change = ''
+-          if oldline.size > start - ending
+-            change = @options[:inline_rem_open]      +
+-                     expand(oldline[start...ending]) +
+-                     @options[:inline_rem_close]
++            @prev_line_type = nil
+           end
+ 
+-          line = inline_diff(oldline, start, ending, change)
+-          current_block << Line.rem(line, @offset_base)
++          def process_block(diff_line_type, blocks = {:old => nil, :new => nil})
++            push Block.send(diff_line_type)
++            old, new = blocks[:old], blocks[:new] 
+ 
+-          change = ''
+-          if newline.size > start - ending
+-            change = @options[:inline_add_open]      +
+-                     expand(newline[start...ending]) +
+-                     @options[:inline_add_close]
++            # Mod block
++            if diff_line_type.eql?(:mod) and old.size & new.size == 1
++              process_line(old.first, new.first)
++              return
++            end
++
++            if old and not old.empty?
++              old.each  do |line| 
++                @offset_base += 1 
++                current_block << Line.send(@prev_line_type, line, @offset_base)
++              end
++            end
++
++            if new and not new.empty?
++              new.each do |line| 
++                @offset_changed += 1 
++                current_block << Line.send(@line_type, line, @offset_changed)
++              end
++            end
+           end
+ 
+-          line = inline_diff(newline, start, ending, change)
+-          current_block << Line.add(line, @offset_changed)
+-        end
++          # TODO Needs a better name...it does process a line (two in fact) but
++          # its primary function is to add a Rem and an Add pair which
++          # potentially have inline changes
++          def process_line(oldline, newline)
++            start, ending = get_change_extent(oldline, newline)
+ 
+-        def write_block(dtype, old = nil, new = nil)
+-          push Block.new(dtype)
++            # -
++            line = inline_diff(oldline, start, ending)
++            current_block << Line.rem(line, @offset_base += 1, true)
+ 
+-          if dtype == 'mod' and old.size == 1 and new.size == 1
+-            write_line(old.first, new.first)
+-            return
++            # +
++            line = inline_diff(newline, start, ending)
++            current_block << Line.add(line, @offset_changed += 1, true)
+           end
+ 
+-          if old and not old.empty?
+-            old.each  do |e| 
+-              current_block << Line.send(dtype, expand(e), @offset_base)
+-            @offset_base += 1 
+-            end
++          # Inserts string formating characters around the section of a string
++          # that differs internally from another line so that the Line class
++          # can insert the desired formating
++          def inline_diff(line, start, ending)
++            line[0, start] + 
++            '%s' + extract_change(line, start, ending) + '%s' + 
++            line[ending, ending.abs]
+           end
+ 
+-          if new and not new.empty?
+-            new.each do |e| 
+-              current_block << Line.send(dtype, expand(e), @offset_changed)
+-            @offset_changed += 1 
+-            end
++          def extract_change(line, start, ending)
++            line.size > (start - ending) ? line[start...ending] : ''
+           end
+-        end
+ 
+-        def print_block
+-          if @p_type.eql?('-') and @ttype.eql?('+')
+-            write_block('mod', @p_block, @block)
+-          else
+-            case @ttype
+-              when '+'
+-                write_block('add', @block)
+-              when '-'
+-                write_block('rem', @block)
+-              when ' '
+-                write_block('unmod', @block)
+-            end
++          def car(line)
++            line[0,1]
+           end
+ 
+-          @block = @p_block = []
+-          @p_type = ' '
+-          @blockno += 1
+-        end
++          def cdr(line)
++            line[1..-1]
++          end
+ 
+-        def build(text)
+-          # TODO Names of the files and their versions go here perhaps
++          # Returns the current Block object
++          def current_block
++            @data.last
++          end
+ 
+-          return if ['++', '--'].include?(text[0,2])
++          # Adds a Line object onto the current Block object 
++          def push(line)
++            @data.push line
++          end
+ 
+-          if match = LINE_RE.match(text) 
+-            print_block
+-            @changeno += 1
+-            @blockno   = 0
+-            @offset_base    = match[1].to_i - 1
+-            @offset_changed = match[3].to_i - 1
+-            return
++          # This method is called once the generator is done with the unified
++          # diff. It is a finalizer of sorts. By the time it is called all data
++          # has been collected and processed.
++          def close
++            # certain things could be set now that processing is done
++            identify_block
+           end
+ 
+-          # Set ttype to first character of line
+-          ttype = text[0, 1]
+-          text  = text[1..-1]
+-          text = text.gsub("\t", ' ' * @options[:tabwidth]) if text
+-          # If it's the same type of mod as the last line push this line onto the
+-          # block stack
+-          if ttype.eql?(@ttype)
+-            @block.push(text)
+-          else
+-            # If we have a side by side subtraction/addition
+-            if ttype == '+' and @ttype == '-'
+-              @p_block = @block
+-              @p_type  = @ttype
+-            else
+-              print_block
++          # Determines the extent of differences between two string. Returns
++          # an array containing the offset at which changes start, and then 
++          # negative offset at which the chnages end. If the two strings have
++          # neither a common prefix nor a common suffic, [0, 0] is returned.
++          def get_change_extent(str1, str2)
++            start = 0
++            limit = [str1.size, str2.size].sort.first
++            while start < limit and str1[start, 1] == str2[start, 1]
++              start += 1
+             end
+-            @block = [text]
+-            @ttype = ttype
++            ending = -1
++            limit -= start
++            while -ending <= limit and str1[ending, 1] == str2[ending, 1]
++              ending -= 1
++            end
++
++            return [start, ending + 1]
+           end
+-        end
++      end
+ 
+-        def debug
+-          each do |diff_block|
+-            print "*" * (40 - diff_block.type.size / 2), ' ', diff_block.type
+-            puts
+-            puts diff_block.map {|line| "#{line.number}"  << line << " [#{line.type}]"}.join("\n")
+-            print "Line types:"
+-            puts diff_block.line_types.join(", ")
+-            puts
+-          end
++      # Mostly a convinience class at this point that just overwrites various
++      # customization methods 
++      class HTMLGenerator < Generator
++        
++        # This and the space method now don't work/make sense now that those
++        # methods are part of the Line class and there certainly won't be an
++        # HTMLLine class
++        def escape(text)
++          text.gsub('&', '&amp;').
++               gsub('<', '&lt;' ). 
++               gsub('>', '&gt;' ).
++               gsub('"', '&#34;')
+         end
+ 
+-        def close
+-          # certain things could be set now that processing is done
+-          print_block
++        def space
++          '&nbsp;'
+         end
+ 
+-        # Determines the extent of differences between two string. Returns
+-        # an array containing the offset at which changes start, and then 
+-        # negative offset at which the chnages end. If the two strings have
+-        # neither a common prefix nor a common suffic, [0, 0] is returned.
+-        def get_change_extent(str1, str2)
+-          start = 0
+-          limit = [str1.size, str2.size].sort.first
+-          while start < limit and str1[start, 1] == str2[start, 1]
+-            start += 1
+-          end
+-          ending = -1
+-          limit -= start
+-          while -ending <= limit and str1[ending, 1] == str2[ending, 1]
+-            ending -= 1
+-          end
++      end
+ 
+-          return [start, ending + 1]
+-        end
++      # See doc string for HTMLGenerator
++      class ASCIIGenerator < Generator
+       end
++
+     end
+   end
+ end
+-

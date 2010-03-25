@@ -1,0 +1,11 @@
+--- a/one.txt
++++ b/one.txt
+@@ -193,7 +193,21 @@ module One
+       pre yada yada
+-        
++
++      foo
++      bar
++      baz
++      
+       post yada yada

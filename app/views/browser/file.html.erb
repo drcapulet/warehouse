@@ -1,0 +1,26 @@
+<%= render :partial => 'shared/commit_info', :locals => { :commit => current_commit } %>
+
+<%= render :partial => 'header'%>
+
+<div class="sourcecode">
+	<div class="controls control-head">
+		<ul class="formats">
+			<li><%= link_to 'Blame', link_to_blame(@node), :class => (controller.action_name == 'blame' ? 'sel' : '') %><%#= link_to_blame 'Blame', @node %></li>
+			<li><%= link_to 'History', link_to_history(@node) %></li>
+			<li<% unless @node.text? %> class="end"<% end %>><%= link_to 'Raw', link_to_raw_for_node(@node) %></li>
+			<% if @node.text? -%><li class="end"><%= link_to 'Text', link_to_text_for_node(@node) %></li><% end -%>
+		</ul>
+	</div>
+	<div class="sub-controls"><%= @node.path.split('/').last %></div>
+</div>
+<div class="source-div">
+	<div id="source">
+	<% if controller.action_name != 'blame' -%>
+	    <pre class="viewsource"><code><%= highlight_source_for_node(@node) %></code></pre>
+	<% else -%>
+		<pre class="viewsource"><table>
+			<% cache do %><%= blame_for(@node, current_commit.sha) %><% end %>
+		</table></pre>
+	<% end -%>
+	</div>
+</div>

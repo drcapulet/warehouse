@@ -1,0 +1,88 @@
+#content #main {
+/*	padding: 20px 10px 10px 10px;*/
+	padding: 20px 0 0 0;
+}
+#multi {
+	-moz-box-shadow: -2px 2px 2px rgba(75, 75, 75, 0.35);
+  -webkit-box-shadow: -2px 2px 2px rgba(75, 75, 75, 0.35);
+}
+/*#content_view {
+  -moz-box-shadow: -2px 2px 2px rgba(75, 75, 75, 0.35);
+  -webkit-box-shadow: -2px 2px 2px rgba(75, 75, 75, 0.35);
+  height: 100%;
+  overflow: auto;
+  background-color: white;
+  padding: 0.5ex 1ex;
+  margin: 0;
+}
+#content_view #contents {
+  font: 13px/1.5 Inconsolata, Monaco, Courier, fixed;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#tree ul {
+  margin: auto;
+  padding: auto;
+}
+*/
+#tree {
+	vertical-align:top;
+	-moz-box-shadow: inset -2px 2px 2px rgba(75, 75, 75, 0.35);
+  -webkit-box-shadow: inset -2px 2px 2px rgba(75, 75, 75, 0.35);
+}
+#treecont { width: 250px; }	
+#tree ul {
+	padding-left:25px;
+}
+#tree ul li {
+  cursor: pointer;
+  list-style: none inside;
+  margin: 0;
+  padding: 0 5px 0 0;
+}
+#tree ul li.tree {
+  list-style-position: outside;
+  list-style-image: url('/images/arrow-closed.png');
+}
+#tree ul li.tree.opened { list-style-image: url('/images/arrow-opened.png'); } */
+#tabs {
+  padding: 0.5ex;
+  font-size: 85%;
+  min-height: 2.25em;
+}
+#tabs ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#tabs ul li {
+  display: inline-block;
+  padding: 0.5ex 0 0.5ex 1ex;
+  margin: 0;
+  cursor: pointer;
+}
+#tabs ul li .close {
+  padding: 1ex;
+  margin: 0;
+  color: #888888;
+  font-weight: bold;
+}
+#tabs ul li .close:hover { color: #cc0000; }
+#tabs ul li.selected {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+}
+
+/*.north, .south, .west, .east, .center { display: inline-block; }
+.north { width: 100%; }
+.west {
+  width: 20em;
+  height: 100%;
+  overflow: auto;
+}
+.south { width: 100%; }*/

@@ -1,0 +1,40 @@
+<%= render :partial => 'shared/commit_info', :locals => { :commit => @commit }%>
+
+<% i = 0 -%>
+<ul id="change-list">
+<% @commit.changes.sort! { |x,y| x.path <=> y.path }.each do |change| -%>
+	<% i += 1 -%>
+  <li<%= cycle '', ' class="shade"' %>>
+    <span class="<%= change.mode.downcase %>" title=""><%= link_to change.path, "#diff-#{i}"%></span> 
+	<%= link_to 'view', "##{i}", :class => 'viewdiff' %>
+    <%#= link_to_node change.path, change.path, changeset.revision %> <%# if change.modified? %> <%#= link_to 'view', "##{dom_id change}", :class => 'viewdiff' %><%# end %>
+  </li>
+<% end -%>
+</ul>
+
+<!-- <h1>Commits#show</h1>
+<p>Find me in app/views/commits/show.html.erb</p> -->
+<% i = 0 -%>
+ <% @commit.diffs.sort! { |x,y| x.b_path <=> y.b_path }.each do |c| %>
+	<% i += 1 -%>
+	<% unified = Diff::Display::Unified.new(c.diff) -%>
+<div class="diff-table" id="diff-<%= i %>">
+	<table class="diff" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr class="controls">
+				<td colspan="3">
+					<div class="control"><%= (c.a_path != c.b_path) ? c.a_path + ' → ' + c.b_path : c.b_path %></div>
+				</td>
+			</tr>
+			<tr>
+				<th class="csnum">old</th>
+				<th class="csnum">new</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= unified.render(Warehouse::DiffRenderer.new) %>
+		</tbody>
+	</table>
+</div>
+<% end %>

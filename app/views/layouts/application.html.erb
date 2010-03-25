@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title><%= current_repository.name rescue 'Warehouse: ' %> <%= @title rescue '' %></title>
+		<link rel="shortcut icon" href="/favicon.png" type="image/png" />
+		<%#= stylesheet_link_tag 'reset', 'main', 'highlight', :media => 'screen, projection' %>
+		<%= stylesheet_link_tag 'warehouse', 'highlight' %>
+		<%= javascript_include_tag 'jquery-1.4.1' %>
+		<%= yield(:head) %>
+	</head>
+	<body>
+		<!-- container -->
+		<div id="container">
+			<!-- header -->
+			<div id="header">
+				<div id="hdr-cnt">
+					<h1><%= link_to current_repository.name, repo_path_for_current %></h1>
+					<ul id="nav">
+						<% if current_repository -%>
+						<li id="code"<%= selected_navigation?(:browser) %>><%= link_to 'Browser', repo_path_for_current %></li>
+						<li id="code"<%= selected_navigation?(:multi) %>><%= link_to 'Multi', multi_path(:repo => current_repository) %></li>
+						<li id="activity"<%= selected_navigation?(:activity) %>><%= link_to 'Commits', commits_path(:tree => 'master') %></li>
+						<li id="admin"<%#= selected_navigation?(:admin) %>><%= link_to 'Admin', '' %></li>
+						<% end -%>
+					 </ul>
+					<ul id="utils">
+						<li id="login-link"><%= link_to 'Login', '#' %></li>
+					</ul>
+				</div>
+			</div>
+			<!-- content -->
+			<div id="content" class="clearfix" <%= ' style="display:table;"' if @sidebar %>>
+				<div id="main"<%= ' style="display:table-cell;"' if @sidebar %>>
+					<%= yield %>
+				</div>
+				
+				<% if @sidebar -%>
+				<div id="sbar">
+					<%= yield :sidebar %>
+				</div>
+				<% end -%>
+		        
+			</div>
+		</div>
+	</body>
+</html>

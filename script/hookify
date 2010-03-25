@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+ 
+# Easily install or update your post-receive hooks
+# Usage: `hookify /path/to/repository1 /path/to/repository2 ...`
+ 
+require 'fileutils'
+ 
+unless ARGV.any?
+  puts "Error: repository not specified"
+  puts "Usage: ./script/hookify /path/to/repository"
+  Process.exit
+end
+ 
+ARGV.each do |repository_path|
+  repository_path = File.expand_path(repository_path)
+  puts "Hookifying repository #{repository_path}..."
+  if File.exist?(repository_path + '/.git')
+    hook_directory = repository_path + '/.git/hooks' # working copy
+  else
+    hook_directory = repository_path + '/hooks' # bare repository
+  end
+ 
+  hook_source = File.join(File.dirname(__FILE__), '../lib/hooks')
+  file_names = nil
+  Dir.chdir(hook_source) do
+    puts "\nin #{Dir.pwd}:"
+    file_names = Dir['*']
+    FileUtils.cp file_names, hook_directory, :verbose => true
+  end
+  Dir.chdir(hook_directory) do
+    puts "\nin #{Dir.pwd}:"
+    FileUtils.chmod 0755, file_names, :verbose => true
+    FileUtils.chown nil, 'staff', file_names, :verbose => true
+  end
+end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sha: MyString
+  message: MyString
+  name: MyString
+  email: MyString
+  actor_id: 1
+  committed_date: 2010-01-13 17:00:50
+
+two:
+  sha: MyString
+  message: MyString
+  name: MyString
+  email: MyString
+  actor_id: 1
+  committed_date: 2010-01-13 17:00:50

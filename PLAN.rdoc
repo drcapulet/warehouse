@@ -1,0 +1,38 @@
+== Database
+
+Repository
+| id
+| name
+| path
+| slug
+| latest_revision
+|	- Commit
+| commit_count
+| synced_revision
+| synced_revision_at
+| public
+|+description
+| 
+  Commit
+	| id
+	| sha1
+	| actor
+		- User
+	| name
+	| email
+	| message
+	| revision
+	| changed_at
+	  Change
+		| id
+		| path
+		| from_path
+		| from_revision
+		| mode
+		| diffable
+
+== Routes/Controllers
+	browser => default for repo
+	# blob	=> view file
+	tree	=> view tree (tags/branches/tree sha1) => to browser
+	commit	=> view commit (with branch)=> to browser

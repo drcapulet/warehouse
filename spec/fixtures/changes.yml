@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  repository_id: 
+  mode: MyString
+  path: MyString
+  from_path: MyString
+  from_revision: MyString
+
+two:
+  repository_id: 
+  mode: MyString
+  path: MyString
+  from_path: MyString
+  from_revision: MyString

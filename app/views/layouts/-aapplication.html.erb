@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= current_repository.name rescue 'Warehouse: ' %> <%= @title rescue '' %></title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+    <%#= stylesheet_link_tag 'main' %>
+    <%#= stylesheet_link_tag 'code' %>
+    <%#= stylesheet_link_tag "uv/#{Warehouse.source_highlight_theme}" %>
+    
+    <%=# javascript_include_tag 'prototype', 'lowpro-lite', 'moo.fx.js', 'moo.fx.transitions.js', 'application', :cache => 'warehouse' %>
+    
+    <%#= yield :scripts %>
+    <!-- <script type="text/javascript" charset="utf-8">
+          Event.onReady(function() {
+            <%#= cache_current_sheets %>
+            <%# if logged_in? -%>
+            Sheet.Cache['profile-form'] = new Sheet('profile-form', 'profile');
+            Sheet.Cache['openid-form'] = new Sheet('reset-form', 'reset-profile-openid');
+            
+            <%# else -%>
+            Sheet.Cache['reset-form'] = new Sheet('reset-form', 'reset-from-openid');
+            Sheet.Cache['openid-form'] = new Sheet('openid-form', ['openid-toggle'<%=# %(, 'login-link', 'cancel-reset') unless use_login_form? %>]);
+            Sheet.Cache['login-form'] = new Sheet('login-form', ['login-toggle'<%#= %(, 'login-link', 'cancel-reset') if use_login_form? %>]);
+            <%# end -%>
+            <%#= yield :onready %>
+          });
+          <%=# yield :javascript %>
+    			<%# if USE_REPO_PATHS && current_repository -%>Warehouse.root = '/<%# current_repository.subdomain %>';<%# end -%>
+        </script>
+        <%#= auto_discovery_link_tag(:atom, changeset_feed_url) %> -->
+    <!--[if lt IE 8]>
+      <%= stylesheet_link_tag 'curbstomp' %>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- container -->
+    <div id="container">
+      <% if logged_in? %>
+        <% sheet_form_for current_user, :url => hosted_url(:profile, :to => request.request_uri), :html => { :multipart => true, :id => 'profile-form', :method => :put }, :trigger => false do |s| -%>
+          <h2>Edit your profile</h2>
+          <%= content_tag 'p', flash[:error] if flash[:error] %>
+          <%= s.text_field 'SVN Login:', :login, :size => 30 %>
+          <%= s.password_field 'SVN Password:', :password, :size => 30 %>
+          <%= s.password_field 'Confirm:', :password_confirmation, :size => 30 %>
+          <%= s.text_field 'Email:', :email, :size => 30 %>
+          <p>
+            <label>OpenID Address (<%= link_to 'reset', reset_path, :id => 'reset-profile-openid' %>):</label>
+            <%=h current_user.identity_url %>
+          </p>
+          <p>
+            <label>API Token:</label>
+            <span id="user-token"><%=h current_user.token %></span>
+          </p>
+          <p id="profile-pic"><%= avatar_for(current_user) %></p>
+          <%= s.file_field "Profile picture:", :avatar_data, :size => 25 %>
+          <% s.submit 'save.png' %>
+        <% end -%>
+      <% end %>
+      <!-- header -->
+      <div id="header">
+        <div id="hdr-cnt">
+          <h1><%= link_to current_repository ? current_repository.name : "Warehouse", root_path %></h1>
+          <ul id="nav">
+            <% unless repository_subdomain.blank? -%>
+            <li id="code"<%= selected_navigation?(:browser) %>><%= link_to 'Browser', hosted_url(:browser) %></li>
+            <% end -%>
+            <li id="activity"<%= selected_navigation?(:activity) %>><%= link_to 'Activity', activity_url %></li>
+            <% if admin? || repository_admin? %>
+            <li id="admin"<%= selected_navigation?(:admin) %>><%= link_to 'Admin', hosted_url(:admin) %></li>
+            <% end %>
+          </ul>
+          <ul id="utils">
+            <% if logged_in? -%>
+              <li id="profile"><%= link_to 'Profile', hosted_url(:profile) %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+            <% else -%>
+              <li id="login-link"><%= link_to 'Login', '#' %></li>
+            <% end -%>
+          </ul>
+          </div>
+          <% unless logged_in? -%>
+            <% sheet_form_tag login_path, :id => 'openid-form', :trigger => false do |s| -%>
+              <h2>Login with OpenID (<%= link_to 'user/pass', '#', :id => 'login-toggle' %>)</h2>
+              <%= content_tag 'p', flash[:error] if flash[:error] %>
+              <%= s.text_field_tag %(OpenID: (<a href="#" id="reset-from-openid">reset</a>)), :openid_url, params[:openid_url], :class => 'big' %>
+              <%  s.submit 'login.png' %>
+            <% end -%>
+
+            <% sheet_form_tag login_path, :id => 'login-form', :trigger => false do |s| -%>
+              <h2>Login (<%= link_to 'OpenID', '#', :id => 'openid-toggle' %>)</h2>
+              <%= content_tag 'p', flash[:error] if flash[:error] %>
+              <%= s.text_field_tag     %(Login:),    :login,    params[:login], :class => 'big' %>
+              <%= s.password_field_tag %(Password:), :password, params[:password], :class => 'big' %>
+              <%  s.submit 'login.png' %>
+            <% end -%>
+          <% end %>
+          <% sheet_form_tag forget_path, :id => 'reset-form', :trigger => false do |s| %>
+            <h2>Reset your OpenID</h2>
+            <%= s.text_field_tag %(Email you signed up with: #{'(<a href="#" id="cancel-reset">login</a>)' unless logged_in?}), :email, '', :class => 'big' %>
+          <% end %>
+        </div>
+      <!-- /header -->
+      <!-- content -->
+      <div id="content" class="clearfix">
+        <!-- main -->
+        <div id="main"<% if @fullscreen -%> style="width:100%"<% end -%>>
+          <%= yield %>
+          
+          <% if full_svn_url? -%>
+          <div id="svn-url">
+            <p>Check out the code: <code>svn co <%= full_svn_url %></code></p>
+          </div>
+          <% end -%>
+        </div>
+        <!-- /main -->
+        <% unless @fullscreen -%>
+        <!-- sbar -->
+        <div id="sbar">
+          <div id="search" class="sideblock">
+            <% form_tag current_repository ? hosted_url(:changesets) : root_changesets_path, :method => :get do -%>
+                <%= text_field_tag :q, params[:q], :size => 13, :id => 'search-box' %>
+                <input type="image" src="/images/app/btns/search.png" alt="Search" id="search-btn" />
+            <% end -%>
+          </div>
+          <%= link_to 'Subscribe to History', hosted_url(:history, :paths => (params[:paths] << 'changesets.atom')), :id => 'subscribe-history' if controller.controller_name == 'history' %>
+          
+          <%= link_to 'Subscribe to Changesets', changeset_feed_url, :id => 'subscribe-btn' %>
+
+          <%= yield :sidebar %>
+          
+          <%# if Warehouse::Plugins.tabs? -%>
+            <!-- <div class="sideblock" id="plugins">
+                          <h3>Plugins</h3>
+                          <ul>
+                          <% Warehouse::Plugins.each_tab do |tab| -%>
+                            <li><%= link_to_tab *tab %></li>
+                          <% end -%>
+                          </ul>
+                        </div> -->
+          <%# end -%>
+            
+          <% cache CacheKey.bookmarks_for(current_repository) do -%>
+          <div id="bookmarks" class="sideblock"<%= %( style="display:none") if current_repository.bookmarks.to_a.empty? %>>
+            <h3>Bookmarks</h3>
+            <ul id="bookmark-list">
+              <%= render :partial => "bookmarks/bookmark", :collection => current_repository.bookmarks %>
+            </ul>
+          </div>
+          <% end if current_repository && (current_repository.public? || repository_member?) -%>
+        </div>
+        <!-- /sbar -->
+        <% end -%>
+      </div>
+      <!-- /content -->
+
+      
+    </div>
+    <!-- /container -->
+  </body>
+</html>

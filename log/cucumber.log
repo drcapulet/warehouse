@@ -1,0 +1,142 @@
+# Logfile created on Thu Jan 07 22:57:11 -0700 2010  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.9ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES(NULL, NULL, NULL, '2010-01-10 04:05:47', NULL, '2010-01-10 04:05:47', NULL)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.6ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES(NULL, NULL, NULL, '2010-01-10 04:09:38', NULL, '2010-01-10 04:09:38', NULL)[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.5ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES(NULL, NULL, NULL, '2010-01-10 04:11:43', NULL, '2010-01-10 04:11:43', NULL)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.5ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES(NULL, NULL, NULL, '2010-01-10 04:13:17', NULL, '2010-01-10 04:13:17', NULL)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.6ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES(NULL, NULL, NULL, '2010-01-10 04:17:43', NULL, '2010-01-10 04:17:43', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-09 21:17:43) [GET]
+  Parameters: {"repo"=>"the repository"}
+Rendering browser/index
+Completed in 15ms (View: 13, DB: 1) | 200 OK [http://www.example.com/the%20repository]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.6ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-10 04:20:12', NULL, '2010-01-10 04:20:12', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-09 21:20:12) [GET]
+  Parameters: {"repo"=>"the repository"}
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-09 21:20:12) [GET]
+  Parameters: {"repo"=>"the repository"}
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.6ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-10 04:21:51', NULL, '2010-01-10 04:21:51', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-09 21:21:51) [GET]
+  Parameters: {"repo"=>"the repository"}
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-09 21:21:51) [GET]
+  Parameters: {"repo"=>"the repository"}
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mRepository Create (0.6ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-10 04:26:45', NULL, '2010-01-10 04:26:45', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-09 21:26:45) [GET]
+  Parameters: {"repo"=>"the repository"}
+  [4;36;1mRepository Load (0.2ms)[0m   [0;1mSELECT * FROM "repositories" WHERE ("repositories"."slug" = 'the repository') LIMIT 1[0m
+Rendering browser/index
+Completed in 108ms (View: 3, DB: 1) | 200 OK [http://www.example.com/the%20repository]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: path
+  [4;35;1mRepository Create (0.8ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-10 04:29:30', NULL, '2010-01-10 04:29:30', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-09 21:29:30) [GET]
+  Parameters: {"repo"=>"the repository"}
+  [4;36;1mRepository Load (0.3ms)[0m   [0;1mSELECT * FROM "repositories" WHERE ("repositories"."slug" = 'the repository') LIMIT 1[0m
+Rendering browser/index
+Completed in 107ms (View: 3, DB: 2) | 200 OK [http://www.example.com/the%20repository]
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: path
+  [4;35;1mRepository Create (0.9ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-11 23:05:47', NULL, '2010-01-11 23:05:47', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-11 16:05:48) [GET]
+  Parameters: {"repo"=>"the repository", "paths"=>[]}
+  [4;36;1mRepository Load (0.3ms)[0m   [0;1mSELECT * FROM "repositories" WHERE ("repositories"."slug" = 'the repository') LIMIT 1[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-11 16:05:48) [GET]
+  Parameters: {"paths"=>[]}
+  [4;36;1mSQL (5.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: path
+  [4;35;1mRepository Create (0.8ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-11 23:09:24', NULL, '2010-01-11 23:09:24', NULL)[0m
+REQUESTING PAGE: GET /the%20repository with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-11 16:09:24) [GET]
+  Parameters: {"repo"=>"the repository", "paths"=>[]}
+  [4;36;1mRepository Load (0.3ms)[0m   [0;1mSELECT * FROM "repositories" WHERE ("repositories"."slug" = 'the repository') LIMIT 1[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-11 16:09:25) [GET]
+  Parameters: {"paths"=>[]}
+  [4;36;1mSQL (1.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: path
+  [4;35;1mRepository Create (0.8ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-11 23:10:46', NULL, '2010-01-11 23:10:46', NULL)[0m
+REQUESTING PAGE: GET  with {} and HTTP headers {}
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+WARNING: Can't mass-assign these protected attributes: path
+  [4;35;1mRepository Create (1.1ms)[0m   [0mINSERT INTO "repositories" ("name", "slug", "synced_revision_at", "created_at", "synced_revision", "updated_at", "path") VALUES('warehouse', 'warehouse', NULL, '2010-01-11 23:33:11', NULL, '2010-01-11 23:33:11', NULL)[0m
+REQUESTING PAGE: GET /warehouses with {} and HTTP headers {}
+
+
+Processing BrowserController#index (for 127.0.0.1 at 2010-01-11 16:33:11) [GET]
+  Parameters: {"repo"=>"warehouses", "paths"=>[]}
+  [4;36;1mRepository Load (0.4ms)[0m   [0;1mSELECT * FROM "repositories" WHERE ("repositories"."slug" = 'warehouses') LIMIT 1[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-11 16:33:12) [GET]
+  Parameters: {"paths"=>[]}

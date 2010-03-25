@@ -1,0 +1,41 @@
+<!-- <% if params[:paths].any? %>
+<div id="crumbs">
+	<ul class="clearfix"><%= link_to_crumbs @node.path %></ul>
+	<!-- <ul class="clearfix"><li id="current">branch: master</li></ul> -->
+</div>
+<% end %>
+
+<table id="browser" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr id="controls">
+      <td colspan="2">
+        <div id="bookmark-control" class="control-head" style="display:none">
+          &nbsp; <!-- Safari needs this? -->
+          <%# if params[:paths].any? && !current_repository.bookmarks.any? { |b| b.path == @node.path } -%>
+          <p class="formats rcontrols">
+            <a id="bookmark" class="bookmark" href="#" title="Bookmark this directory">Bookmark This</a>
+          </p>
+          <%# end -%>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>File name</th>
+      <th>Revision</th>
+    </tr>
+  </thead>
+  <%# if @node.dir? %>
+  <%# @node.data.each do |node| -%>
+  <tr>
+    <td class="item"><%= link_to h(node.name), url_for_node(node), :class => css_class_for(node) %></td>
+    <td>
+      <span class="rev<% if current_commit && current_commit.sha == node.latest_revision.id %> changed<% end %>"><%=  node.latest_revision.id %></span>
+      <%#=h truncate node.latest_revision.message, :length => 60 %><%=h node.latest_revision.author.name %><%#= jstime node.changed_at.utc %>
+      <span class="log"><%=h node.latest_revision.message %></span>
+    </td>
+  </tr>
+  <%# end -%>
+  <%# else %>
+  <div id="source"><pre class="viewsource"><code><%= highlight_source_for_node(@node) %></code></pre></div>
+  <%# end -%>
+</table> -->

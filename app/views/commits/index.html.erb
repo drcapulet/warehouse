@@ -1,0 +1,94 @@
+<% content_for :head do %>
+<%#= auto_discovery_link_tag %>
+<% end %>
+<% if current_repository.has_unsynced_revisions? -%>
+	<div class="info">Some revisions need to be synced. You can do this by syncing through the command line or in the repository admin.</div>
+<% end -%>
+
+<div class="subnav-bar single">
+	<ul>
+		<li>
+			<%= link_to 'All Commits', all_commits_path, :class => (params[:tree] ? '' : 'selected') %>
+		</li>
+		<li>
+			<a href="#" class="dropdown">Branches (<%= current_repository.heads.size %>)</a>
+			<ul>
+				<% current_repository.heads.each do |h| -%>
+				<li><%= params[:tree] == h.name ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, commits_path(:tree => h.name)) %>
+				<% end -%>
+			</ul>
+		</li>
+		<li>
+			<a href="#" class="dropdown <%= 'defunct' if current_repository.tags.size == 0 %>">Tags (<%= current_repository.tags.size %>)</a>
+		</li>
+	</ul>
+</div>
+<div class="clear">&nbsp;</div>
+
+<% unless params[:q].blank? -%>
+<h2>Commits including the term "<%=h params[:q] %>"</h2>
+<% else -%>
+<h2>
+<% if params[:tree]%>
+	Commits in <%= current_repository.name %>/<%=h params[:tree] %>
+<% else %>
+	All commits in <%= current_repository.name %>
+<% end %>
+<% if false %>
+	<p id="views">
+		<a href="#" id="detail-view">Details</a> | 
+		<a href="#" id="list-view">List</a>
+	</p>
+<% end %>
+</h2>
+<% end %>
+
+<ul id="changesets">
+  <% if @commits.any? %>
+  <% @commits.each do |commit| -%>
+    <%# user = @users[commit.author] -%>
+	<li class="changeset clearfix" id="commit-<%= commit.sha %>">
+	<%= render :partial => 'shared/commit_short', :locals => { :commit => commit } %>
+	</li>
+  <% end -%>
+  <% else %>
+	<li>
+		<div class="info">
+			<h3>No Commits available</h3>
+			<p style="font-weight:normal">
+				No commits <%= "with the search term '#{h(params[:q])}' " if params[:q] %>were found!
+			</p>
+		</div>
+	</li>
+  <% end %>
+</ul>
+
+<%= will_paginate @commits unless @commits.empty? %>
+
+<% @sidebar = true -%>
+<% content_for :sidebar do -%>
+<div class="sideblock">	
+	<div id="repo-search">
+		<% form_tag search_commits_path, :id => "repo-search-form", :method => :get do %>
+		<!-- <form action="" id="repo-search-form" method="get"> -->
+		  <input type="search" class="search" name="q" results="5" placeholder="Search commits&hellip;" value="" />
+		  <input type="hidden" name="tree" value="<%= params[:tree] %>">
+		<!-- </form> -->
+		<% end %>
+	</div>
+	<div id="subscribe"><%= link_to 'Subscribe to Changesets', 'changeset_feed_url', :id => 'subscribe-btn' %></div>
+	<h3>Active Members on this Branch</h3>
+	<ul id="members">
+		<% current_repository.all_committers(params[:tree]).each do |member| -%>
+		<li>
+			<%= avatar_for(member) %>
+			<span class="author"><%= member.name %></span>
+			<span class="activity">
+				<%= member.email %><br />
+				Last commit <%= link_to time_ago_in_words(member.committed_date) + ' ago', commit_path_for_current(member) %>
+			</span>
+		</li>
+		<% end -%>
+	</ul>
+</div>
+<% end -%>

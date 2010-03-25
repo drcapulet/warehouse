@@ -1,0 +1,17 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'warehouse', 'multi', 'highlight', :media => 'screen, projection' %>
+<% end %>
+<div class="sourcecode" repo="<%= current_repository.to_param %>">
+	<div class="controls">
+		<div id="tabs"><ul>&nbsp;</ul></div>		
+	</div>
+	<div class="sub-controls">&nbsp;
+	</div>
+	<div class="browse">
+		<div id="tree"><div id="treecont"><%= html_for_repo_tree(current_repository.full_tree)%></div></div>
+		<div id="source">
+			<pre class="viewsource" id="blank-source"><code></code></pre>
+		</div>
+	</div>
+</div>
+<%= javascript_include_tag 'tabs' %>

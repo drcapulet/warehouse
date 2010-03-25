@@ -1,0 +1,832 @@
+/* RESET ISH */
+html
+	margin: 0 0 1px 0
+	padding: 0
+	overflow: auto
+
+
+body
+	margin: 0
+	text-align: center
+	padding: 0
+	font: normal 12px/1.5em "Helvetica Neue", Helvetica, "Lucida Grande", "Helvetica Neue", Arial, sans-serif
+	background: #ebebeb
+	color: #333
+	min-width: 900px
+
+*
+	outline: none
+.clearfix
+	display: inline-block
+	display: block
+
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+.clear
+	clear: both
+		
+form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a
+	margin: 0
+	padding: 0
+
+
+a
+	outline: none
+
+	&:link, &:visited
+		color: #07b
+		text-decoration: none
+
+	&:hover
+		color: #d30
+
+
+form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a
+	margin: 0
+	padding: 0
+	
+/* HEADERS */
+h1, h2, h3, h4, h5, h6
+	font-size: 100%
+
+
+h2
+	position: relative
+	padding: 5px
+	font-size: 110%
+	margin-bottom: 10px
+	border-bottom: 1px solid #ccc
+/* ERRORS */
+div
+	&.errorExplanation, &#error
+		padding: 10px 10px 10px 50px
+		margin: 20px 0
+		background: #fee url(../images/app/icons/no.png) 5px 5px no-repeat
+		border: 1px solid #faa
+		color: #333
+
+	&.errorExplanation
+		ul
+			list-style: none
+			margin: 5px 0
+
+		h2
+			background: transparent
+			border: 0
+			padding: 0
+
+	&#error h2
+		background: transparent
+		border: 0
+		padding: 0
+/* INFORMATION */
+.info
+	background: #E3F1FF url(../images/app/icons/info.png) 5px 50% no-repeat
+	padding: 20px 10px 20px 60px
+	border: 1px solid #5D94CB
+	font-weight: bold
+	color: #346
+	margin: 10px 0
+
+
+.notice
+	padding: 20px 10px 20px 60px
+	border: 1px solid #5D94CB
+	font-weight: bold
+	color: #346
+	margin: 10px 0
+	background: #DCF0C9 url(../images/app/icons/check.png) 5px 50% no-repeat
+	border: 1px solid #6A3
+	color: #460
+/* MAJOR */
+#header
+	background: #232C30
+	margin: 0
+	text-align: left
+	padding: 18px
+	position: relative
+	h1 a
+		color: #fff
+		text-decoration: none
+		font-size: 120%
+
+#content
+	width: 90%
+	margin: 0 auto
+	text-align: left
+	padding-bottom: 40px
+	#main
+		padding: 20px
+	#sbar
+		width: 220px
+		padding: 20px
+		display: table-cell
+		
+/* HEADERS */
+#hdr-cnt
+	position: relative
+	width: 85%
+	margin: 0 auto
+	padding: 0 20px
+	#nav
+		position: absolute
+		top: 11px
+		left: 162px
+		list-style: none
+		margin: 0
+		padding: 0
+
+		li
+			display: inline
+			margin: 0
+			padding: 0
+
+			a
+				border-top: 1px solid #5C738A
+				background-color: #456 !important
+				color: #DEE9EE
+				font-size: 92%
+				font-weight: bold
+				margin-right: 5px
+				padding: 3px 20px
+				padding-left: 25px
+				display: block
+				float: left
+
+				&:hover
+					border-top-color: #7593B0
+					background-color: #576C82 !important
+					color: #fff
+
+			&.selected a
+				border-top: 1px solid #fff
+				background-color: #eee !important
+				color: #333
+
+
+	li
+		&#code a
+			background: url(../images/icons/code.png) 5px 50% no-repeat
+
+		&#activity a
+			background: url(../images/icons/activity.png) 5px 50% no-repeat
+
+		&#all-history
+			border: none !important
+			font-weight: bold
+
+			a
+				padding-left: 20px
+				background: url(../images/icons/clock.png) 0 50% no-repeat !important
+				display: block
+				color: #555
+
+		&#admin a
+			background: url(../images/icons/admin.png) 5px 50% no-repeat
+
+
+	#utils
+		position: absolute
+		right: 20px
+		top: 0
+		list-style: none
+
+		li
+			display: inline
+			margin-right: 5px
+			font-size: 92%
+
+			a
+				color: #cde
+				border-bottom: 1px dotted #345
+
+				&:hover
+					color: #fff
+/* MULTI */
+div.sourcecode
+	width: 100%
+	border: 1px solid #ccc
+	border-top: none
+	div.controls
+		padding: 5px
+		border-top: 1px solid #f7f7f7
+		background: #eee url(../images/app/controls-bg.png) bottom left repeat-x
+		vertical-align: middle
+	div.sub-controls
+		color: #333
+		font-family: Courier, Monaco, monospace !important
+		text-align: left
+		background: #f7f7f7
+		padding: 5px 10px
+		border-bottom: 1px solid #ccc
+	div.browse
+		display: table
+		div#tree
+			background: #f1f1f1
+			width: 200px
+			display: table-cell
+			overflow: auto
+		div#source
+			display: table-cell
+			pre.viewsource
+				overflow: auto
+				margin-bottom: 0
+				word-wrap: normal
+				color: #d0d0d0
+/* SOURCE */
+pre.viewsource
+	margin-top: 0 !important
+	width: 100%
+	background-color: #111
+	white-space: pre-wrap
+	white-space: -moz-pre-wrap !important
+	white-space: -pre-wrap
+	white-space: -o-pre-wrap
+	word-wrap: break-word
+	color: #d0d0d0
+	code
+		padding: 20px
+		display: block
+/* CRUMBS */
+div#crumbs
+	margin-bottom: 10px
+	height: 20px
+	ul
+		list-style: none
+		padding: 0
+		margin: 0
+		line-height: 100%
+		background: url(../images/app/crumbs-start.gif) no-repeat
+		padding-left: 13px
+		li
+			display: block
+			margin: 0
+			padding: 0
+			background: url(../images/app/crumb-bg.png) repeat-x
+			float: left
+
+			a
+				text-shadow: 1px 1px #fff
+				background: url(../images/app/crumb-divide.gif) top right no-repeat
+				display: block
+				color: #555
+				font-size: 92%
+				padding: 4px 15px 7px 5px
+				font-weight: bold
+
+				&:hover
+					color: #000
+			&.crumb-divide-last a
+				background: url(../images/app/crumb-divide-last.gif) top right no-repeat !important
+			&#current
+				color: #fff
+				font-size: 92%
+				float: left
+				text-shadow: 1px 1px #777
+				background: url(../images/app/crumb-current.gif) repeat-x
+				padding: 4px 10px 7px 10px
+				border-right: 1px solid #999
+				font-weight: bold
+/* BROWSER */
+#browser, .diff
+	width: 100%
+	border-collapse: collapse
+	border: 1px solid #ccc
+	border-top: none
+	th
+		border-left: 1px solid #ddd
+		text-align: left
+		background: #f7f7f7
+		padding: 5px 10px
+		border-bottom: 1px solid #ccc
+#browser
+	td, th
+		padding: 5px 10px
+	td
+		background: #eee
+		border-bottom: 1px solid #ccc
+		border-left: 1px solid #ddd
+		a
+			font-weight: bold
+a
+	&.folder
+		background: url(../images/app/icons/folder-small.png) 0 50% no-repeat
+
+	&.image
+		background: url(../images/app/icons/image.png) 0 50% no-repeat
+
+	&.script
+		background: url(../images/app/icons/script-small.png) 0 50% no-repeat
+
+	&.txt, &.file
+		background: url(../images/app/icons/text-small.png) 0 50% no-repeat
+td.item a
+	display: block
+	padding: 8px 5px 8px 25px
+tr#controls td, tr.controls td
+	padding: 0
+	height: 20px
+	border-top: 1px solid #f7f7f7
+	background: #eee url(../images/app/controls-bg.png) bottom left repeat-x
+div.control-head
+	margin: 0
+	padding: 0 0 0 40px
+	position: relative
+	min-height: 25px
+	p.controlblock
+		position: absolute
+		top: 0
+		left: 5px
+		height: 16px
+		width: 50px
+	ul.formats
+		float: right
+		margin: 2px 0 0 0
+		padding: 0
+		line-height: 100%
+		list-style: none
+		font-size: 82%
+		background: #eee url(../images/app/cap-left.png) no-repeat
+
+		li
+			display: block
+			margin-right: 5px
+			float: left
+
+			a
+				display: block
+				padding: 3px 5px 4px 5px
+				color: #777
+				text-shadow: 1px 1px #fff
+				font-weight: bold
+				&:hover, &.sel
+					color: #333
+				&.sel
+					text-decoration: underline
+			&.end
+				margin-right: 0
+
+				a
+					background: url(../images/app/cap-right.png) top right no-repeat
+#control-center
+	margin-bottom: 20px
+	position: relative
+	padding: 10px
+	background: #fff
+	font-weight: bold
+.rev 
+	line-height: 100%
+	float: right
+	background: #f7f7f7
+	padding: 3px
+	border: 1px solid #fff
+	color: #666
+	font-size: 92%
+	-moz-border-radius: 4px
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	font-weight: bold
+td span.log, #repos span.log, #permissions span.log, .listbox span.log, p.desc
+	font-size: 92%
+	display: block
+	color: #888
+	
+/* CHANGESETS */
+.cs-meta
+	float: left
+	width: 60px
+	padding: 5px
+	text-align: center
+	background-color: #e2e2e2
+	border-right: 1px solid #ddd
+	line-height: 100%
+.cs-log
+	padding: 5px
+	padding-right: 50px
+	margin-left: 71px
+	font-size: 92% !important
+	background-color: #f7f7f7
+.change-number a
+	font-size: 120%
+	font-weight: bold
+	color: green
+	display: block
+	float: left
+	padding-right: 10px
+	margin-bottom: 5px
+#changesets 
+	list-style: none
+	-webkit-padding-start: 0
+	li.changeset
+		background: none
+		border: none
+		border-bottom: 1px solid #ccc
+		padding: 0
+		.cs-log
+			background: none
+		.cs-meta
+			background: none
+			border-right: none	
+			.change-number
+				font-size: 100%
+				display: block
+				text-align: center
+				a
+					color: #481
+					text-shadow: 1px 1px #f7f7f7
+					float: none
+					padding-right: 0
+					margin-top: 3px
+	.timenauthor
+		color: #888
+		font-weight: normal
+		display: block
+div.changeset
+	padding: 0
+	background-image: none
+	border: none
+	border-bottom: 1px solid #ccc
+	.cs-meta
+		background: none
+		border-right: none	
+		.change-number
+			font-size: 100%
+			display: block
+			text-align: center
+			a
+				color: #481
+				text-shadow: 1px 1px #f7f7f7
+				float: none
+				padding-right: 0
+				margin-top: 3px
+	.timenauthor
+		color: #888
+		font-weight: normal
+		display: block
+#last-log
+	position: relative
+.changed
+	background-color: #7b0
+	color: #fff
+/* LIST */
+.changeset, .repo, .form, .permission, .listbox li.listitem
+	padding: 10px
+	padding-left: 50px
+	background: #e2e2e2 url(../images/app/icons/terminal.png) 5px 3px no-repeat
+	margin-bottom: 10px
+	border: 1px solid #ddd
+	border-bottom-color: #ccc
+	border-right-color: #ccc
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	font-size: 110%
+	font-weight: bold
+/* AVATAR */
+.avatar
+	padding: 2px
+	background: #fff
+	border: 1px solid #aaa
+	border-bottom: 1px solid #ccc
+	border-bottom: 1px solid #ccc
+	width: 32px
+	height: 32px
+/* PAGINATION */
+.pagination
+	padding: 3px
+	margin: 10px auto
+	a
+		padding: 2px 5px 2px 5px
+		margin: 2px
+		border: 1px solid #ccc
+		background: #f7f7f7
+		color: #555
+		&:hover, &:active
+			border: 1px solid #aaa
+			color: #111
+	span.current
+		padding: 2px 5px 2px 5px
+		margin: 2px
+		border: 1px solid #FFAB92
+		font-weight: bold
+		background-color: #FFE1D8
+		color: #d30
+	span.disabled
+		padding: 2px 5px 2px 5px
+		margin: 2px
+		border: 1px solid #eee
+		color: #aaa
+/* DIFF */
+ul.changeset-nav
+	list-style: none
+	position: absolute
+	top: 3px
+	width: 32px
+	right: 8px
+	height: 16px
+	li
+		&.next a, &.prev a
+			position: absolute
+			display: block
+			text-indent: -9999px
+			width: 16px
+			height: 16px
+			left: 20px
+			top: 0
+			background: url(../images/app/icons/forward.png) no-repeat
+		&.prev a
+			left: 0
+			top: 0
+			background: url(../images/app/icons/back.png) no-repeat
+a
+	&.forward, &.back 
+		position: absolute
+		display: block
+		width: 16px
+		height: 16px
+		text-indent: -9999px
+		background: url(../images/app/icons/forward.png) no-repeat
+		&.back 
+			left: 0
+			top: 0
+			background: url(../images/app/icons/back.png) no-repeat
+		&.forward 
+			left: 16px
+			top: 0
+div.diff-table
+	margin-bottom: 20px
+	clear: right
+	overflow: auto
+	padding: 1px
+
+
+.diff
+	font-family: Courier, Monaco, monospace !important
+	overflow: auto
+	width: 100%
+
+	td
+		background: #eee
+
+		pre
+			padding: 0
+			margin: 0
+
+	th.csnum
+		white-space: no-wrap
+		width: 1px
+		text-align: center
+
+
+.ln
+	white-space: no-wrap
+	width: 1px
+	text-align: center
+	background: #e2e2e2 !important
+	font-size: 92%
+	border-right: 1px solid #ccc
+	font-family: "Helvetica", Arial, sans-serif
+	border-bottom: 1px dotted #ccc
+
+
+.diff
+	tr.controls td
+		padding: 5px
+		font-family: "Lucida Grande", Helvetica, Arial, sans-serif
+
+	tbody td
+		background: #f1f1f1
+
+	td
+		&.insert
+			background: #dfd
+			color: #030
+			border-right: 1px solid #4C4
+			border-left: 1px solid #4C4 !important
+
+		&.delete
+			background: #fdd
+			color: #900
+			border-right: 1px solid #d99
+#change-list
+	list-style: none
+	margin-bottom: 20px
+	padding: 0
+
+	li
+		padding: 5px
+		border-bottom: 1px solid #ddd
+		position: relative
+
+
+.viewdiff
+	display: block
+	position: absolute
+	right: 0
+	top: 5px
+	text-indent: -9999px
+	width: 14px
+	height: 14px
+	background: url(../images/app/icons/view-tiny.png) 0 50% no-repeat
+
+
+#change-list .shade
+	background: #eee
+
+
+span.a, .m, .d, .mv, .cp
+	background: #7b0
+	color: #fff
+	font-size: 82%
+	border: 1px solid #fff
+	line-height: 100%
+	padding: 2px
+	font-weight: bold
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	a
+		:text-decoration none
+		color: #fff
+
+span
+	&.m
+		background-color: #06b
+
+	&.mv
+		color: #540
+		background: #ca0
+
+	&.d
+		background: #c00
+
+	&.cp
+		background: #ccc
+		color: #333
+		
+.linenos
+	:vertical-align sub
+	padding-right: 10px
+/* BLAME */
+.blame-div, .source-div
+	width: 100%
+	#source
+		overflow: auto
+		font-family: Courier, Monaco, monospace !important
+		pre.viewsource
+			margin-bottom: 0
+			table
+				color: #fff
+				background-color: #111
+				border-collapse: collapse
+				tr.start-line
+					border-top: 1px solid #555
+				td
+					margin: 0
+					padding: 0 5px
+					&.linenos, &.lineno
+						vertical-align: sub
+						color: #333
+						text-align: right
+						border-left: 1px solid #555
+						border-right: 1px solid #555
+					pre
+						margin: 0
+						padding: 0
+/* SIDEBAR */
+#subscribe
+	margin: 10px 0
+	#subscribe-btn
+		display: block
+		text-indent: -9999px
+		background: url(../images/app/subscribe-btn.png) no-repeat
+		padding: 7px 0
+#members
+	list-style: none
+
+	li
+		min-height: 38px
+		padding: 5px 0
+		border-bottom: 1px solid #ccc
+
+	.avatar
+		float: left
+		margin-right: 5px
+
+	.author
+		font-weight: bold
+		display: block
+		font-size: 110%
+
+	.activity
+		color: #777
+		font-size: 92%
+.sideblock
+	margin: 20px 0
+
+	p
+		padding: 5px
+
+	h3
+		background: #fff
+		padding: 5px
+		border: 1px solid #ddd
+		border-bottom: 1px solid #ccc
+		border-right: 1px solid #ccc
+
+	ul
+		list-style: none
+		padding: 5px
+		font-size: 92%
+#repo-search
+	#repo-search-form
+		input.search
+			width: 100%
+#browser-search
+	margin: 5px
+	padding: 5px
+	#repo-search-form
+		input.search
+			width: 30%
+.subnav-bar.single
+	padding: 0px
+	border: 1px solid #ccc
+	border-top: 1px solid #f7f7f7
+	background: #eee url(../images/app/controls-bg.png) bottom left repeat-x
+	vertical-align: middle
+	height: 35px
+.subnav-bar>ul
+	position: relative
+	margin: 4px 0 0 -6px
+	padding-left: 20px
+.subnav-bar>ul>li
+	position: relative
+	list-style-type: none
+	float: left
+	margin-right: 10px
+.subnav-bar>ul>li>a
+	position: relative
+	display: block
+	height: 15px
+	padding: 3px 5px
+	font-size: 11px
+	text-decoration: none
+	color: #666
+	border: 1px solid transparent
+	z-index: 5
+	&.dropdown
+		padding-right: 15px
+		background-image: url(http://assets.github.com/images/modules/pagehead/subnav_dropdown_arrow.png)
+		background-position: 100% -20px
+		background-repeat: no-repeat
+	&.selected
+		color: #333
+		font-weight: bold
+.subnav-bar>ul>li:hover>a
+	color: #333
+	background-color: #f8f8f8
+	border-color: #ccc
+	-webkit-border-radius: 3px
+	-moz-border-radius: 3px
+	&.selected
+		border-color: transparent
+		background: transparent
+		cursor: default
+	&.dropdown
+		background-position: 100% 0
+		border-color: #ccc
+		border-bottom-color: #e2e2e2
+		-webkit-border-radius: 0
+		-moz-border-radius: 0
+.subnav-bar>ul>li>a.defunct
+	color: #999
+	background: transparent
+	border-color: transparent!important
+	cursor: default
+.subnav-bar>ul>li>ul
+	display: none
+	position: absolute
+	top: 22px
+	max-height: 275px
+	background: #f8f8f8
+	border: 1px solid #ccc
+	overflow: auto
+	z-index: 4
+	-webkit-padding-start: 0
+.subnav-bar>ul>li:hover>ul
+	display: block
+	margin: 0
+	min-width: 180px
+.subnav-bar>ul>li>ul>li
+	list-style-type: none
+	margin: 0
+	border-top: 1px solid #e2e2e2
+	font-size: 11px
+	&:first-child
+		border-top: none
+.subnav-bar>ul>li>ul>li>a, .subnav-bar>ul>li>ul>li>strong
+	padding: 4px 5px
+	display: block
+	font-weight: bold
+.subnav-bar>ul>li>ul>li>a:hover
+	text-decoration: none
+	background-color: #eee

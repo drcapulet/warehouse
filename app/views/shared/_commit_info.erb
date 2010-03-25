@@ -1,0 +1,17 @@
+<div class="changeset clearfix" id="last-log">
+  <div class="cs-meta">
+    <%= avatar_for(commit) %>
+    <p>
+      <span class="change-number"><%= link_to truncate(commit.sha, :length => 7, :omission => ''), commit_path_for_current(commit) %></span>
+    </p>
+  </div>
+  <div class="cs-log clearfix">      
+	<%=h commit.message %>
+    <span class="timenauthor">by <%= commit.actor %>, <%= time_ago_in_words commit.committed_date %> ago</span>
+	<span class="timenauthor">tree: <%= link_to commit.tree, tree_path(:rev => commit.tree) %></span>
+  </div>
+  <ul class="changeset-nav">
+    <li class="prev"><%= link_to 'Previous Changeset', commit_path_for_current(commit.parent), :class => 'back' if commit.parent %></li>
+    <li class="next"><%= link_to 'Next Changeset', commit_path_for_current(commit.next), :class => 'forward' if commit.next %></li>
+  </ul>
+</div>

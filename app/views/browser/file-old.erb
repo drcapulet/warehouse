@@ -1,0 +1,79 @@
+<%= render :partial => 'header'%>
+<!-- <div id="control-center">
+	<form action="<%#= hosted_url(:diff, "r#{@node.revision}", @node.paths) %>" id="diff-form">
+		Diff this changeset:
+		<select id="diff-with" name="r">
+		<option value="">with...</option>
+		
+		<%# unless @node.revision == current_repository.latest_commit_for_branch -%>
+		<option value="head"<%#= %( selected="selected") if params[:r] =~ /^h/i %>>with HEAD</option>
+		<%# end -%>
+		
+		<%# unless @node.revision == 1 -%>
+		<option value="prev"<%#= %( selected="selected") if params[:r] =~ /^p/i %>>with PREV</option>
+		<%# end -%>
+		
+		<%# unless @node.revision == current_repository.latest_commit_for_branch -%>
+		<option value="next"<%#= %( selected="selected") if params[:r] =~ /^n/i %>>with NEXT</option>
+		<%# end -%>
+		
+		<option value="date"<%#= %( selected="selected") if params[:r] =~ /^d/i %>>with a specific date</option>
+		<option value="rev"<%#= %( selected="selected") if params[:r] =~ /^\d+$/i %>>with another changeset</option>
+		</select>
+		
+		<input id="diff-num" name="n" value="" size="6" style="display:none" />
+		<span id="diff-date"<%#= %( style="display:none") unless params[:r] =~ /^d/i %>>
+			<%#= select_date(Date.today, :order => [:month, :day, :year]) %>
+		</span>
+		<input type="submit" value="Go &raquo;" id="diff-submit"<%#= %( style="display:none") unless params[:r].to_s =~ /^\d+$/ %> />
+	</form>
+</div> -->
+<div class="controls-div">
+<table class="diff sourcecode file-source" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr class="controls">
+			<td>
+				<div class="control-head">
+				<p class="controlblock">
+					<%= link_to 'back', '', :class => 'back' %>
+					<%= link_to 'forward', '', :class => 'forward' %>
+					<%#= link_to_node 'back', @node, previous_changeset.revision, :class => 'back' if previous_changeset %>
+					<%#= link_to_node 'forward', @node, next_changeset.revision, :class => 'forward' if @revision && next_changeset %>
+				</p>
+				<ul class="formats">
+					<li><%= link_to 'Blame', link_to_blame(@node) %><%#= link_to_blame 'Blame', @node %></li>
+					<li><%= link_to 'History', '' %><%#= link_to_history 'History', @node %></li>
+					<li<% unless @node.text? %> class="end"<% end %>><%= link_to 'Raw', link_to_raw_for_node(@node) %></li>
+					<% if @node.text? -%><li class="end"><%= link_to 'Text', link_to_text_for_node(@node) %></li><% end -%>
+				</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><%= @node.path.split('/').last %></th>
+		</tr>
+	</thead>
+</table>
+</div>
+<% if controller.action_name != 'blame' -%>
+<div class="source-div">
+	<div id="source"><pre class="viewsource" style="width:90%;"><code>adfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssssdfsssssssssssss
+	<%# cache do %><%#= highlight_source_for_node(@node) %><%# end %></code></pre></div>
+</div>
+<% else %>
+<div class="blame-div">
+	<table wdith="100%" class="blame" cellpadding="0" cellspacing="0">
+		<!-- <tr>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+		</tr> -->
+	<!-- PROBABLY HAVE A BLAME HERE -->
+	<%# cache do %>
+		<%#= blame_for(@node, 'f73e52e42cd4f7572918b9bc131de55ad00ac16f')%>
+	<%# end %>
+	</table>
+</div>
+<% end -%>

@@ -1,0 +1,27 @@
+<h2>History of <%= link_to_node @node.path, @node %> on <%=h params[:tree] || 'master' %></h2>
+
+<div class="subnav-bar single">
+	<ul>
+		<li>
+			<a href="#" class="dropdown">Branches (<%= current_repository.heads.size %>)</a>
+			<ul>
+				<% current_repository.heads.each do |h| -%>
+				<li><%= params[:tree] == h.name ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, link_to_history(@node, h.name)) %>
+				<% end -%>
+			</ul>
+		</li>
+	</ul>
+</div>
+<div class="clear">&nbsp;</div>
+
+
+<ul id="changesets">
+<% @changes.each do |change| -%>
+	<li class="changeset clearfix history" id="commit-<%= change.commit.sha %>">
+		<%= link_to_node "@#{change.commit.sha}", @node, change.commit.tree, :class => 'file-history' %>	
+		<%= render :partial => 'shared/commit_short', :locals => { :commit => change.commit } %>
+	</li>
+<% end -%>
+</ul>
+
+<%= will_paginate @changes %>
