@@ -8,10 +8,29 @@
 	<div class="sub-controls">&nbsp;
 	</div>
 	<div class="browse">
-		<div id="tree"><div id="treecont"><%= html_for_repo_tree(current_repository.full_tree)%></div></div>
+		<div id="tree"><div id="treecont">
+			<span class="loading" style="padding: 10px;">
+				<%= image_tag 'app/progress.gif' %> Loading<br />
+				<small style="padding: 0 10px;">Depending on the size of your repository, it could take a few minutes.</small>
+			
+			</span>
+		</div></div>
 		<div id="source">
 			<pre class="viewsource" id="blank-source"><code></code></pre>
 		</div>
+		<script type="text/javascript">
+			$.ajax({
+				url: '<%= multi_list_path %>',
+				success: function(data) {
+					$('.loading').hide();
+					$('#treecont').html(data);
+				// alert('Load was performed.');
+				},
+				error: function(data) {
+					$('.loading').empty().html('Sorry, the file list couldn\'t be loaded.');
+				}
+			});
+		</script>
 	</div>
 </div>
 <%= javascript_include_tag 'tabs' %>

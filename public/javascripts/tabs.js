@@ -25,10 +25,13 @@ $("div.sourcecode div.controls div#tabs ul li").live("click", function() {
 	$(this).showSource();
 	return false;
 });
+// CLOSE TAB
 $("div.sourcecode div.controls div#tabs ul li span.close").live("click", function() {
 	$("div.sourcecode div#source pre[path='" + $(this).parent().attr('path') + "']").remove();
 	$("div.sourcecode div#source pre#blank-source").show();
 	$("div.sourcecode div.controls div#tabs ul li[path='" + $(this).parent().attr('path') + "']").remove();
+	$("div.sourcecode div.sub-controls").empty();
+	$("div.sourcecode div.controls div#tabs ul li:last").click();
 	return false;
 });
 
