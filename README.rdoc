@@ -21,7 +21,12 @@ I'm working on this section :)
 * Git Post-Commit/Post-Push/Post-something hook to sync the repo
 * Tests
 * Error Handling
-	
+
+== Installing gems
+
+Uses Bundler to manage and vendoring Gem dependencies. To install the Gems, run
+`gem install bundler && bundle install`
+
 == Screenshots
 
 Multi-View:

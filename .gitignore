@@ -4,3 +4,5 @@ features/
 tmp/
 vendor/gems
 log/
+db/*.sqlite3
+.bundle/

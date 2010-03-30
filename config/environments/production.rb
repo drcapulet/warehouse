@@ -1,4 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
+Bundler.require(:default, RAILS_ENV.to_sym)
 
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests

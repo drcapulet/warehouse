@@ -1,4 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
+Bundler.require(:default, RAILS_ENV.to_sym)
 
 # The test environment is used exclusively to run your application's
 # test suite.  You never need to work with it otherwise.  Remember that

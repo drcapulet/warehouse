@@ -1,4 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
+Bundler.require(:default, RAILS_ENV.to_sym)
 
 # In the development environment your application's code is reloaded on
 # every request.  This slows down response time but is perfect for development
