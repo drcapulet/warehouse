@@ -1,0 +1,21 @@
+diff --git a/spec/fixtures/multiple_rems_then_add.diff b/spec/fixtures/multiple_rems_then_add.diff
+new file mode 100644
+index 0000000..f5fd3f8
+--- /dev/null
++++ b/spec/fixtures/multiple_rems_then_add.diff
+@@ -0,0 +1,14 @@
++diff --git a/strokedb-ruby/lib/stores/chainable_storage.rb b/strokedb-ruby/lib/stores/chainable_storage.rb
++index 5326c92..1e2de8f 100644
++--- a/strokedb-ruby/lib/stores/chainable_storage.rb
+++++ b/strokedb-ruby/lib/stores/chainable_storage.rb
++@@ -44,9 +44,7 @@ module StrokeDB
++     def save_with_chained_storages!(chunk,source=nil)
++       perform_save!(chunk)
++       (@chained_storages||{}).each_pair do |storage,savings|
++-        unless storage == chunk
++-          savings << chunk unless savings.include?(chunk)
++-        end
+++          savings << chunk unless  storage == chunk || savings.include?(chunk)
++       end
++     end
+\ No newline at end of file

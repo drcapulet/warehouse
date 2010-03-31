@@ -1,0 +1,12 @@
+diff --git a/History.txt b/History.txt
+index 0ed7358..622c384 100644
+--- a/History.txt
++++ b/History.txt
+@@ -1,4 +1,5 @@
+ == 0.0.1 2008-01-28
+ 
+-* 1 major enhancement:
+-  * Initial release
++* 2 major enhancements:
++  * The Initial release
++  * stuff added
