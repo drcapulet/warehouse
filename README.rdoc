@@ -22,10 +22,27 @@ I'm working on this section :)
 * Tests
 * Error Handling
 
-== Installing gems
+== Installing
 
-Uses Bundler to manage and vendoring Gem dependencies. To install the Gems, run
-`gem install bundler && bundle install`
+First clone the project with
+	
+	git clone git://github.com/drcapulet/warehouse.git
+
+Then, us Bundler to manage and vendoring Gem dependencies. To install the Gems, run:
+
+	gem install bundler && bundle install
+	
+After, check to make sure you have Pygments, (the library we use to highlight source code), if not, install using instructions from the <Pygments>[http://pygments.org/]
+
+Then, make sure you have the database created and load in the schema
+
+	rake schema:load
+	
+Finally, add in a new repository (currently only using DB access, admin on the checklist for 2.0final), and run
+
+	rake warehouse:sync
+	
+And then startup the server and view :)
 
 == Screenshots
 
