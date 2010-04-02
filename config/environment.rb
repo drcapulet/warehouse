@@ -22,6 +22,8 @@ Rails::Initializer.run do |config|
   config.gem 'grit'
   config.gem 'will_paginate'
   config.gem 'gravtastic', :version => '>= 2.2.0'
+  config.gem 'compass', :version => '>= 0.8.17'
+  config.gem 'progressbar', :version => '>= 0.9.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
