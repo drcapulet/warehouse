@@ -19,7 +19,8 @@ ActionController::Routing::Routes.draw do |map|
       b.raw         "raw/*paths",     :action => "raw"
       b.hil         "hil/*paths",     :action => "hil"
       b.multi       "multi",          :action => "multi"
-      b.multi_list  "multi-list",          :action => "multi_list"
+      b.multi_list  "multi-list",     :action => "multi_list"
+      b.search      "search",         :action => "search"
       b.repo        "*paths",         :action => "index"
     end
     

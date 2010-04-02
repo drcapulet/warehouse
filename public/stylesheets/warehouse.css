@@ -888,7 +888,7 @@ span.cp {
   margin-right: 10px; }
 
 /* line 766, ../../app/stylesheets/warehouse.sass */
-.subnav-bar>ul>li>a {
+.subnav-bar>ul>li>a, .subnav-bar>ul>li>span.text {
   position: relative;
   display: block;
   height: 15px;
@@ -899,13 +899,13 @@ span.cp {
   border: 1px solid transparent;
   z-index: 5; }
   /* line 776, ../../app/stylesheets/warehouse.sass */
-  .subnav-bar>ul>li>a.dropdown {
+  .subnav-bar>ul>li>a.dropdown, .subnav-bar>ul>li>span.text.dropdown {
     padding-right: 15px;
     background-image: url(http://assets.github.com/images/modules/pagehead/subnav_dropdown_arrow.png);
     background-position: 100% -20px;
     background-repeat: no-repeat; }
   /* line 781, ../../app/stylesheets/warehouse.sass */
-  .subnav-bar>ul>li>a.selected {
+  .subnav-bar>ul>li>a.selected, .subnav-bar>ul>li>span.text.selected {
     color: #333;
     font-weight: bold; }
 
@@ -974,3 +974,7 @@ span.cp {
 .subnav-bar>ul>li>ul>li>a:hover {
   text-decoration: none;
   background-color: #eee; }
+
+/* line 833, ../../app/stylesheets/warehouse.sass */
+span.code-text {
+  font-family: monospace; }

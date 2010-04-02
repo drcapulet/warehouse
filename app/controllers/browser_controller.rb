@@ -1,6 +1,6 @@
 class BrowserController < ApplicationController
   include Warehouse::RepositoryResources
-  before_filter :find_node, :except => [:multi, :tag, :multi_list]
+  before_filter :find_node, :except => [:multi, :tag, :multi_list, :search]
   before_filter :render_sync_required_unless_current_commit, :only => [:index, :blame]
     
   def index
@@ -30,6 +30,10 @@ class BrowserController < ApplicationController
   
   def multi_list
     render :action => 'multi_list', :layout => false
+  end
+  
+  def search
+    
   end
   
   def history

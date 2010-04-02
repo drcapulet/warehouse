@@ -13,6 +13,7 @@ class CommitsController < ApplicationController
   
   protected
     def find_query
+      params[:tree] ||= 'master'
       if params[:q] && params[:tree]
         conds = ["message LIKE ? AND branch = ?", '%' + params[:q] + '%', params[:tree]]
       elsif params[:tree]

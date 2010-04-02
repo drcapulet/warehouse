@@ -35,7 +35,7 @@ class Repository < ActiveRecord::Base
     silo.full_tree(branch)
   end
   
-  def all_committers(branch, limit = 10)
+  def all_committers(branch = 'master', limit = 10)
     # opts.merge({:select => 'distinct name, email'})
     commits.all(:order => 'committed_date DESC', :group => 'email', :limit => limit, :conditions => {:branch => branch})
   end

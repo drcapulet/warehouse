@@ -8,7 +8,8 @@
 <div class="subnav-bar single">
 	<ul>
 		<li>
-			<%= link_to 'All Commits', all_commits_path, :class => (params[:tree] ? '' : 'selected') %>
+			<span class="text">Branch: <span class="code-text"><%= params[:tree] %></span></span>
+			<%#= link_to 'All Commits', all_commits_path, :class => (params[:tree] ? '' : 'selected') %>
 		</li>
 		<li>
 			<a href="#" class="dropdown">Branches (<%= current_repository.heads.size %>)</a>
@@ -70,10 +71,8 @@
 <div class="sideblock">	
 	<div id="repo-search">
 		<% form_tag search_commits_path, :id => "repo-search-form", :method => :get do %>
-		<!-- <form action="" id="repo-search-form" method="get"> -->
 		  <input type="search" class="search" name="q" results="5" placeholder="Search commits&hellip;" value="" />
 		  <input type="hidden" name="tree" value="<%= params[:tree] %>">
-		<!-- </form> -->
 		<% end %>
 	</div>
 	<div id="subscribe"><%= link_to 'Subscribe to Changesets', 'changeset_feed_url', :id => 'subscribe-btn' %></div>
