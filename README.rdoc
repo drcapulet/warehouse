@@ -32,7 +32,7 @@ Then, us Bundler to manage and vendoring Gem dependencies. To install the Gems, 
 
  gem install bundler && bundle install
 	
-After, check to make sure you have Pygments, (the library we use to highlight source code), if not, install using instructions from the <Pygments>[http://pygments.org/]
+After, check to make sure you have Pygments, (the library we use to highlight source code), if not, install using instructions from the Pygments[http://pygments.org/]
 
 Then, make sure you have the database created and load in the schema
 
