@@ -1,0 +1,20 @@
+<h1 class="header va-reset"><%= image_tag 'icons/repository.png' %>Editing <%= current_repository.name %></h1>
+<%- flash.each do |name, msg| -%>
+	<%= content_tag :div, msg, :class => "flash-#{name}" %>
+<%- end -%>
+<div class="subnav-bar single">
+	<ul>
+		<li>
+			<%= link_to 'General', '', :class => 'selected' %>
+		</li>
+		<li>
+			<%= link_to 'Service Hooks', admin_hooks_path %>
+		</li>
+	</ul>
+</div>
+<div class="clear">&nbsp;</div>
+
+<% semantic_form_for current_repository, :url => admin_path do |form| %>
+	<%= form.inputs :name, :path %>
+	<%= form.buttons %>
+<% end %>

@@ -9,6 +9,7 @@ gem 'sqlite3-ruby', '1.2.5'
 gem 'will_paginate'
 gem 'compass', '0.8.17'
 gem 'progressbar', '0.9.0'
+gem 'formtastic', '0.9.8'
 
 group :cucumber do
   gem "cucumber",         ">=0.6.1"

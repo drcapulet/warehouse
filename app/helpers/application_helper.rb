@@ -55,10 +55,13 @@ module ApplicationHelper
     @current_navigation ||= \
       if (controller.controller_name == 'browser' && controller.action_name == 'multi')
         :multi
+      elsif (controller.controller_name == 'repositories' && ['edit', 'update', 'hooks', 'hooks_update', 'delete'].include?(controller.action_name))
+        :admin
       else
         case controller.controller_name
           when /browser|history/ then :browser
           when /commit/          then :activity
+          when /repositories/    then :repos
           else                        :admin
         end
       end

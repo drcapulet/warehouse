@@ -1,8 +1,17 @@
 REPO_ROOT_REGEX = /^(\/?(admin|changesets|browser|install|login|logout|reset|forget))(\/|$)/
 
 ActionController::Routing::Routes.draw do |map|
+  map.resources :repositories, :only => [:index, :new, :create], :collection => [:search]
   
   map.with_options :path_prefix => '/:repo' do |repo|
+    # repo.resources :admin, :except => [:index, :new, :create, :show], :controller_name => "Repositories"
+    repo.with_options :controller => "repositories" do |a|
+      a.admin           "admin",      :action => 'edit',    :conditions => { :method => [:get] }
+      a.admin           "admin",      :action => 'update',  :conditions => { :method => [:post, :put] }
+      a.admin_hooks     "admin/hooks",:action => 'hooks',   :conditions => { :method => [:get] }
+      a.admin_hooks     "admin/hooks",:action => 'hooks_update', :conditions => { :method => [:post, :put] }
+      a.admin_delete    "admin/nuke", :action => 'delete',  :conditions => { :method => [:get, :post, :delete] }
+    end
     repo.with_options :controller => "commits" do |c|
       c.all_commits     "commits",            :action => "index"
       c.search_commits  "commits/search",     :action => "search"
@@ -21,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
       b.multi       "multi",          :action => "multi"
       b.multi_list  "multi-list",     :action => "multi_list"
       b.search      "search",         :action => "search"
+      # b.repo        "tree/*paths",    :action => "index"
       b.repo        "*paths",         :action => "index"
     end
     

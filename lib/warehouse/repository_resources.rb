@@ -8,7 +8,11 @@ module Warehouse
       else  
         @revision = current_repository.head('master').commit.tree.id
       end
-      @node = current_repository.node(params[:paths] * '/', @revision)
+      if params[:paths]
+        @node = current_repository.node(params[:paths] * '/', @revision)
+      else
+         @node = current_repository.node('/', @revision)
+      end
     end
     
     # def find_current_revision

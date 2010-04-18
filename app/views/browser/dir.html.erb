@@ -28,10 +28,8 @@
 				</div>
 				<div id="browser-search" class="header">
 					<% form_tag search_path, :id => "repo-search-form", :method => :get do %>
-						<!-- <form action="" id="repo-search-form" method="get"> -->
 						  <input type="search" class="search" name="q" results="5" placeholder="Search commits&hellip;" value="" />
 						  <input type="hidden" name="tree" value="<%= params[:tree] %>">
-						<!-- </form> -->
 					<% end %>
 				</div>
 			</td>

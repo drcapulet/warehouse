@@ -3,6 +3,8 @@ class Repository < ActiveRecord::Base
   has_many :commits, :order => 'commits.committed_date DESC', :dependent => :destroy
   has_one  :latest_commit, :class_name => 'Commit', :foreign_key => 'repository_id', :order => 'committed_date desc'
   
+  validates_presence_of :name, :path
+  
   def to_param
     slug
   end

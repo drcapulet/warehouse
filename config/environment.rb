@@ -13,5 +13,7 @@ Rails::Initializer.run do |config|
   # config.gem 'gravtastic', :version => '>= 2.2.0'
   # config.gem 'compass', :version => '>= 0.8.17'
   # config.gem 'progressbar', :version => '>= 0.9.0'
+  config.gem 'formtastic'
+  
   config.time_zone = 'UTC'
 end

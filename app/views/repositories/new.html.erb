@@ -1,0 +1,9 @@
+<h1 class="header va-reset"><%= image_tag 'icons/repository.png' %>New Repository</h1>
+<%- flash.each do |name, msg| -%>
+	<%= content_tag :div, msg, :class => "flash-#{name}" %>
+<%- end -%>
+
+<% semantic_form_for @repo do |form| %>
+	<%= form.inputs :name, :path %>
+	<%= form.buttons %>
+<% end %>

@@ -6,7 +6,7 @@
 		<title><%= current_repository.name rescue 'Warehouse: ' %> <%= @title rescue '' %></title>
 		<link rel="shortcut icon" href="/favicon.png" type="image/png" />
 		<%#= stylesheet_link_tag 'reset', 'main', 'highlight', :media => 'screen, projection' %>
-		<%= stylesheet_link_tag 'warehouse', 'highlight' %>
+		<%= stylesheet_link_tag 'warehouse', 'highlight', 'formtastic' %>
 		<%= javascript_include_tag 'jquery-1.4.1' %>
 		<%= yield(:head) %>
 	</head>
@@ -16,13 +16,15 @@
 			<!-- header -->
 			<div id="header">
 				<div id="hdr-cnt">
-					<h1><%= link_to current_repository.name, repo_path_for_current %></h1>
+					<h1><%= current_repository ? (link_to current_repository.name, repo_path_for_current) : (link_to 'Warehouse', root_path) %></h1>
 					<ul id="nav">
+						<li id="repos"<%= selected_navigation?(:repos) %>><%= link_to 'Repositories', repositories_path %></li>
 						<% if current_repository -%>
 						<li id="code"<%= selected_navigation?(:browser) %>><%= link_to 'Browser', repo_path_for_current %></li>
 						<li id="code"<%= selected_navigation?(:multi) %>><%= link_to 'Multi', multi_path(:repo => current_repository) %></li>
 						<li id="activity"<%= selected_navigation?(:activity) %>><%= link_to 'Commits', commits_path(:tree => 'master') %></li>
-						<li id="admin"<%#= selected_navigation?(:admin) %>><%= link_to 'Admin', '' %></li>
+						<li id="admin"<%= selected_navigation?(:admin) %>><%= link_to 'Admin', admin_path %></li>
+						<% else -%>
 						<% end -%>
 					 </ul>
 					<ul id="utils">

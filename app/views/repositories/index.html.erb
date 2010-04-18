@@ -1,0 +1,28 @@
+<h1 class="header va-reset"><%= image_tag 'icons/repository.png' %>All Repositories</h1>
+<%- flash.each do |name, msg| -%>
+	<%= content_tag :div, msg, :class => "flash-#{name}" %>
+<%- end -%>
+<div class="repo-add">
+	<h3><%= link_to 'New Repository', new_repository_path %></h3>
+</div>
+<% @repos.each do |r| -%>
+<div class="repo">
+	<h2><%= link_to r.name, repo_path(r) %></h2>latest commit: <span style="font-weight:normal;"><%= link_to r.latest_commit_for_branch.sha, commit_path(r, r.latest_commit_for_branch.sha) %></span>
+	<% if r.has_unsynced_revisions? -%>
+		<span style="float:right;"><small>needs to be synced</small><%= image_tag('icons/sync.png', :style => 'vertical-align:text-top;') %></span>
+	<% end -%>
+</div>
+<% end -%>
+
+
+<% @sidebar = true -%>
+<% content_for :sidebar do -%>
+<div class="sideblock">	
+	<div id="repo-search">
+		<% form_tag search_repositories_path, :id => "repo-search-form", :method => :get do %>
+		  <input type="search" class="search" name="q" results="5" placeholder="Search repositories&hellip;" value="" />
+		  <input type="hidden" name="tree" value="<%= params[:tree] %>">
+		<% end %>
+	</div>
+</div>
+<% end -%>

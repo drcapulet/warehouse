@@ -1,4 +1,4 @@
-<% if params[:paths].any? %>
+<% if params[:paths] && params[:paths].any? %>
 <div id="crumbs">
 	<ul class="clearfix"><%= link_to_crumbs @node.path %></ul>
 </div>

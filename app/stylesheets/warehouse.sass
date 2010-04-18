@@ -52,14 +52,22 @@ form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a
 /* HEADERS */
 h1, h2, h3, h4, h5, h6
 	font-size: 100%
-
-
+h1.header
+	font-size: 120%
+	margin-bottom: 10px
+	border-bottom: 1px solid #ccc
+	padding:3px
+	img
+		margin-bottom: 5px
 h2
 	position: relative
 	padding: 5px
 	font-size: 110%
 	margin-bottom: 10px
 	border-bottom: 1px solid #ccc
+div.repo h2
+	border-bottom: none
+	display: inline
 /* ERRORS */
 div
 	&.errorExplanation, &#error
@@ -85,7 +93,7 @@ div
 		padding: 0
 /* INFORMATION */
 .info
-	background: #E3F1FF url(../images/app/icons/info.png) 5px 50% no-repeat
+	background: #E3F1FF url(../images/icons/info.png) 5px 50% no-repeat
 	padding: 20px 10px 20px 60px
 	border: 1px solid #5D94CB
 	font-weight: bold
@@ -93,15 +101,23 @@ div
 	margin: 10px 0
 
 
-.notice
+.notice, .flash-notice
 	padding: 20px 10px 20px 60px
 	border: 1px solid #5D94CB
 	font-weight: bold
 	color: #346
 	margin: 10px 0
-	background: #DCF0C9 url(../images/app/icons/check.png) 5px 50% no-repeat
+	background: #DCF0C9 url(../images/icons/check.png) 5px 50% no-repeat
 	border: 1px solid #6A3
 	color: #460
+.flash-error
+	padding: 15px 10px 15px 60px
+	margin: 20px 0
+	background: #fee url(../images/icons/no.png) 5px 5px no-repeat
+	border: 1px solid #faa
+	color: #F00
+	font-weight: bold
+	margin: 10 0
 /* MAJOR */
 #header
 	background: #232C30
@@ -187,7 +203,8 @@ div
 
 		&#admin a
 			background: url(../images/icons/admin.png) 5px 50% no-repeat
-
+		&#repos a
+			background: url(../images/icons/box-small.png) 5px 50% no-repeat
 
 	#utils
 		position: absolute
@@ -767,7 +784,7 @@ span
 	position: relative
 	display: block
 	height: 15px
-	padding: 3px 5px
+	padding: 3px 5px 5px 5px
 	font-size: 11px
 	text-decoration: none
 	color: #666
@@ -781,6 +798,14 @@ span
 	&.selected
 		color: #333
 		font-weight: bold
+		text-shadow: 1px 1px 0 rgba(255,255,255,0.6)
+		background: #ddd
+		border-color: #c5c5c5
+		border-right-color: #eee
+		border-bottom-color: #eee
+		-webkit-border-radius: 3px
+		-moz-border-radius: 3px
+		border-radius: 3px
 .subnav-bar>ul>li:hover>a
 	color: #333
 	background-color: #f8f8f8
@@ -788,8 +813,10 @@ span
 	-webkit-border-radius: 3px
 	-moz-border-radius: 3px
 	&.selected
-		border-color: transparent
-		background: transparent
+		border-color: #c5c5c5
+		border-right-color: #eee
+		border-bottom-color: #eee
+		background: #ddd
 		cursor: default
 	&.dropdown
 		background-position: 100% 0
@@ -832,3 +859,67 @@ span
 	background-color: #eee
 span.code-text
 	font-family: monospace
+.va-reset
+	img
+		:vertical-align middle
+/* REPO ADD */
+.repo-add
+	padding: 5px
+	background: #e2e2e2
+	margin-bottom: 10px
+	border: 1px solid #ddd
+	border-bottom-color: #ccc
+	border-right-color: #ccc
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	font-size: 110%
+	font-weight: bold
+	&:hover
+		background: rgb(247,247,247)
+#service-hooks
+	display: table
+	width: 100%
+	div.service-list-div, div.service-hook-div
+		display: table-cell
+	div.service-list-div
+		width: 22%
+		margin-right: 15px
+	div.service-hook-div
+		width: 75%
+	.service-list
+		margin: 1.5em 1.5em 1em 0
+		padding: 1em
+		border: 1px solid #ccc
+		background: #f1f1f1
+		.service_active a
+			color: #3a3
+			font-weight: bold
+		.service_inactive a
+			color: #a33
+		ul
+			list-style-type: none
+			-webkit-padding-start: 0
+	.service-list legend, .service-hook legend
+		font-size: 1.2em
+		font-weight: bold
+	.service-hook
+		margin: 1.5em 0
+		padding: 1em
+		border: 1px solid #ccc
+		background: #f1f1f1
+		//width: 500px
+		label
+			float: left
+			width: 7em
+		p
+			margin-top: .5em
+		input.text, input.password
+			border: 1px solid #888
+			width: 31em
+		.help_box
+			margin-top: .5em
+			border: 1px solid #eee
+			padding: .8em
+			background: #fff
+			pre
+				font-size: 80%
+
