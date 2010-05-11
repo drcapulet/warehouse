@@ -12,10 +12,10 @@ I'm working on this section :)
 * History and Blame for a file
 * Multi-View
 * Command-Line Syncer
+* Admin and Post-Recieve Hooks
 
 == Not Done
 
-* Admin
 * Dashboard
 * Authentication
 * Git Post-Commit/Post-Push/Post-something hook to sync the repo
@@ -52,7 +52,7 @@ http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg
 
 == Contributing
 
-I'd love your help, or your bug reports :)
+I'd love your help, or your bug reports :) Some guides (like for hooks) will be added soon on how to contribute those specific items.
 
 == License
 

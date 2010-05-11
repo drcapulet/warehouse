@@ -5,7 +5,7 @@
 <% @commit.changes.sort! { |x,y| x.path <=> y.path }.each do |change| -%>
 	<% i += 1 -%>
   <li<%= cycle '', ' class="shade"' %>>
-    <span class="<%= change.mode.downcase %>" title=""><%= link_to change.path, "#diff-#{i}"%></span> 
+    <span class="<%= change.mode.downcase %>" title=""><%= link_to change.path, "#diff-#{i}"%></span>
 	<%= link_to 'view', "##{i}", :class => 'viewdiff' %>
     <%#= link_to_node change.path, change.path, changeset.revision %> <%# if change.modified? %> <%#= link_to 'view', "##{dom_id change}", :class => 'viewdiff' %><%# end %>
   </li>
@@ -14,6 +14,7 @@
 
 <!-- <h1>Commits#show</h1>
 <p>Find me in app/views/commits/show.html.erb</p> -->
+<% begin %>
 <% i = 0 -%>
  <% @commit.diffs.sort! { |x,y| x.b_path <=> y.b_path }.each do |c| %>
 	<% i += 1 -%>
@@ -37,4 +38,7 @@
 		</tbody>
 	</table>
 </div>
+<% end %>
+<% rescue Grit::Git::GitTimeout %>
+Sorry, but it will take too long to generate this diff, try in in your command line: <pre class="viewsource"><code>git diff <%= @commit.sha %></code></pre>
 <% end %>

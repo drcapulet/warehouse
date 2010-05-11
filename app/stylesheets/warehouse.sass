@@ -56,7 +56,7 @@ h1.header
 	font-size: 120%
 	margin-bottom: 10px
 	border-bottom: 1px solid #ccc
-	padding:3px
+	padding: 3px
 	img
 		margin-bottom: 5px
 h2
@@ -843,6 +843,8 @@ span
 	display: block
 	margin: 0
 	min-width: 180px
+.subnav-bar>ul>li.defunct:hover>ul
+	display: none
 .subnav-bar>ul>li>ul>li
 	list-style-type: none
 	margin: 0
@@ -875,6 +877,22 @@ span.code-text
 	font-weight: bold
 	&:hover
 		background: rgb(247,247,247)
+#service-hooks-header
+	height: 25px
+	color: #000
+	font-size: 25px
+	padding: 12px 5px 5px 5px
+	border-bottom: 1px solid rgb(105, 105, 105)
+	-webkit-border-top-left-radius: 5px
+	-moz-border-radius-topleft: 5px
+	border-top-left-radius: 5px
+	-webkit-border-top-right-radius: 5px
+	-moz-border-radius-topright: 5px
+	border-top-right-radius: 5px
+	webkit-user-select: none
+	-webkit-user-drag: none
+	text-shadow: 1px 1px 0px #bad3ed
+	margin-bottom: 10px
 #service-hooks
 	display: table
 	width: 100%
@@ -882,44 +900,52 @@ span.code-text
 		display: table-cell
 	div.service-list-div
 		width: 22%
-		margin-right: 15px
 	div.service-hook-div
 		width: 75%
-	.service-list
-		margin: 1.5em 1.5em 1em 0
-		padding: 1em
-		border: 1px solid #ccc
-		background: #f1f1f1
-		.service_active a
-			color: #3a3
-			font-weight: bold
-		.service_inactive a
-			color: #a33
+		padding: 5px
+		div.hook
+			div.head
+				font-size: 18px
+				padding-bottom: 3px
+				border-bottom: 1px solid #bbb
+				margin-bottom: 5px
+			form.formtastic fieldset > ol > li label
+				width: 15%
+			form.formtastic fieldset.buttons
+				padding-left: 10%
+	div.service-list-div
 		ul
 			list-style-type: none
 			-webkit-padding-start: 0
-	.service-list legend, .service-hook legend
-		font-size: 1.2em
-		font-weight: bold
-	.service-hook
-		margin: 1.5em 0
-		padding: 1em
-		border: 1px solid #ccc
-		background: #f1f1f1
-		//width: 500px
-		label
-			float: left
-			width: 7em
-		p
-			margin-top: .5em
-		input.text, input.password
-			border: 1px solid #888
-			width: 31em
-		.help_box
-			margin-top: .5em
-			border: 1px solid #eee
-			padding: .8em
-			background: #fff
-			pre
-				font-size: 80%
-
+			margin: 0
+			li
+				padding: 4px
+				border-right: 1px solid rgb(105, 105, 105)
+				&:hover
+					background: #DFDFDF
+					cursor: pointer
+				&.current, &:active
+					background: #ccc
+					-webkit-user-drag: none
+				&.current
+					border-right: none
+				&.service_active a
+					color: #3a3
+					font-weight: bold
+				&.service_inactive a
+					color: #a33
+	div.service-arrows
+		width: 15px
+		display: table-cell
+		.right-arrow
+			border: 12px solid #ebebeb
+			border-width: 12px 0 12px 12px
+			border-color: #ebebeb #ccc
+			font-size: 0 /* needed for IE browsers, if this isn't set to 0 you will end up with a trapezoid */
+			line-height: 0
+			position: relative
+			top: -4px
+			width: 0px
+			margin-bottom: 1px
+			&.hidden
+				border-color: #ebebeb #ebebeb

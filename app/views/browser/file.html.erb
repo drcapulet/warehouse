@@ -16,7 +16,7 @@
 <div class="source-div">
 	<div id="source">
 	<% if controller.action_name != 'blame' -%>
-	    <pre class="viewsource"><code><%= highlight_source_for_node(@node) %></code></pre>
+	    <pre class="viewsource"><code><%= @node.image? ? "<center>#{image_tag(link_to_raw_for_node(@node))}</center>" : highlight_source_for_node(@node) %></code></pre>
 	<% else -%>
 		<pre class="viewsource"><table>
 			<% cache do %><%= blame_for(@node, current_commit.sha) %><% end %>

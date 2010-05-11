@@ -4,7 +4,7 @@ module Warehouse
   class Node
     
     @@file_extensions = Set.new(%w(txt rb php python rhtml erb phps phtml shtml html c js json atom xml htm bas css yml))
-    @@image_mime_regex  = /(png|jpe?g|gif)/i
+    @@image_mime_regex  = /(png|jpe?g|gif|ico)/i
     attr_accessor :path, :revision
     
     def initialize(repository, path, tree = 'master', grit_object = nil)

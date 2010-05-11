@@ -16,7 +16,7 @@
 								<% end -%>
 							</ul>
 						</li>
-						<li>
+						<li<%= ' class="defunct"' if current_repository.tags.size == 0 %>>
 							<a href="#" class="dropdown <%= 'defunct' if current_repository.tags.size == 0 %>">Tags (<%= current_repository.tags.size %>)</a>
 							<ul>
 							<% current_repository.tags.each do |h| -%>
