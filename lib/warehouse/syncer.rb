@@ -39,7 +39,6 @@ module Warehouse
       @heads = @grit.heads.dup.collect { |h| h.name }
       first_commits = []
       @heads.each do |branch|
-        next if branch == "staging"
         parent = @repo.synced_revision ? @repo.commits.first(:conditions => {:branch => branch}, :order => 'committed_date DESC') : nil
         before = parent
         date = parent ? (parent.committed_date + 1) : Time.utc(1970, 1, 1) #Time.parse("2010-01-01T00:37:53Z")

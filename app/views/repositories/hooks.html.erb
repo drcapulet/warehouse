@@ -19,74 +19,18 @@
 
 <div id="service-hooks-header">Service Hooks</div>
 <div id="service-hooks">
-	<!-- <div class="service-list-div">
-		<fieldset class="service-list">
-			<legend>Hooks</legend>
-			<ul>
-				<li class="service_active"><a href="#" class="hook_edit_toggle" id="postreceive_urls-toggle">Post-Receive URLs (2<%#= r.hooks.service_hooks.count %>)</a></li>
-				<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="basecamp-toggle">Basecamp</a></li>
-				<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="cia-toggle">CIA</a></li>
-				<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="campfire-toggle">Campfire</a></li>
-				<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="email-toggle">Email</a></li>
-				FogBugz
-				Freckle
-				FriendFeed
-				Irc
-				Jabber
-				Lighthouse
-				Presently
-				Rdocinfo
-				Rubyforge
-				Statusnet
-				Talker
-				Trac
-				Twitter
-				WebTranslateIt
-		    </ul>
-		</fieldset>
-	</div>
-	
-	<div class="service-hook-div">
-		<fieldset class="service-hook" id="postreceive_urls">
-			<a href="#" style="display:none;" class="remove_postreceive_url"><img src="/images/modules/repos/remove.png"/></a>
-
-			<legend>Post-Receive URLs</legend>
-			<%# sematic_for_form  %>
-			<form action="/drcapulet/shorty/edit/postreceive_urls" class="new_service" id="new_service" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="e022e172407bfd9d8d1a86bb3526f2d7bc3f5b87" /></div>
-			</form>
-		</fieldset>
-	</div> -->
 	<div class="service-list-div">
 		<ul>
-			<li class="current <%= service_active? current_repository.hooks.post_receive %><%#= service_active? (current_repository.hooks.post_receive && !current_repository.hooks.post_receive.options['urls'].empty?) %>"><a href="#" class="hook_edit_toggle" id="postreceive_urls-toggle">Post-Receive URLs (<%= current_repository.hooks.post_receive ? current_repository.hooks.post_receive.options['urls'].length : '0' %>)</a></li>
+			<li class="current <%= service_active? current_repository.hooks.post_receive %>"><a href="#" class="hook_edit_toggle" id="postreceive_urls-toggle">Post-Receive URLs (<%= current_repository.hooks.post_receive ? current_repository.hooks.post_receive.options['urls'].length : '0' %>)</a></li>
 			<% @hooks.each do |k, hook| -%>
 				<% next if  hook.plugin_name == "post_receive" -%>
 				<li class="<%= service_active? eval("current_repository.hooks.#{hook.plugin_name}") %>"><%= link_to hook.html_name, '#', :id => "#{hook.plugin_name}-toggle", :class => 'hook_edit_toggle' %></li>
 			<% end -%>
-			<!-- <li class="service_inactive"><a href="#" class="hook_edit_toggle" id="basecamp-toggle">Basecamp</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="cia-toggle">CIA</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="campfire-toggle">Campfire</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="email-toggle">Email</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="fog_bugz-toggle">FogBugz</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="freckle-toggle">Freckle</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="friend_feed-toggle">FriendFeed</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="irc-toggle">Irc</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="jabber-toggle">Jabber</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="lighthouse-toggle">Lighthouse</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="presently-toggle">Presently</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="rdocinfo-toggle">Rdocinfo</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="rubyforge-toggle">Rubyforge</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="statusnet-toggle">Statusnet</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="talker-toggle">Talker</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="trac-toggle">Trac</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="twitter-toggle">Twitter</a></li>
-						<li class="service_inactive"><a href="#" class="hook_edit_toggle" id="web_translate_it-toggle">WebTranslateIt</a></li> -->
 		</ul>
 	</div>
 	<div class="service-arrows"></div>
 	<div class="service-hook-div">
 		<div id="postreceive_urls" class="hook">
-			<!-- <a href="#" style="display:none;" class="remove_postreceive_url"><img src="/images/modules/repos/remove.png"/></a> -->
 			<div class="head">Post-Receive URLs</div>
 			<% semantic_form_for current_repository.hooks || current_repository.hooks.new(:name => 'post_receive', :options => { 'urls' => [] }), :url => admin_hooks_post_path do |form| %>
 				<% form.inputs do %>
@@ -150,73 +94,6 @@
 				<% end %>
 			<% end %>
 		</div>
-		<% end -%>
-		
-		
-		<!-- <div id="basecamp" class="hook" style="display:none;">
-			<div class="head">Basecamp</div>
-			<p>
-				<b>URL:</b> Your Basecamp URL<br />
-			</p><br />
-			<%# basecamp = current_repository.hooks.basecamp_new %>
-			<%# semantic_form_for basecamp, :url => admin_hooks_path do |form| %>
-				<%# form.inputs do %>
-					<%#= form.input :name, :as => :hidden %>
-					<%# form.inputs :for => :options do |opts| %>
-						<%# basecamp.hook_options_html.each do |k,v| %>
-							<%#= opts.input k.to_sym, v %>
-						<%# end %>
-						<%#= opts.input :URL, :label => 'URL'%>
-						<%#= opts.input :api_key, :label => 'API Key' %>
-						<%#= opts.inputs :project, :category %>
-					<%# end %>
-					<%#= form.input :active %>
-				<#% end %>
-				<%# form.buttons do %>
-					<%#= form.commit_button :label => "Update Hook" %>
-				<%# end %>
-			<%# end %> -->
-			<!-- <form action="/drcapulet/shorty/edit/postreceive_urls" class="new_service formtastic" id="new_service" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="e022e172407bfd9d8d1a86bb3526f2d7bc3f5b87" /></div>
-				<fieldset class="inputs"><ol>
-					<li class="string required" id="repository_name_input">
-						<label for="repository_name">URL</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />	
-					</li>
-					<li>
-						<a href="#" onclick="$('#repository_basecamp_api_key').show();$('#repository_basecamp_username').hide();$('#repository_basecamp_password').hide();">API Key</a> or 
-						<a href="#" onclick="$('#repository_basecamp_api_key').hide();$('#repository_basecamp_username').show();$('#repository_basecamp_password').show();">Username/Passowrd</a>
-						 authentication?</li>
-					<li class="string required" id="repository_basecamp_api_key">
-						<label for="repository_name">API Key</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />
-					</li>
-					<li class="string required" id="repository_basecamp_username" style="display:none;">
-						<label for="repository_name">Username</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />
-					</li>
-					<li class="string required" id="repository_basecamp_password" style="display:none;">
-						<label for="repository_name">Password</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />
-					</li>
-					<li class="string required" id="repository_name_input">
-						<label for="repository_name">Project</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />
-					</li>
-					<li class="string required" id="repository_name_input">
-						<label for="repository_name">Category</label>
-						<input id="repository_name" maxlength="255" name="repository[name]" size="50" type="text" />
-					</li>
-					<li class="string required" id="repository_name_input">
-						<label for="repository_name">Enabled?</label>
-						<input name="repository[name][]" type="hidden" value="" />
-						<input id="repository_name_true" name="repository[name][]" type="checkbox" value="true" />
-					</li>
-				</ol></fieldset>
-				<fieldset class="buttons"><ol>
-					<li class="commit"><input class="update" id="repository_submit" name="commit" type="submit" value="Update Settings" /></li>
-				</ol></fieldset>
-			</form> -->
-		<!-- </div> -->
-		
+		<% end -%>		
 	</div>
 </div>
