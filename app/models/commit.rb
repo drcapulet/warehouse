@@ -2,7 +2,7 @@ class Commit < ActiveRecord::Base
   belongs_to :repository, :counter_cache => true
   belongs_to :parent, :class_name => "Commit"
   has_one :next,  :class_name => "Commit", :foreign_key => 'parent_id'
-  has_many :changes
+  has_many :changes, :dependent => :destroy
   is_gravtastic :email, :size => 32, :default => '/images/app/icons/member.png'
   
   def actor

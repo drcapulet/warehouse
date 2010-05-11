@@ -108,7 +108,7 @@ html[xmlns] form.formtastic fieldset ol li.hidden { display:none; }
 
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.boolean label { padding-left:25%; width:auto; }
+form.formtastic fieldset > ol > li.boolean label { padding-left:14.5%; width:auto; }
 form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em; }
 
 

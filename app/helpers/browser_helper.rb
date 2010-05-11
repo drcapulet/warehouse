@@ -31,9 +31,12 @@ module BrowserHelper
     if c = Change.last(:conditions => ["path LIKE ? AND commit_id IN(?) ", node.path + '%', @repo.commits.all(:conditions => { :branch => current_commit.branch, :committed_date => @@default_time..current_commit.committed_date.utc }) ])
       c.commit
     else
-      Commit.new
-      # b = node.latest_revision(current_commit.committed_date + 1.second)
-      # Commit.new(:sha => b.id, :message => b.message, :name => b.committer.name, :email => b.committer.email, :branch => current_commit.branch, :tree => b.tree.id, :committed_date => b.date)
+      if WH_CONFIG[:commits_whenever]
+        b = node.latest_revision(current_commit.committed_date + 1.second)
+        Commit.new(:sha => b.id, :message => b.message, :name => b.author.name, :email => b.author.email, :branch => current_commit.branch, :tree => b.tree.id, :committed_date => b.date)
+      else
+        Commit.new
+      end
     end
   end
   

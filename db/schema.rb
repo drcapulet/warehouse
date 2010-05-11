@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100212195149) do
+ActiveRecord::Schema.define(:version => 20100420055825) do
 
   create_table "changes", :force => true do |t|
     t.string   "mode"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20100212195149) do
     t.string   "tree"
     t.string   "parent_sha"
     t.integer  "parent_id"
+  end
+
+  create_table "hooks", :force => true do |t|
+    t.integer  "repository_id"
+    t.string   "name"
+    t.text     "options"
+    t.boolean  "active",        :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "repositories", :force => true do |t|

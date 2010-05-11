@@ -1,0 +1,12 @@
+# Warehouse
+# - host: for the syncer b/c it doesn't load a full Rail env
+# - commits_whenever: if the repo isn't synced all the way back, this will do a file access lookup, degrades performance
+development:
+  host: http://localhost:5060
+  commits_whenever: false
+  git_timeout: 60
+
+production:
+  host: 
+  commits_whenever: false
+  git_timeout: 60

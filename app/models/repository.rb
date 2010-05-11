@@ -2,6 +2,7 @@ class Repository < ActiveRecord::Base
   attr_accessible :name, :slug, :synced_revision, :synced_revision_at
   has_many :commits, :order => 'commits.committed_date DESC', :dependent => :destroy
   has_one  :latest_commit, :class_name => 'Commit', :foreign_key => 'repository_id', :order => 'committed_date desc'
+  has_many :hooks, :order => 'name desc'
   
   validates_presence_of :name, :path
   
@@ -56,6 +57,10 @@ class Repository < ActiveRecord::Base
   
   def tags
     silo.grit_object.tags
+  end
+  
+  def process_hooks(payload)
+    self.hooks.active.each { |h| h.runnit(payload) }
   end
   
 end

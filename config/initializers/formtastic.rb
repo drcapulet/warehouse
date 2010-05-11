@@ -1,0 +1,1 @@
+Formtastic::SemanticFormHelper.builder = WarehouseFormBuilder

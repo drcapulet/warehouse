@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
       a.admin           "admin",      :action => 'update',  :conditions => { :method => [:post, :put] }
       a.admin_hooks     "admin/hooks",:action => 'hooks',   :conditions => { :method => [:get] }
       a.admin_hooks     "admin/hooks",:action => 'hooks_update', :conditions => { :method => [:post, :put] }
+      a.admin_hooks_post "admin/hooks/post_receive", :action => 'hooks_update_post', :conditions => { :method => [:post, :put] }
+      a.admin_hooks_email "admin/hooks/email", :action => 'hooks_update_email', :conditions => { :method => [:post, :put] }
       a.admin_delete    "admin/nuke", :action => 'delete',  :conditions => { :method => [:get, :post, :delete] }
     end
     repo.with_options :controller => "commits" do |c|
