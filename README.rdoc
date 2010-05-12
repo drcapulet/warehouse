@@ -46,6 +46,34 @@ And then startup the server and view :)
 
 == Screenshots
 
+New Repository:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/new-repo.jpg
+
+Repository Browsing:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-dir.jpg
+
+File Viewing:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-file.jpg
+
+File Blame:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-file-blame.jpg
+
+Commits:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-commits.jpg
+
+Commit:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-commit.jpg
+
+Hooks:
+
+http://github.com/drcapulet/warehouse/raw/master/screens/repo-hooks.jpg
+
 Multi-View:
 
 http://github.com/drcapulet/warehouse/raw/master/screens/screen-multi.jpg
