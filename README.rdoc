@@ -48,7 +48,7 @@ And then startup the server and view :)
 
 Multi-View:
 
-http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg
+http://img.skitch.com/20100512-89u8mfg5wiu8by3kanugjm3cn1.preview.jpg[link:http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg]
 
 == Contributing
 
