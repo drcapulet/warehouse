@@ -48,7 +48,7 @@ And then startup the server and view :)
 
 Multi-View:
 
-{Multi-View}[http://img.skitch.com/20100325-89u8mfg5wiu8by3kanugjm3cn1.jpg]
+http://github.com/drcapulet/warehouse/raw/master/screens/screen-multi.jpg
 
 == Contributing
 
