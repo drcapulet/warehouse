@@ -19,8 +19,13 @@
 				<% end -%>
 			</ul>
 		</li>
-		<li>
+		<li<%= ' class="defunct"' if current_repository.tags.size == 0 %>>
 			<a href="#" class="dropdown <%= 'defunct' if current_repository.tags.size == 0 %>">Tags (<%= current_repository.tags.size %>)</a>
+			<ul>
+			<% current_repository.tags.each do |h| -%>
+				<li><%= (params[:tag].to_s == h.name) ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, tag_path(:tag => h.name)) %></li>
+			<% end -%>
+			</ul>
 		</li>
 	</ul>
 </div>
