@@ -7,6 +7,14 @@ module Warehouse
     
     attr_accessor :path
     
+    def valid?
+      begin
+        !!grit_object
+      rescue
+        false
+      end
+    end
+    
     def node_at(path, tree = 'master')
       Node.new(self, path, tree)
     end

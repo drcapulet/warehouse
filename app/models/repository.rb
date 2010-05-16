@@ -1,10 +1,14 @@
 class Repository < ActiveRecord::Base
-  attr_accessible :name, :slug, :synced_revision, :synced_revision_at
+  attr_accessible :name, :slug, :synced_revision, :synced_revision_at, :path
   has_many :commits, :order => 'commits.committed_date DESC', :dependent => :destroy
   has_one  :latest_commit, :class_name => 'Commit', :foreign_key => 'repository_id', :order => 'committed_date desc'
   has_many :hooks, :order => 'name desc'
   
   validates_presence_of :name, :path
+  validates_uniqueness_of :slug
+  named_scope :recent_commits, :order => 'synced_revision_at DESC'
+  validate :valid_grit_repo
+  before_save :set_slug
   
   def to_param
     slug
@@ -31,7 +35,11 @@ class Repository < ActiveRecord::Base
   end
   
   def has_unsynced_revisions?(branch = 'master')
-    latest_unsynced_revision_for_branch(branch).sha != latest_commit_for_branch(branch).sha
+    if latest_commit_for_branch(branch) && latest_unsynced_revision_for_branch(branch)
+      latest_unsynced_revision_for_branch(branch).sha != (latest_commit_for_branch(branch).sha)
+    else
+      true
+    end
   end
   
   def full_tree(branch = 'master')
@@ -61,6 +69,20 @@ class Repository < ActiveRecord::Base
   
   def process_hooks(payload)
     self.hooks.active.each { |h| h.runnit(payload) }
+  end
+  
+  def valid_grit_repo
+    errors.add(:path, "That path isn't a valid Git repo!")  unless silo.valid?
+  end
+  
+  def set_slug
+    s = name.dup
+    s.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
+    s.gsub!(/[^\w_ \-]+/i,   '') # Remove unwanted chars.
+    s.gsub!(/[ \-]+/i,      '-') # No more than one of the separator in a row.
+    s.gsub!(/^\-|\-$/i,      '') # Remove leading/trailing separator.
+    s.downcase!
+    self.slug = s
   end
   
 end

@@ -7,7 +7,7 @@
 </div>
 <% @repos.each do |r| -%>
 <div class="repo">
-	<h2><%= link_to r.name, repo_path(r) %></h2>latest commit: <span style="font-weight:normal;"><%= link_to r.latest_commit_for_branch.sha, commit_path(r, r.latest_commit_for_branch.sha) %></span>
+	<h2><%= link_to r.name, repo_path(r) %></h2>latest commit: <span style="font-weight:normal;"><%= link_to r.latest_commit_for_branch.sha, commit_path(r, r.latest_commit_for_branch.sha) if r.latest_commit_for_branch %></span>
 	<% if r.has_unsynced_revisions? -%>
 		<span style="float:right;"><small>needs to be synced</small><%= image_tag('icons/sync.png', :style => 'vertical-align:text-top;') %></span>
 	<% end -%>
