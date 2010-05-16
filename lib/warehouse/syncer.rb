@@ -128,7 +128,7 @@ module Warehouse
             :author    => {
               :name  => commit.name,
               :email => commit.email,
-              :avatar => commit.gravatar_url(:default => root_url + 'images/app/icons/member.png')
+              :avatar => commit.gravatar_url(:default => base_url + 'images/app/icons/member.png')
             }
           }
         end
