@@ -77,8 +77,12 @@ module Warehouse
             comms << co
             pbar.set(x.to_i)
           end
-          payload = create_payload_for_hooks(before, comms, branch)
-          @repo.process_hooks(payload)
+          begin
+            payload = create_payload_for_hooks(before, comms, branch)
+            @repo.process_hooks(payload)
+          rescue
+            puts "The syncer had trouble finishing all of the post-receive hooks. Continuing."
+          end
         end
         pbar.finish
       end
