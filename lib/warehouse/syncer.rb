@@ -27,6 +27,10 @@ module Warehouse
     
     def self.process(repo = nil)
       Warehouse::Hooks.discover
+      unless APP_CONFIG[:host] && !APP_CONFIG[:host].empty?
+        puts "You need to set the host value under #{RAILS_ENV} in config/warehouse.yml"
+        exit 1
+      end
       if repo
         new(repo).process
       else
