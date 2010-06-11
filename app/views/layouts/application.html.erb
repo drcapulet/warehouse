@@ -18,6 +18,7 @@
 				<div id="hdr-cnt">
 					<h1><%= current_repository ? (link_to current_repository.name, repo_path_for_current) : (link_to 'Warehouse', root_path) %></h1>
 					<ul id="nav">
+						<li id="all-history"<%= selected_navigation?(:dashboard) %>><%= link_to 'Dashboard', root_path %></li>
 						<li id="repos"<%= selected_navigation?(:repos) %>><%= link_to 'Repositories', repositories_path %></li>
 						<% if current_repository -%>
 						<li id="code"<%= selected_navigation?(:browser) %>><%= link_to 'Browser', repo_path_for_current %></li>
@@ -39,7 +40,7 @@
 				</div>
 				
 				<% if @sidebar -%>
-				<div id="sbar">
+				<div id="sbar"<%= 'class="wide"' if @sidebar_wide %>>
 					<%= yield :sidebar %>
 				</div>
 				<% end -%>

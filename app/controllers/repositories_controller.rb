@@ -1,5 +1,6 @@
 class RepositoriesController < ApplicationController
   def index
+    @title = 'Repositories'
     @repos = Repository.all
   end
   

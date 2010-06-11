@@ -121,7 +121,7 @@ EOH
         :to     => e,
         :from   => email_conf['from'],
         :via    => email_conf['via'],
-        :subject => "[#{repo_name}] #{first_commit_sha}: #{first_commit_title}",
+        :subject => "[#{repo_name}/#{payload[:ref]}] #{first_commit_sha}: #{first_commit_title}",
         :body   => body,
         :html_body => html_body
       }

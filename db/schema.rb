@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100420055825) do
+ActiveRecord::Schema.define(:version => 20100531071131) do
 
   create_table "changes", :force => true do |t|
     t.string   "mode"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(:version => 20100420055825) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "commits_count"
+  end
+
+  create_table "timeline_events", :force => true do |t|
+    t.string   "event_type"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.integer  "actor_id"
+    t.string   "actor_type"
+    t.integer  "secondary_subject_id"
+    t.string   "secondary_subject_type"
+    t.text     "extra"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -13,6 +13,7 @@ require 'app/models/repository'
 require 'app/models/commit'
 require 'app/models/change'
 require 'app/models/hook'
+require 'app/models/timeline_event'
 require 'warehouse/repo'
 require 'warehouse/node'
 require 'progressbar'
@@ -87,6 +88,9 @@ module Warehouse
           rescue
             puts "The syncer had trouble finishing all of the post-receive hooks. Continuing."
           end
+          e = TimelineEvent.new(:event_type => 'push', :subject => @repo, :extra => { "commits" => comms.collect(&:id), "ref" => branch }, :created_at => Time.now.utc)
+          # e.actor = User.find_by_email(comms.last.email) if User.find_by_email(comms.last.email)
+          e.save
         end
         pbar.finish
       end

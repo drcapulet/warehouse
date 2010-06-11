@@ -141,6 +141,9 @@ div
 		width: 220px
 		padding: 20px
 		display: table-cell
+		&.wide
+			width: 250px
+			padding: 10px
 		
 /* HEADERS */
 #hdr-cnt
@@ -191,18 +194,12 @@ div
 		&#activity a
 			background: url(../images/icons/activity.png) 5px 50% no-repeat
 
-		&#all-history
-			border: none !important
-			font-weight: bold
-
-			a
-				padding-left: 20px
-				background: url(../images/icons/clock.png) 0 50% no-repeat !important
-				display: block
-				color: #555
-
+		&#all-history a 
+			background: url(../images/icons/clock.png) 5px 50% no-repeat
+			
 		&#admin a
 			background: url(../images/icons/admin.png) 5px 50% no-repeat
+			
 		&#repos a
 			background: url(../images/icons/box-small.png) 5px 50% no-repeat
 
@@ -764,6 +761,7 @@ span
 	#repo-search-form
 		input.search
 			width: 30%
+/* NAV *
 .subnav-bar.single
 	padding: 0px
 	border: 1px solid #ccc
@@ -949,3 +947,87 @@ span.code-text
 			margin-bottom: 1px
 			&.hidden
 				border-color: #ebebeb #ebebeb
+/* REPO SIDEBAR */
+.sidebar-repo
+	border: 1px #ccc solid
+	:border-radius 5px
+	:-moz-border-radius 5px
+	:-webkit-border-radius 5px
+	.sidebar-repo-head
+		background: #eee url(../images/app/controls-bg.png) bottom left repeat-x
+		padding: 5px
+		border-bottom: 1px #ccc solid
+		h2
+			font-size: 110%
+			display: inline
+		span.new
+			float: right
+			font-size: 105%
+			:font-variant small-caps
+			a
+				color: #07b
+				&:hover
+					:text-decoration underline
+	.sidebar-repo-list
+		ul
+			-webkit-padding-start: 0
+			list-style: none
+			margin: 0
+			li
+				padding-left: 25px
+				background: url(/images/icons/box-small.png) no-repeat 5px center
+				border-bottom: 1px #ccc solid
+				font-weight: bold
+				&.last
+					border-bottom: 0
+				&:hover
+					background-color: #ccc
+				a	
+					padding: 3px 5px 3px 0
+					display: block
+					color: #07b
+					margin-right: 2px
+					&:hover
+						background: url(/images/icons/forward.png) no-repeat 4px right
+/* ACTIVITY FEED  */				
+#dashbaord
+	ul
+		-webkit-padding-start: 0
+		list-style: none
+		li.commit, li.push
+			background: url(../images/icons/head.png) 0 5px no-repeat
+			div.commit-div, div.push-div
+				margin-left: 22px
+				border-bottom: 1px solid #bbb
+				padding: 4px
+		li.commit
+			div.meta
+				:font-weight bold
+			div.info-under
+				display: table
+				div.av
+					display: table-cell
+				div.comm-info
+					display: table-cell
+					:vertical-align top
+					padding: 3px
+					.code
+						:font-family monospace
+		li.push
+			div.meta
+				:font-weight bold
+			div.info-under
+				display: table
+				div.av, div.commits-info
+					display: table-cell
+				div.commits-info
+					:vertical-align top
+					padding: 3px
+					.inline-commit
+						margin-bottom: 3px
+					.avatar
+						width: 16px
+						height: 16px
+						vertical-align: middle
+					.code
+						:font-family monospace

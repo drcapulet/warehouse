@@ -59,6 +59,7 @@ module ApplicationHelper
         :admin
       else
         case controller.controller_name
+          when /dashboard/       then :dashboard
           when /browser|history/ then :browser
           when /commit/          then :activity
           when /repositories/    then :repos

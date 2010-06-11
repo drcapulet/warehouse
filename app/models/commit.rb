@@ -4,6 +4,7 @@ class Commit < ActiveRecord::Base
   has_one :next,  :class_name => "Commit", :foreign_key => 'parent_id'
   has_many :changes, :dependent => :destroy
   is_gravtastic :email, :size => 32, :default => '/images/app/icons/member.png'
+  named_scope :dashboard, :order => 'committed_date DESC'
   
   def actor
     actor_id ? user : name
