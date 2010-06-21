@@ -1,5 +1,6 @@
 <% content_for :head do %>
-<%= javascript_include_tag 'hooks' %>
+<%= stylesheet_link_tag 'tipsy' %>
+<%= javascript_include_tag 'hooks', 'jquery-tipsy' %>
 <% end %>
 <h1 class="header va-reset"><%= image_tag 'icons/repository.png' %>Editing <%= current_repository.name %></h1>
 <%- flash.each do |name, msg| -%>
@@ -26,6 +27,7 @@
 				<% next if  hook.plugin_name == "post_receive" -%>
 				<li class="<%= service_active? eval("current_repository.hooks.#{hook.plugin_name}") %>"><%= link_to hook.html_name, '#', :id => "#{hook.plugin_name}-toggle", :class => 'hook_edit_toggle' %></li>
 			<% end -%>
+			<li class=""><%= link_to "Fake Payload", '#', :id => "fake_payload-toggle", :class => 'hook_edit_toggle' %></li>
 		</ul>
 	</div>
 	<div class="service-arrows"></div>
@@ -38,14 +40,16 @@
 					<% form.inputs :for => :urls do |u| %>
 						<% if current_repository.hooks.post_receive %>
 						<% current_repository.hooks.post_receive.options['urls'].each do |url| %>
-						<%= u.input [], :label => "URL", :input_html => { :value => url }, :extra_html => (" " + link_to_function(image_tag('icons/delete.png'), 'remove_field(this)')) %>
+						<%= u.input [], :label => "URL", :input_html => { :value => url }, :extra_html => (" " + link_to_function(image_tag('icons/delete.png'), 'remove_field(this)')), :wrapper_html => { :class => 'add_url' } %>
 						<% end %>
 						<% end %>
 						<%= u.input [], :label => "URL", :extra_html => (" " + link_to_function(image_tag('icons/plus-small.png'), 'add_field(this)')), :wrapper_html => { :class => 'add_url' } %>
 					<% end %>
 				<% end %>
 				<% form.buttons do %>
-					<%= form.commit_button :label => "Update Hook" %>
+					<%= form.commit_button :label => "Update URLs" %>
+					<%= link_to "Test Hook", admin_hooks_path.gsub(/hooks$/, "post_receive_hook_test"), :class => 'g-button test-hook', :id => "post_receive_link" %>
+					<%= image_tag "loading.gif", :style => 'vertical-align: middle; display: none;', :id => "post_receive_loading" %>
 				<% end %>
 			<% end %>
 		</div>
@@ -57,14 +61,16 @@
 					<% form.inputs :for => :emails do |u| %>
 						<% if current_repository.hooks.email %>
 						<% current_repository.hooks.email.options['emails'].each do |email| %>
-						<%= u.input [], :label => "Email", :input_html => { :value => email }, :extra_html => (" " + link_to_function(image_tag('icons/delete.png'), 'remove_email(this)')) %>
+						<%= u.input [], :label => "Email", :input_html => { :value => email }, :extra_html => (" " + link_to_function(image_tag('icons/delete.png'), 'remove_email(this)')), :wrapper_html => { :class => 'add_email' } %>
 						<% end %>
 						<% end %>
 						<%= u.input [], :label => "Email", :extra_html => (" " + link_to_function(image_tag('icons/plus-small.png'), 'add_email(this)')), :wrapper_html => { :class => 'add_email' } %>
 					<% end %>
 				<% end %>
 				<% form.buttons do %>
-					<%= form.commit_button :label => "Update Hook" %>
+					<%= form.commit_button :label => "Update Emails" %>
+					<%= link_to "Test Hook", admin_hooks_path.gsub(/hooks$/, "email_hook_test"), :class => 'g-button test-hook', :id => "email_link" %>
+					<%= image_tag "loading.gif", :style => 'vertical-align: middle; display: none;', :id => "email_loading" %>
 				<% end %>
 			<% end %>
 		</div>
@@ -74,26 +80,37 @@
 			<div class="head"><%= hook.plugin_name.capitalize %></div>
 			<% h = eval("current_repository.hooks.#{hook.plugin_name}_new") %>
 			<% b = {} %>
-			<% semantic_form_for h, :url => admin_hooks_path do |form| %>
+			<% semantic_form_for h, :html => { :id => hook.plugin_name + "_form" },:url => admin_hooks_path do |form| %>
 				<% form.inputs do %>
 					<%= form.input :name, :as => :hidden %>
 					<% form.inputs :for => :options do |opts| %>
 						<% h.hook_options_html.each do |k,v| %>
 							<% b[k] = v if v[:as] && v[:as] == :boolean %>
 							<% next if v[:as] == :boolean %>
+							<% v[:input_html] ? v[:input_html].merge!({:title => h.hook_options[k] }) : (v[:input_html] = {:title => h.hook_options[k] }) %>
+							<% v[:input_html].merge!({:value => h[:options][k.to_s]}) if h[:options] && h[:options][k.to_s] %>
 							<%= opts.input k.to_sym, v %>
 						<% end %>
 						<% b.each do |k,v| %>
+							<% v[:input_html] ? v[:input_html].merge!({:title => h.hook_options[k] }) : (v[:input_html] = {:title => h.hook_options[k] }) %>
+							<% v[:input_html].merge!({:checked => "checked"}) if h[:options] && (h[:options][k.to_s] == "1") %>
 							<%= opts.input k.to_sym, v %>
 						<% end %>
 					<% end %>
-					<%= form.input :active %>
+					<%= form.input :active, :wrapper_html => { :class => 'active_checkbox' } %>
 				<% end %>
 				<% form.buttons do %>
-					<%= form.commit_button :label => "Update Hook" %>
+					<%= form.commit_button :label => "Update #{hook.plugin_name.capitalize} Settings" %>
+					<%= link_to "Test Hook", admin_hooks_path.gsub(/hooks$/, "#{hook.plugin_name}_hook_test"), :class => 'g-button test-hook', :id => hook.plugin_name + "_link" %>
+					<%= image_tag "loading.gif", :style => 'vertical-align: middle; display: none;', :id => hook.plugin_name + "_loading" %>
 				<% end %>
 			<% end %>
 		</div>
-		<% end -%>		
-	</div>
+		<% end -%>
+		<div id="fake_payload" class="hook" style="display:none;">
+			<div class="head">Fake Payload</div>
+			This is what is deployed when you click "Test Hook"
+			<pre class="viewsource"><code><% cache do %><%= JSON.pretty_generate(Warehouse::Hooks.fake_payload) %><% end %></code></pre>
+		</div>
+	</div>	
 </div>

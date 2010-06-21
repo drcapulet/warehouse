@@ -910,7 +910,27 @@ span.code-text
 			form.formtastic fieldset > ol > li label
 				width: 15%
 			form.formtastic fieldset.buttons
-				padding-left: 10%
+				padding-left: 15%
+				li.commit input, a.g-button
+					padding: 6px 10px
+					-webkit-border-radius: 2px
+					border-radius: 2px
+					-moz-border-radius: 2px
+					border: solid 1px rgb(153, 153, 153)
+					background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)))
+					color: #333
+					text-decoration: none
+					cursor: pointer
+					display: inline-block
+					text-align: center
+					text-shadow: 0px 1px 1px rgba(255,255,255,1)
+					line-height: 1
+					&:hover
+						background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(248, 248, 248)), to(rgb(221, 221, 221)))
+					&:active, &.selected
+						background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221)))
+					&.disabled
+						color: #ccc
 	div.service-list-div
 		ul
 			list-style-type: none
@@ -1031,3 +1051,24 @@ span.code-text
 						vertical-align: middle
 					.code
 						:font-family monospace
+/* MAKE THE FORM BUTTONS NICE */
+form.formtastic fieldset.buttons li.commit input, a.g-button
+	padding: 6px 10px
+	-webkit-border-radius: 2px
+	border-radius: 2px
+	-moz-border-radius: 2px
+	border: solid 1px rgb(153, 153, 153)
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)))
+	color: #333
+	text-decoration: none
+	cursor: pointer
+	display: inline-block
+	text-align: center
+	text-shadow: 0px 1px 1px rgba(255,255,255,1)
+	line-height: 1
+	&:hover
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(248, 248, 248)), to(rgb(221, 221, 221)))
+	&:active, &.selected
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221)))
+	&.disabled
+		color: #ccc

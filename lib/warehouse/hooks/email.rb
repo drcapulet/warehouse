@@ -102,20 +102,7 @@ EOH
     html_body << <<-EOH
       <tr><td colspan="2" style="border-left:1px solid #ccc;border-right:1px solid #ccc; border-bottom:1px solid #ccc;text-align:center;"><small>sent at #{Time.now}</small></td></tr>
 EOH
-  # 
-  #   message = TMail::Mail.new
-  #   message.set_content_type('text', 'plain', {:charset => 'UTF-8'})
-  #   message.to      = data['address']
-  #   message.subject = "[#{name_with_owner}] #{first_commit_sha}: #{first_commit_title}"
-  #   message.body    = body
-  #   message.date    = Time.now
-  # 
-  #   smtp_settings  = [ email_conf['address'], (email_conf['port'] || 25), (email_conf['domain'] || 'localhost.localdomain') ]
-  #   smtp_settings += [ email_conf['user_name'], email_conf['password'], email_conf['authentication'] ] if email_conf['authentication']
-  # 
-  #   Net::SMTP.start(*smtp_settings) do |smtp|
-  #     smtp.send_message message.to_s, "GitHub <noreply@github.com>", data['address']
-  #   end
+
     data["emails"].each do |e|
       opts = {
         :to     => e,

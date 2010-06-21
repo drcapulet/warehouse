@@ -10,7 +10,10 @@ gem 'will_paginate'
 gem 'compass', '0.8.17'
 gem 'progressbar', '0.9.0'
 gem 'formtastic', '0.9.8'
+gem 'json'
 gem 'pony', '>= 1.0'
+gem 'tinder'
+gem 'xml-simple'
 
 group :cucumber do
   gem "cucumber",         ">=0.6.1"

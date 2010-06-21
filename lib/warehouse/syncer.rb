@@ -18,6 +18,12 @@ require 'warehouse/repo'
 require 'warehouse/node'
 require 'progressbar'
 Grit::Git.git_timeout = APP_CONFIG[:git_timeout].to_i if  APP_CONFIG[:git_timeout].to_i > 10
+if APP_CONFIG[:log_syncer]
+  require 'logger'
+  LOGGER = Logger.new('log/syncer.log')
+  LOGGER.level = Logger::DEBUG
+  LOGGER.info("# Syncer invoked at #{Time.now}")
+end
 module Warehouse
   class Syncer
     
@@ -30,6 +36,7 @@ module Warehouse
       Warehouse::Hooks.discover
       unless APP_CONFIG[:host] && !APP_CONFIG[:host].empty?
         puts "You need to set the host value under #{RAILS_ENV} in config/warehouse.yml"
+        LOGGER.error("You need to set the host value under #{RAILS_ENV} in config/warehouse.yml") if LOGGER
         exit 1
       end
       if repo
@@ -40,14 +47,15 @@ module Warehouse
     end
     
     def process
+      LOGGER.info("Syncing: #{@repo.name}") if LOGGER
       puts @repo.name
       @heads = @grit.heads.dup.collect { |h| h.name }
       first_commits = []
       @heads.each do |branch|
+        LOGGER.info("Syncing branch #{branch} on #{@repo.name}") if LOGGER
         parent = @repo.synced_revision ? @repo.commits.first(:conditions => {:branch => branch}, :order => 'committed_date DESC') : nil
         before = parent
-        date = parent ? (parent.committed_date + 1) : Time.utc(1970, 1, 1) #Time.parse("2010-01-01T00:37:53Z")
-        # commits = commits_from_time_to_now_on_branch("Sun Jan 10 17:01:46 -0700 2010".to_time, branch)
+        date = parent ? (parent.committed_date + 1) : Time.utc(1970, 1, 1)
         commits = @repo.synced_revision ? commits_from_time_to_now_on_branch(date, branch) : grit.log(branch)
         pbar = ProgressBar.new(branch, 100)
         i = 0.0
@@ -73,9 +81,9 @@ module Warehouse
             begin
               create_changes_from_commit(c, co)
             rescue Grit::Git::GitTimeout => boom
-              puts 'The syncer had a problem syncing, try changing the git timeout in warehouse.yml. It tried to run:'
-              puts boom.bytes_read
-              co.delete
+              puts 'The syncer had a problem syncing, try changing the git timeout in warehouse.yml.'
+              LOGGER.error("The syncer had a problem syncing #{@repo.name}, try changing the git timeout in warehouse.yml") if LOGGER
+              co.destroy
               exit 1
             end
             parent = co
@@ -84,13 +92,26 @@ module Warehouse
           end
           begin
             payload = create_payload_for_hooks(before, comms, branch)
-            @repo.process_hooks(payload)
-          rescue
-            puts "The syncer had trouble finishing all of the post-receive hooks. Continuing."
+            # @repo.process_hooks(payload) # We are bypassing this so that when one failes it gets logged and then the rest continue
+            hooks.active.each do |h|
+              begin
+                h.runnit(payload)
+              rescue => e
+                LOGGER.error("The syncer had trouble finishing the #{h.html_name.downcase} post-receive hook.") if LOGGER
+                LOGGER.error(e) if LOGGER
+                LOGGER.error(e.backtrace.join("\n")) if LOGGER
+                next
+              end
+            end
+          rescue => e
+            puts "The syncer had trouble finishing post-receive hooks. Continuing."
+            LOGGER.error(e) if LOGGER
+            LOGGER.error(e.backtrace.join("\n")) if LOGGER
           end
           e = TimelineEvent.new(:event_type => 'push', :subject => @repo, :extra => { "commits" => comms.collect(&:id), "ref" => branch }, :created_at => Time.now.utc)
           # e.actor = User.find_by_email(comms.last.email) if User.find_by_email(comms.last.email)
           e.save
+          LOGGER.info("Finished syncing #{@repo.name}/#{branch} with #{comms.size} commits") if LOGGER
         end
         pbar.finish
       end
@@ -104,6 +125,7 @@ module Warehouse
         @repo.save
       end
       puts ''
+      LOGGER.info("Finished syncing #{@repo.name}") if LOGGER
     end
     
     protected

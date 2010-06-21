@@ -39,7 +39,19 @@ class RepositoriesController < ApplicationController
   end
   
   def hooks_update
-    # current_repository
+    hook_name = params[:hook][:name]
+    hook      = eval("current_repository.hooks.#{hook_name}_new")
+    options   = params[:hook][:options]
+    active    = params[:hook][:active]
+    if hook.id
+      hook.update_attributes({ :options => options, :active => active })
+    else
+      hook.options = options
+      hook.active  = active
+      hook.save
+    end
+    flash[:notice] = "Your hooks have been updated successfully!"
+    redirect_to admin_hooks_path
   end
   
   def hooks_update_post
@@ -80,4 +92,14 @@ class RepositoriesController < ApplicationController
   
   def sync
   end
+  
+  Warehouse::Hooks.list.each do |k, hook|
+    class_eval("def #{k}_hook_test
+      h = eval(\"current_repository.hooks.#{k}\")
+      h.runnit(Warehouse::Hooks.fake_payload)
+      render :text => 'success'
+    end")
+  end
+  
+  
 end

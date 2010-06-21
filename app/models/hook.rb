@@ -42,6 +42,10 @@ class Hook < ActiveRecord::Base
     Warehouse::Hooks[name].options_html
   end
   
+  def html_name
+    Warehouse::Hooks[name].html_name.gsub(/([A-Z])/, ' \1').strip
+  end
+  
   def runnit(payload)
     h = Warehouse::Hooks[name].new(self, payload)
     h.run!

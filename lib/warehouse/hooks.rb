@@ -61,6 +61,34 @@ module Warehouse
         discovered
       end
       
+      def fake_payload
+        { 
+          :ref => "master",
+          :before => "9bf67315bfbba7843f7b786f9e2f7a24053c9066",
+          :after => "857cd26dd6c8ff5e5b65264f6f07d6b055e3b19c",
+          :commits => [
+            {
+              :id => "3629d2ad854848547bfd583a5b2a01e29ba7da01",
+              :message=>"Fixed a problem with the application controller",
+              :moved => [],
+              :removed => [],
+              :added => [],
+              :modified => ["app/controllers/application_controller.rb"],
+              :author => {
+                :avatar => "http://www.gravatar.com/avatar/?d=identicon&s=80&r=g",
+                :email => "joe@schmo.con",
+                :name => "Joe Schmo" }, 
+              :timestamp => "2010-06-09T20:07:36Z",
+              :url => "http://warehouse.local/warehouse/commit/3629d2ad854848547bfd583a5b2a01e29ba7da01"
+            }
+          ],
+          :repository => {
+            :name => "Skribit",
+            :url => "http://localhost:5060/skribit"
+          }
+        }
+      end
+      
       def define(service, &block)
         hook_name = Service.class_name_of(service)
         # hook_class = Class.new(Service)

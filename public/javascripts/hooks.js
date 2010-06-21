@@ -4,6 +4,9 @@ $(document).ready(function() {
 		$('.service-arrows').append('<div class="right-arrow hidden" id="' + hook_arrow + '">&nbsp;</div>');
 	});
 	$('.service-arrows > div.right-arrow:first').removeClass('hidden');
+	$('li.string:not([class~=add_url]):not([class~=add_email]) input[type=text]').tipsy({trigger: 'focus', gravity: 'w', fade: true });
+	$('li.boolean:not([class~=active_checkbox]) > label').tipsy({trigger: 'focus', gravity: 'w', fade: true, title: function() { return $(this).find('input[type=checkbox]').attr('title'); } });
+	$('li.boolean[class*=active_checkbox] > label').tipsy({trigger: 'focus', gravity: 'w', fade: true, fallback: 'Activate this hook?' });
 });
 
 $('div.service-list-div ul li').live('click', function () {
@@ -44,3 +47,18 @@ function add_email(t) {
 	h = $('li#hook_emails__input:last').html();
 	$('<li class="string required" id="hook_emails__input">' + h + '</li>').insertBefore($('li.add_email')).children('[type=text]').attr('value', '');
 }
+// TESTING HOOKS
+$('a.test-hook').live('click', function () {
+	link = $(this);
+	link.addClass('selected');
+	link.addClass('disabled');
+	link.disabled = true;
+	loader = "#" + link.attr('id').replace(/_link$/, '_loading');
+	$(loader).show();
+	$.get(link.attr('href'), function(data) {
+		link.removeClass('selected');
+		link.removeClass('disabled');
+		$(loader).hide();
+	});
+	return false;
+});

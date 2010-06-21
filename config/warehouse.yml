@@ -5,6 +5,7 @@ development:
   host: http://localhost:5060
   commits_whenever: false
   git_timeout: 60
+  log_syncer: true
 
 production:
   host: 
