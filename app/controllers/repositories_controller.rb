@@ -93,6 +93,10 @@ class RepositoriesController < ApplicationController
   def sync
   end
   
+  def search
+    @repos = Repository.all(:conditions => ["name LIKE ?", '%' + params[:q] + '%'])
+  end
+  
   Warehouse::Hooks.list.each do |k, hook|
     class_eval("def #{k}_hook_test
       h = eval(\"current_repository.hooks.#{k}\")
