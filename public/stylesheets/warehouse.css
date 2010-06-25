@@ -78,37 +78,40 @@ h2 {
   font-size: 110%;
   margin-bottom: 10px;
   border-bottom: 1px solid #cccccc; }
+  /* line 68, ../../app/stylesheets/warehouse.sass */
+  h2 strong.highlight {
+    background: black; }
 
-/* line 68, ../../app/stylesheets/warehouse.sass */
+/* line 70, ../../app/stylesheets/warehouse.sass */
 div.repo h2 {
   border-bottom: none;
   display: inline; }
 
 /* ERRORS */
-/* line 73, ../../app/stylesheets/warehouse.sass */
+/* line 75, ../../app/stylesheets/warehouse.sass */
 div.errorExplanation, div#error {
   padding: 10px 10px 10px 50px;
   margin: 20px 0;
   background: #ffeeee url(../images/app/icons/no.png) 5px 5px no-repeat;
   border: 1px solid #ffaaaa;
   color: #333333; }
-/* line 81, ../../app/stylesheets/warehouse.sass */
+/* line 83, ../../app/stylesheets/warehouse.sass */
 div.errorExplanation ul {
   list-style: none;
   margin: 5px 0; }
-/* line 85, ../../app/stylesheets/warehouse.sass */
+/* line 87, ../../app/stylesheets/warehouse.sass */
 div.errorExplanation h2 {
   background: transparent;
   border: 0;
   padding: 0; }
-/* line 90, ../../app/stylesheets/warehouse.sass */
+/* line 92, ../../app/stylesheets/warehouse.sass */
 div#error h2 {
   background: transparent;
   border: 0;
   padding: 0; }
 
 /* INFORMATION */
-/* line 95, ../../app/stylesheets/warehouse.sass */
+/* line 97, ../../app/stylesheets/warehouse.sass */
 .info {
   background: #e3f1ff url(../images/icons/info.png) 5px 50% no-repeat;
   padding: 20px 10px 20px 60px;
@@ -117,7 +120,7 @@ div#error h2 {
   color: #334466;
   margin: 10px 0; }
 
-/* line 104, ../../app/stylesheets/warehouse.sass */
+/* line 106, ../../app/stylesheets/warehouse.sass */
 .notice, .flash-notice {
   padding: 20px 10px 20px 60px;
   border: 1px solid #5d94cb;
@@ -128,7 +131,7 @@ div#error h2 {
   border: 1px solid #66aa33;
   color: #446600; }
 
-/* line 113, ../../app/stylesheets/warehouse.sass */
+/* line 115, ../../app/stylesheets/warehouse.sass */
 .flash-error {
   padding: 15px 10px 15px 60px;
   margin: 20px 0;
@@ -139,46 +142,46 @@ div#error h2 {
   margin: 10 0; }
 
 /* MAJOR */
-/* line 122, ../../app/stylesheets/warehouse.sass */
+/* line 124, ../../app/stylesheets/warehouse.sass */
 #header {
   background: #232c30;
   margin: 0;
   text-align: left;
   padding: 18px;
   position: relative; }
-  /* line 128, ../../app/stylesheets/warehouse.sass */
+  /* line 130, ../../app/stylesheets/warehouse.sass */
   #header h1 a {
     color: white;
     text-decoration: none;
     font-size: 120%; }
 
-/* line 133, ../../app/stylesheets/warehouse.sass */
+/* line 135, ../../app/stylesheets/warehouse.sass */
 #content {
   width: 90%;
   margin: 0 auto;
   text-align: left;
   padding-bottom: 40px; }
-  /* line 138, ../../app/stylesheets/warehouse.sass */
+  /* line 140, ../../app/stylesheets/warehouse.sass */
   #content #main {
     padding: 20px; }
-  /* line 140, ../../app/stylesheets/warehouse.sass */
+  /* line 142, ../../app/stylesheets/warehouse.sass */
   #content #sbar {
     width: 220px;
     padding: 20px;
     display: table-cell; }
-    /* line 144, ../../app/stylesheets/warehouse.sass */
+    /* line 146, ../../app/stylesheets/warehouse.sass */
     #content #sbar.wide {
       width: 250px;
       padding: 10px; }
 
 /* HEADERS */
-/* line 149, ../../app/stylesheets/warehouse.sass */
+/* line 151, ../../app/stylesheets/warehouse.sass */
 #hdr-cnt {
   position: relative;
   width: 85%;
   margin: 0 auto;
   padding: 0 20px; }
-  /* line 154, ../../app/stylesheets/warehouse.sass */
+  /* line 156, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt #nav {
     position: absolute;
     top: 11px;
@@ -186,12 +189,12 @@ div#error h2 {
     list-style: none;
     margin: 0;
     padding: 0; }
-    /* line 162, ../../app/stylesheets/warehouse.sass */
+    /* line 164, ../../app/stylesheets/warehouse.sass */
     #hdr-cnt #nav li {
       display: inline;
       margin: 0;
       padding: 0; }
-      /* line 167, ../../app/stylesheets/warehouse.sass */
+      /* line 169, ../../app/stylesheets/warehouse.sass */
       #hdr-cnt #nav li a {
         border-top: 1px solid #5c738a;
         background-color: #445566 !important;
@@ -203,63 +206,63 @@ div#error h2 {
         padding-left: 25px;
         display: block;
         float: left; }
-        /* line 179, ../../app/stylesheets/warehouse.sass */
+        /* line 181, ../../app/stylesheets/warehouse.sass */
         #hdr-cnt #nav li a:hover {
           border-top-color: #7593b0;
           background-color: #576c82 !important;
           color: white; }
-      /* line 184, ../../app/stylesheets/warehouse.sass */
+      /* line 186, ../../app/stylesheets/warehouse.sass */
       #hdr-cnt #nav li.selected a {
         border-top: 1px solid white;
         background-color: #eeeeee !important;
         color: #333333; }
-  /* line 191, ../../app/stylesheets/warehouse.sass */
+  /* line 193, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt li#code a {
     background: url(../images/icons/code.png) 5px 50% no-repeat; }
-  /* line 194, ../../app/stylesheets/warehouse.sass */
+  /* line 196, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt li#activity a {
     background: url(../images/icons/activity.png) 5px 50% no-repeat; }
-  /* line 197, ../../app/stylesheets/warehouse.sass */
+  /* line 199, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt li#all-history a {
     background: url(../images/icons/clock.png) 5px 50% no-repeat; }
-  /* line 200, ../../app/stylesheets/warehouse.sass */
+  /* line 202, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt li#admin a {
     background: url(../images/icons/admin.png) 5px 50% no-repeat; }
-  /* line 203, ../../app/stylesheets/warehouse.sass */
+  /* line 205, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt li#repos a {
     background: url(../images/icons/box-small.png) 5px 50% no-repeat; }
-  /* line 206, ../../app/stylesheets/warehouse.sass */
+  /* line 208, ../../app/stylesheets/warehouse.sass */
   #hdr-cnt #utils {
     position: absolute;
     right: 20px;
     top: 0;
     list-style: none; }
-    /* line 212, ../../app/stylesheets/warehouse.sass */
+    /* line 214, ../../app/stylesheets/warehouse.sass */
     #hdr-cnt #utils li {
       display: inline;
       margin-right: 5px;
       font-size: 92%; }
-      /* line 217, ../../app/stylesheets/warehouse.sass */
+      /* line 219, ../../app/stylesheets/warehouse.sass */
       #hdr-cnt #utils li a {
         color: #ccddee;
         border-bottom: 1px dotted #334455; }
-        /* line 221, ../../app/stylesheets/warehouse.sass */
+        /* line 223, ../../app/stylesheets/warehouse.sass */
         #hdr-cnt #utils li a:hover {
           color: white; }
 
 /* MULTI */
-/* line 224, ../../app/stylesheets/warehouse.sass */
+/* line 226, ../../app/stylesheets/warehouse.sass */
 div.sourcecode {
   width: 100%;
   border: 1px solid #cccccc;
   border-top: none; }
-  /* line 228, ../../app/stylesheets/warehouse.sass */
+  /* line 230, ../../app/stylesheets/warehouse.sass */
   div.sourcecode div.controls {
     padding: 5px;
     border-top: 1px solid #f7f7f7;
     background: #eeeeee url(../images/app/controls-bg.png) bottom left repeat-x;
     vertical-align: middle; }
-  /* line 233, ../../app/stylesheets/warehouse.sass */
+  /* line 235, ../../app/stylesheets/warehouse.sass */
   div.sourcecode div.sub-controls {
     color: #333333;
     font-family: Courier, Monaco, monospace !important;
@@ -267,19 +270,19 @@ div.sourcecode {
     background: #f7f7f7;
     padding: 5px 10px;
     border-bottom: 1px solid #cccccc; }
-  /* line 240, ../../app/stylesheets/warehouse.sass */
+  /* line 242, ../../app/stylesheets/warehouse.sass */
   div.sourcecode div.browse {
     display: table; }
-    /* line 242, ../../app/stylesheets/warehouse.sass */
+    /* line 244, ../../app/stylesheets/warehouse.sass */
     div.sourcecode div.browse div#tree {
       background: #f1f1f1;
       width: 200px;
       display: table-cell;
       overflow: auto; }
-    /* line 247, ../../app/stylesheets/warehouse.sass */
+    /* line 249, ../../app/stylesheets/warehouse.sass */
     div.sourcecode div.browse div#source {
       display: table-cell; }
-      /* line 249, ../../app/stylesheets/warehouse.sass */
+      /* line 251, ../../app/stylesheets/warehouse.sass */
       div.sourcecode div.browse div#source pre.viewsource {
         overflow: auto;
         margin-bottom: 0;
@@ -287,7 +290,7 @@ div.sourcecode {
         color: #d0d0d0; }
 
 /* SOURCE */
-/* line 255, ../../app/stylesheets/warehouse.sass */
+/* line 257, ../../app/stylesheets/warehouse.sass */
 pre.viewsource {
   margin-top: 0 !important;
   width: 100%;
@@ -298,17 +301,17 @@ pre.viewsource {
   white-space: -o-pre-wrap;
   word-wrap: break-word;
   color: #d0d0d0; }
-  /* line 265, ../../app/stylesheets/warehouse.sass */
+  /* line 267, ../../app/stylesheets/warehouse.sass */
   pre.viewsource code {
     padding: 20px;
     display: block; }
 
 /* CRUMBS */
-/* line 269, ../../app/stylesheets/warehouse.sass */
+/* line 271, ../../app/stylesheets/warehouse.sass */
 div#crumbs {
   margin-bottom: 10px;
   height: 20px; }
-  /* line 272, ../../app/stylesheets/warehouse.sass */
+  /* line 274, ../../app/stylesheets/warehouse.sass */
   div#crumbs ul {
     list-style: none;
     padding: 0;
@@ -316,14 +319,14 @@ div#crumbs {
     line-height: 100%;
     background: url(../images/app/crumbs-start.gif) no-repeat;
     padding-left: 13px; }
-    /* line 279, ../../app/stylesheets/warehouse.sass */
+    /* line 281, ../../app/stylesheets/warehouse.sass */
     div#crumbs ul li {
       display: block;
       margin: 0;
       padding: 0;
       background: url(../images/app/crumb-bg.png) repeat-x;
       float: left; }
-      /* line 286, ../../app/stylesheets/warehouse.sass */
+      /* line 288, ../../app/stylesheets/warehouse.sass */
       div#crumbs ul li a {
         text-shadow: 1px 1px white;
         background: url(../images/app/crumb-divide.gif) top right no-repeat;
@@ -332,13 +335,13 @@ div#crumbs {
         font-size: 92%;
         padding: 4px 15px 7px 5px;
         font-weight: bold; }
-        /* line 295, ../../app/stylesheets/warehouse.sass */
+        /* line 297, ../../app/stylesheets/warehouse.sass */
         div#crumbs ul li a:hover {
           color: black; }
-      /* line 297, ../../app/stylesheets/warehouse.sass */
+      /* line 299, ../../app/stylesheets/warehouse.sass */
       div#crumbs ul li.crumb-divide-last a {
         background: url(../images/app/crumb-divide-last.gif) top right no-repeat !important; }
-      /* line 299, ../../app/stylesheets/warehouse.sass */
+      /* line 301, ../../app/stylesheets/warehouse.sass */
       div#crumbs ul li#current {
         color: white;
         font-size: 92%;
@@ -350,13 +353,13 @@ div#crumbs {
         font-weight: bold; }
 
 /* BROWSER */
-/* line 309, ../../app/stylesheets/warehouse.sass */
+/* line 311, ../../app/stylesheets/warehouse.sass */
 #browser, .diff {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #cccccc;
   border-top: none; }
-  /* line 314, ../../app/stylesheets/warehouse.sass */
+  /* line 316, ../../app/stylesheets/warehouse.sass */
   #browser th, .diff th {
     border-left: 1px solid #dddddd;
     text-align: left;
@@ -364,57 +367,57 @@ div#crumbs {
     padding: 5px 10px;
     border-bottom: 1px solid #cccccc; }
 
-/* line 321, ../../app/stylesheets/warehouse.sass */
+/* line 323, ../../app/stylesheets/warehouse.sass */
 #browser td, #browser th {
   padding: 5px 10px; }
-/* line 323, ../../app/stylesheets/warehouse.sass */
+/* line 325, ../../app/stylesheets/warehouse.sass */
 #browser td {
   background: #eeeeee;
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #dddddd; }
-  /* line 327, ../../app/stylesheets/warehouse.sass */
+  /* line 329, ../../app/stylesheets/warehouse.sass */
   #browser td a {
     font-weight: bold; }
 
-/* line 330, ../../app/stylesheets/warehouse.sass */
+/* line 332, ../../app/stylesheets/warehouse.sass */
 a.folder {
   background: url(../images/app/icons/folder-small.png) 0 50% no-repeat; }
-/* line 333, ../../app/stylesheets/warehouse.sass */
+/* line 335, ../../app/stylesheets/warehouse.sass */
 a.image {
   background: url(../images/app/icons/image.png) 0 50% no-repeat; }
-/* line 336, ../../app/stylesheets/warehouse.sass */
+/* line 338, ../../app/stylesheets/warehouse.sass */
 a.script {
   background: url(../images/app/icons/script-small.png) 0 50% no-repeat; }
-/* line 339, ../../app/stylesheets/warehouse.sass */
+/* line 341, ../../app/stylesheets/warehouse.sass */
 a.txt, a.file {
   background: url(../images/app/icons/text-small.png) 0 50% no-repeat; }
 
-/* line 341, ../../app/stylesheets/warehouse.sass */
+/* line 343, ../../app/stylesheets/warehouse.sass */
 td.item a {
   display: block;
   padding: 8px 5px 8px 25px; }
 
-/* line 344, ../../app/stylesheets/warehouse.sass */
+/* line 346, ../../app/stylesheets/warehouse.sass */
 tr#controls td, tr.controls td {
   padding: 0;
   height: 20px;
   border-top: 1px solid #f7f7f7;
   background: #eeeeee url(../images/app/controls-bg.png) bottom left repeat-x; }
 
-/* line 349, ../../app/stylesheets/warehouse.sass */
+/* line 351, ../../app/stylesheets/warehouse.sass */
 div.control-head {
   margin: 0;
   padding: 0 0 0 40px;
   position: relative;
   min-height: 25px; }
-  /* line 354, ../../app/stylesheets/warehouse.sass */
+  /* line 356, ../../app/stylesheets/warehouse.sass */
   div.control-head p.controlblock {
     position: absolute;
     top: 0;
     left: 5px;
     height: 16px;
     width: 50px; }
-  /* line 360, ../../app/stylesheets/warehouse.sass */
+  /* line 362, ../../app/stylesheets/warehouse.sass */
   div.control-head ul.formats {
     float: right;
     margin: 2px 0 0 0;
@@ -423,32 +426,32 @@ div.control-head {
     list-style: none;
     font-size: 82%;
     background: #eeeeee url(../images/app/cap-left.png) no-repeat; }
-    /* line 369, ../../app/stylesheets/warehouse.sass */
+    /* line 371, ../../app/stylesheets/warehouse.sass */
     div.control-head ul.formats li {
       display: block;
       margin-right: 5px;
       float: left; }
-      /* line 374, ../../app/stylesheets/warehouse.sass */
+      /* line 376, ../../app/stylesheets/warehouse.sass */
       div.control-head ul.formats li a {
         display: block;
         padding: 3px 5px 4px 5px;
         color: #777777;
         text-shadow: 1px 1px white;
         font-weight: bold; }
-        /* line 380, ../../app/stylesheets/warehouse.sass */
+        /* line 382, ../../app/stylesheets/warehouse.sass */
         div.control-head ul.formats li a:hover, div.control-head ul.formats li a.sel {
           color: #333333; }
-        /* line 382, ../../app/stylesheets/warehouse.sass */
+        /* line 384, ../../app/stylesheets/warehouse.sass */
         div.control-head ul.formats li a.sel {
           text-decoration: underline; }
-      /* line 384, ../../app/stylesheets/warehouse.sass */
+      /* line 386, ../../app/stylesheets/warehouse.sass */
       div.control-head ul.formats li.end {
         margin-right: 0; }
-        /* line 387, ../../app/stylesheets/warehouse.sass */
+        /* line 389, ../../app/stylesheets/warehouse.sass */
         div.control-head ul.formats li.end a {
           background: url(../images/app/cap-right.png) top right no-repeat; }
 
-/* line 389, ../../app/stylesheets/warehouse.sass */
+/* line 391, ../../app/stylesheets/warehouse.sass */
 #control-center {
   margin-bottom: 20px;
   position: relative;
@@ -456,7 +459,7 @@ div.control-head {
   background: white;
   font-weight: bold; }
 
-/* line 395, ../../app/stylesheets/warehouse.sass */
+/* line 397, ../../app/stylesheets/warehouse.sass */
 .rev {
   line-height: 100%;
   float: right;
@@ -469,14 +472,14 @@ div.control-head {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
-/* line 406, ../../app/stylesheets/warehouse.sass */
+/* line 408, ../../app/stylesheets/warehouse.sass */
 td span.log, #repos span.log, #permissions span.log, .listbox span.log, p.desc {
   font-size: 92%;
   display: block;
   color: #888888; }
 
 /* CHANGESETS */
-/* line 412, ../../app/stylesheets/warehouse.sass */
+/* line 414, ../../app/stylesheets/warehouse.sass */
 .cs-meta {
   float: left;
   width: 60px;
@@ -486,7 +489,7 @@ td span.log, #repos span.log, #permissions span.log, .listbox span.log, p.desc {
   border-right: 1px solid #dddddd;
   line-height: 100%; }
 
-/* line 420, ../../app/stylesheets/warehouse.sass */
+/* line 422, ../../app/stylesheets/warehouse.sass */
 .cs-log {
   padding: 5px;
   padding-right: 50px;
@@ -494,7 +497,7 @@ td span.log, #repos span.log, #permissions span.log, .listbox span.log, p.desc {
   font-size: 92% !important;
   background-color: #f7f7f7; }
 
-/* line 426, ../../app/stylesheets/warehouse.sass */
+/* line 428, ../../app/stylesheets/warehouse.sass */
 .change-number a {
   font-size: 120%;
   font-weight: bold;
@@ -504,80 +507,80 @@ td span.log, #repos span.log, #permissions span.log, .listbox span.log, p.desc {
   padding-right: 10px;
   margin-bottom: 5px; }
 
-/* line 434, ../../app/stylesheets/warehouse.sass */
+/* line 436, ../../app/stylesheets/warehouse.sass */
 #changesets {
   list-style: none;
   -webkit-padding-start: 0; }
-  /* line 437, ../../app/stylesheets/warehouse.sass */
+  /* line 439, ../../app/stylesheets/warehouse.sass */
   #changesets li.changeset {
     background: none;
     border: none;
     border-bottom: 1px solid #cccccc;
     padding: 0; }
-    /* line 442, ../../app/stylesheets/warehouse.sass */
+    /* line 444, ../../app/stylesheets/warehouse.sass */
     #changesets li.changeset .cs-log {
       background: none; }
-    /* line 444, ../../app/stylesheets/warehouse.sass */
+    /* line 446, ../../app/stylesheets/warehouse.sass */
     #changesets li.changeset .cs-meta {
       background: none;
       border-right: none; }
-      /* line 447, ../../app/stylesheets/warehouse.sass */
+      /* line 449, ../../app/stylesheets/warehouse.sass */
       #changesets li.changeset .cs-meta .change-number {
         font-size: 100%;
         display: block;
         text-align: center; }
-        /* line 451, ../../app/stylesheets/warehouse.sass */
+        /* line 453, ../../app/stylesheets/warehouse.sass */
         #changesets li.changeset .cs-meta .change-number a {
           color: #448811;
           text-shadow: 1px 1px #f7f7f7;
           float: none;
           padding-right: 0;
           margin-top: 3px; }
-  /* line 457, ../../app/stylesheets/warehouse.sass */
+  /* line 459, ../../app/stylesheets/warehouse.sass */
   #changesets .timenauthor {
     color: #888888;
     font-weight: normal;
     display: block; }
 
-/* line 461, ../../app/stylesheets/warehouse.sass */
+/* line 463, ../../app/stylesheets/warehouse.sass */
 div.changeset {
   padding: 0;
   background-image: none;
   border: none;
   border-bottom: 1px solid #cccccc; }
-  /* line 466, ../../app/stylesheets/warehouse.sass */
+  /* line 468, ../../app/stylesheets/warehouse.sass */
   div.changeset .cs-meta {
     background: none;
     border-right: none; }
-    /* line 469, ../../app/stylesheets/warehouse.sass */
+    /* line 471, ../../app/stylesheets/warehouse.sass */
     div.changeset .cs-meta .change-number {
       font-size: 100%;
       display: block;
       text-align: center; }
-      /* line 473, ../../app/stylesheets/warehouse.sass */
+      /* line 475, ../../app/stylesheets/warehouse.sass */
       div.changeset .cs-meta .change-number a {
         color: #448811;
         text-shadow: 1px 1px #f7f7f7;
         float: none;
         padding-right: 0;
         margin-top: 3px; }
-  /* line 479, ../../app/stylesheets/warehouse.sass */
+  /* line 481, ../../app/stylesheets/warehouse.sass */
   div.changeset .timenauthor {
     color: #888888;
     font-weight: normal;
     display: block; }
 
-/* line 483, ../../app/stylesheets/warehouse.sass */
+/* line 485, ../../app/stylesheets/warehouse.sass */
 #last-log {
   position: relative; }
 
-/* line 485, ../../app/stylesheets/warehouse.sass */
+/* line 487, ../../app/stylesheets/warehouse.sass */
 .changed {
   background-color: #77bb00;
   color: white; }
 
 /* LIST */
-/* line 489, ../../app/stylesheets/warehouse.sass */
+/* line 491, ../../app/stylesheets/warehouse.sass */
 .changeset, .repo, .form, .permission, .listbox li.listitem {
   padding: 10px;
   padding-left: 50px;
@@ -590,8 +593,12 @@ div.changeset {
   font-size: 110%;
   font-weight: bold; }
 
+/* line 502, ../../app/stylesheets/warehouse.sass */
+.repo {
+  background: #e2e2e2 url(../images/icons/box.png) 5px 3px no-repeat; }
+
 /* AVATAR */
-/* line 501, ../../app/stylesheets/warehouse.sass */
+/* line 505, ../../app/stylesheets/warehouse.sass */
 .avatar {
   padding: 2px;
   background: white;
@@ -602,22 +609,22 @@ div.changeset {
   height: 32px; }
 
 /* PAGINATION */
-/* line 510, ../../app/stylesheets/warehouse.sass */
+/* line 514, ../../app/stylesheets/warehouse.sass */
 .pagination {
   padding: 3px;
   margin: 10px auto; }
-  /* line 513, ../../app/stylesheets/warehouse.sass */
+  /* line 517, ../../app/stylesheets/warehouse.sass */
   .pagination a {
     padding: 2px 5px 2px 5px;
     margin: 2px;
     border: 1px solid #cccccc;
     background: #f7f7f7;
     color: #555555; }
-    /* line 519, ../../app/stylesheets/warehouse.sass */
+    /* line 523, ../../app/stylesheets/warehouse.sass */
     .pagination a:hover, .pagination a:active {
       border: 1px solid #aaaaaa;
       color: #111111; }
-  /* line 522, ../../app/stylesheets/warehouse.sass */
+  /* line 526, ../../app/stylesheets/warehouse.sass */
   .pagination span.current {
     padding: 2px 5px 2px 5px;
     margin: 2px;
@@ -625,7 +632,7 @@ div.changeset {
     font-weight: bold;
     background-color: #ffe1d8;
     color: #dd3300; }
-  /* line 529, ../../app/stylesheets/warehouse.sass */
+  /* line 533, ../../app/stylesheets/warehouse.sass */
   .pagination span.disabled {
     padding: 2px 5px 2px 5px;
     margin: 2px;
@@ -633,7 +640,7 @@ div.changeset {
     color: #aaaaaa; }
 
 /* DIFF */
-/* line 535, ../../app/stylesheets/warehouse.sass */
+/* line 539, ../../app/stylesheets/warehouse.sass */
 ul.changeset-nav {
   list-style: none;
   position: absolute;
@@ -641,7 +648,7 @@ ul.changeset-nav {
   width: 32px;
   right: 8px;
   height: 16px; }
-  /* line 543, ../../app/stylesheets/warehouse.sass */
+  /* line 547, ../../app/stylesheets/warehouse.sass */
   ul.changeset-nav li.next a, ul.changeset-nav li.prev a {
     position: absolute;
     display: block;
@@ -651,13 +658,13 @@ ul.changeset-nav {
     left: 20px;
     top: 0;
     background: url(../images/app/icons/forward.png) no-repeat; }
-  /* line 552, ../../app/stylesheets/warehouse.sass */
+  /* line 556, ../../app/stylesheets/warehouse.sass */
   ul.changeset-nav li.prev a {
     left: 0;
     top: 0;
     background: url(../images/app/icons/back.png) no-repeat; }
 
-/* line 557, ../../app/stylesheets/warehouse.sass */
+/* line 561, ../../app/stylesheets/warehouse.sass */
 a.forward, a.back {
   position: absolute;
   display: block;
@@ -665,42 +672,42 @@ a.forward, a.back {
   height: 16px;
   text-indent: -9999px;
   background: url(../images/app/icons/forward.png) no-repeat; }
-  /* line 564, ../../app/stylesheets/warehouse.sass */
+  /* line 568, ../../app/stylesheets/warehouse.sass */
   a.forward.back, a.back.back {
     left: 0;
     top: 0;
     background: url(../images/app/icons/back.png) no-repeat; }
-  /* line 568, ../../app/stylesheets/warehouse.sass */
+  /* line 572, ../../app/stylesheets/warehouse.sass */
   a.forward.forward, a.back.forward {
     left: 16px;
     top: 0; }
 
-/* line 571, ../../app/stylesheets/warehouse.sass */
+/* line 575, ../../app/stylesheets/warehouse.sass */
 div.diff-table {
   margin-bottom: 20px;
   clear: right;
   overflow: auto;
   padding: 1px; }
 
-/* line 578, ../../app/stylesheets/warehouse.sass */
+/* line 582, ../../app/stylesheets/warehouse.sass */
 .diff {
   font-family: Courier, Monaco, monospace !important;
   overflow: auto;
   width: 100%; }
-  /* line 583, ../../app/stylesheets/warehouse.sass */
+  /* line 587, ../../app/stylesheets/warehouse.sass */
   .diff td {
     background: #eeeeee; }
-    /* line 586, ../../app/stylesheets/warehouse.sass */
+    /* line 590, ../../app/stylesheets/warehouse.sass */
     .diff td pre {
       padding: 0;
       margin: 0; }
-  /* line 590, ../../app/stylesheets/warehouse.sass */
+  /* line 594, ../../app/stylesheets/warehouse.sass */
   .diff th.csnum {
     white-space: no-wrap;
     width: 1px;
     text-align: center; }
 
-/* line 596, ../../app/stylesheets/warehouse.sass */
+/* line 600, ../../app/stylesheets/warehouse.sass */
 .ln {
   white-space: no-wrap;
   width: 1px;
@@ -711,37 +718,37 @@ div.diff-table {
   font-family: "Helvetica", Arial, sans-serif;
   border-bottom: 1px dotted #cccccc; }
 
-/* line 608, ../../app/stylesheets/warehouse.sass */
+/* line 612, ../../app/stylesheets/warehouse.sass */
 .diff tr.controls td {
   padding: 5px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif; }
-/* line 612, ../../app/stylesheets/warehouse.sass */
+/* line 616, ../../app/stylesheets/warehouse.sass */
 .diff tbody td {
   background: #f1f1f1; }
-/* line 616, ../../app/stylesheets/warehouse.sass */
+/* line 620, ../../app/stylesheets/warehouse.sass */
 .diff td.insert {
   background: #ddffdd;
   color: #003300;
   border-right: 1px solid #44cc44;
   border-left: 1px solid #44cc44 !important; }
-/* line 622, ../../app/stylesheets/warehouse.sass */
+/* line 626, ../../app/stylesheets/warehouse.sass */
 .diff td.delete {
   background: #ffdddd;
   color: #990000;
   border-right: 1px solid #dd9999; }
 
-/* line 626, ../../app/stylesheets/warehouse.sass */
+/* line 630, ../../app/stylesheets/warehouse.sass */
 #change-list {
   list-style: none;
   margin-bottom: 20px;
   padding: 0; }
-  /* line 631, ../../app/stylesheets/warehouse.sass */
+  /* line 635, ../../app/stylesheets/warehouse.sass */
   #change-list li {
     padding: 5px;
     border-bottom: 1px solid #dddddd;
     position: relative; }
 
-/* line 637, ../../app/stylesheets/warehouse.sass */
+/* line 641, ../../app/stylesheets/warehouse.sass */
 .viewdiff {
   display: block;
   position: absolute;
@@ -752,11 +759,11 @@ div.diff-table {
   height: 14px;
   background: url(../images/app/icons/view-tiny.png) 0 50% no-repeat; }
 
-/* line 648, ../../app/stylesheets/warehouse.sass */
+/* line 652, ../../app/stylesheets/warehouse.sass */
 #change-list .shade {
   background: #eeeeee; }
 
-/* line 652, ../../app/stylesheets/warehouse.sass */
+/* line 656, ../../app/stylesheets/warehouse.sass */
 span.a, .m, .d, .mv, .cp {
   background: #77bb00;
   color: white;
@@ -766,132 +773,136 @@ span.a, .m, .d, .mv, .cp {
   padding: 2px;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  /* line 661, ../../app/stylesheets/warehouse.sass */
+  /* line 665, ../../app/stylesheets/warehouse.sass */
   span.a a, .m a, .d a, .mv a, .cp a {
     text-decoration: none;
     color: white; }
 
-/* line 666, ../../app/stylesheets/warehouse.sass */
+/* line 670, ../../app/stylesheets/warehouse.sass */
 span.m {
   background-color: #0066bb; }
-/* line 669, ../../app/stylesheets/warehouse.sass */
+/* line 673, ../../app/stylesheets/warehouse.sass */
 span.mv {
   color: #554400;
   background: #ccaa00; }
-/* line 673, ../../app/stylesheets/warehouse.sass */
+/* line 677, ../../app/stylesheets/warehouse.sass */
 span.d {
   background: #cc0000; }
-/* line 676, ../../app/stylesheets/warehouse.sass */
+/* line 680, ../../app/stylesheets/warehouse.sass */
 span.cp {
   background: #cccccc;
   color: #333333; }
 
-/* line 680, ../../app/stylesheets/warehouse.sass */
+/* line 684, ../../app/stylesheets/warehouse.sass */
 .linenos {
   vertical-align: sub;
   padding-right: 10px; }
 
 /* BLAME */
-/* line 684, ../../app/stylesheets/warehouse.sass */
+/* line 688, ../../app/stylesheets/warehouse.sass */
 .blame-div, .source-div {
   width: 100%; }
-  /* line 686, ../../app/stylesheets/warehouse.sass */
+  /* line 690, ../../app/stylesheets/warehouse.sass */
   .blame-div #source, .source-div #source {
     overflow: auto;
     font-family: Courier, Monaco, monospace !important; }
-    /* line 689, ../../app/stylesheets/warehouse.sass */
+    /* line 693, ../../app/stylesheets/warehouse.sass */
     .blame-div #source pre.viewsource, .source-div #source pre.viewsource {
       margin-bottom: 0; }
-      /* line 691, ../../app/stylesheets/warehouse.sass */
+      /* line 695, ../../app/stylesheets/warehouse.sass */
       .blame-div #source pre.viewsource table, .source-div #source pre.viewsource table {
         color: white;
         background-color: #111111;
         border-collapse: collapse; }
-        /* line 695, ../../app/stylesheets/warehouse.sass */
+        /* line 699, ../../app/stylesheets/warehouse.sass */
         .blame-div #source pre.viewsource table tr.start-line, .source-div #source pre.viewsource table tr.start-line {
           border-top: 1px solid #555555; }
-        /* line 697, ../../app/stylesheets/warehouse.sass */
+        /* line 701, ../../app/stylesheets/warehouse.sass */
         .blame-div #source pre.viewsource table td, .source-div #source pre.viewsource table td {
           margin: 0;
           padding: 0 5px; }
-          /* line 700, ../../app/stylesheets/warehouse.sass */
+          /* line 704, ../../app/stylesheets/warehouse.sass */
           .blame-div #source pre.viewsource table td.linenos, .blame-div #source pre.viewsource table td.lineno, .source-div #source pre.viewsource table td.linenos, .source-div #source pre.viewsource table td.lineno {
             vertical-align: sub;
             color: #333333;
             text-align: right;
             border-left: 1px solid #555555;
             border-right: 1px solid #555555; }
-          /* line 706, ../../app/stylesheets/warehouse.sass */
+          /* line 710, ../../app/stylesheets/warehouse.sass */
           .blame-div #source pre.viewsource table td pre, .source-div #source pre.viewsource table td pre {
             margin: 0;
             padding: 0; }
 
 /* SIDEBAR */
-/* line 710, ../../app/stylesheets/warehouse.sass */
+/* line 714, ../../app/stylesheets/warehouse.sass */
 #subscribe {
   margin: 10px 0; }
-  /* line 712, ../../app/stylesheets/warehouse.sass */
+  /* line 716, ../../app/stylesheets/warehouse.sass */
   #subscribe #subscribe-btn {
     display: block;
     text-indent: -9999px;
     background: url(../images/app/subscribe-btn.png) no-repeat;
     padding: 7px 0; }
 
-/* line 717, ../../app/stylesheets/warehouse.sass */
+/* line 721, ../../app/stylesheets/warehouse.sass */
 #members {
   list-style: none; }
-  /* line 720, ../../app/stylesheets/warehouse.sass */
+  /* line 724, ../../app/stylesheets/warehouse.sass */
   #members li {
     min-height: 38px;
     padding: 5px 0;
     border-bottom: 1px solid #cccccc; }
-  /* line 725, ../../app/stylesheets/warehouse.sass */
+  /* line 729, ../../app/stylesheets/warehouse.sass */
   #members .avatar {
     float: left;
     margin-right: 5px; }
-  /* line 729, ../../app/stylesheets/warehouse.sass */
+  /* line 733, ../../app/stylesheets/warehouse.sass */
   #members .author {
     font-weight: bold;
     display: block;
     font-size: 110%; }
-  /* line 734, ../../app/stylesheets/warehouse.sass */
+  /* line 738, ../../app/stylesheets/warehouse.sass */
   #members .activity {
     color: #777777;
     font-size: 92%; }
 
-/* line 737, ../../app/stylesheets/warehouse.sass */
+/* line 741, ../../app/stylesheets/warehouse.sass */
 .sideblock {
   margin: 20px 0; }
-  /* line 740, ../../app/stylesheets/warehouse.sass */
+  /* line 744, ../../app/stylesheets/warehouse.sass */
   .sideblock p {
     padding: 5px; }
-  /* line 743, ../../app/stylesheets/warehouse.sass */
+  /* line 747, ../../app/stylesheets/warehouse.sass */
   .sideblock h3 {
     background: white;
     padding: 5px;
     border: 1px solid #dddddd;
     border-bottom: 1px solid #cccccc;
     border-right: 1px solid #cccccc; }
-  /* line 750, ../../app/stylesheets/warehouse.sass */
+  /* line 754, ../../app/stylesheets/warehouse.sass */
   .sideblock ul {
     list-style: none;
     padding: 5px;
     font-size: 92%; }
 
-/* line 756, ../../app/stylesheets/warehouse.sass */
-#repo-search #repo-search-form input.search {
+/* line 760, ../../app/stylesheets/warehouse.sass */
+#repo-search #repo-search-form input.search, #repo-search-results #repo-search-form input.search {
   width: 100%; }
 
-/* line 758, ../../app/stylesheets/warehouse.sass */
+/* line 762, ../../app/stylesheets/warehouse.sass */
+#repo-search-results {
+  padding-bottom: 10px; }
+
+/* line 764, ../../app/stylesheets/warehouse.sass */
 #browser-search {
   margin: 5px;
   padding: 5px; }
-  /* line 762, ../../app/stylesheets/warehouse.sass */
+  /* line 768, ../../app/stylesheets/warehouse.sass */
   #browser-search #repo-search-form input.search {
     width: 30%; }
 
-/* NAV * */
-/* line 765, ../../app/stylesheets/warehouse.sass */
+/* NAV */
+/* line 771, ../../app/stylesheets/warehouse.sass */
 .subnav-bar.single {
   padding: 0px;
   border: 1px solid #cccccc;
@@ -900,20 +911,20 @@ span.cp {
   vertical-align: middle;
   height: 35px; }
 
-/* line 772, ../../app/stylesheets/warehouse.sass */
+/* line 778, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul {
   position: relative;
   margin: 4px 0 0 -6px;
   padding-left: 20px; }
 
-/* line 776, ../../app/stylesheets/warehouse.sass */
+/* line 782, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li {
   position: relative;
   list-style-type: none;
   float: left;
   margin-right: 10px; }
 
-/* line 781, ../../app/stylesheets/warehouse.sass */
+/* line 787, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > a, .subnav-bar > ul > li > span.text {
   position: relative;
   display: block;
@@ -924,13 +935,13 @@ span.cp {
   color: #666666;
   border: 1px solid transparent;
   z-index: 5; }
-  /* line 791, ../../app/stylesheets/warehouse.sass */
+  /* line 797, ../../app/stylesheets/warehouse.sass */
   .subnav-bar > ul > li > a.dropdown, .subnav-bar > ul > li > span.text.dropdown {
     padding-right: 15px;
     background-image: url(http://assets.github.com/images/modules/pagehead/subnav_dropdown_arrow.png);
     background-position: 100% -20px;
     background-repeat: no-repeat; }
-  /* line 796, ../../app/stylesheets/warehouse.sass */
+  /* line 802, ../../app/stylesheets/warehouse.sass */
   .subnav-bar > ul > li > a.selected, .subnav-bar > ul > li > span.text.selected {
     color: #333333;
     font-weight: bold;
@@ -943,21 +954,21 @@ span.cp {
     -moz-border-radius: 3px;
     border-radius: 3px; }
 
-/* line 807, ../../app/stylesheets/warehouse.sass */
+/* line 813, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li:hover > a {
   color: #333333;
   background-color: #f8f8f8;
   border-color: #cccccc;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px; }
-  /* line 813, ../../app/stylesheets/warehouse.sass */
+  /* line 819, ../../app/stylesheets/warehouse.sass */
   .subnav-bar > ul > li:hover > a.selected {
     border-color: #c5c5c5;
     border-right-color: #eeeeee;
     border-bottom-color: #eeeeee;
     background: #dddddd;
     cursor: default; }
-  /* line 819, ../../app/stylesheets/warehouse.sass */
+  /* line 825, ../../app/stylesheets/warehouse.sass */
   .subnav-bar > ul > li:hover > a.dropdown {
     background-position: 100% 0;
     border-color: #cccccc;
@@ -965,14 +976,14 @@ span.cp {
     -webkit-border-radius: 0;
     -moz-border-radius: 0; }
 
-/* line 825, ../../app/stylesheets/warehouse.sass */
+/* line 831, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > a.defunct {
   color: #999999;
   background: transparent;
   border-color: transparent !important;
   cursor: default; }
 
-/* line 830, ../../app/stylesheets/warehouse.sass */
+/* line 836, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > ul {
   display: none;
   position: absolute;
@@ -984,47 +995,98 @@ span.cp {
   z-index: 4;
   -webkit-padding-start: 0; }
 
-/* line 840, ../../app/stylesheets/warehouse.sass */
+/* line 846, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li:hover > ul {
   display: block;
   margin: 0;
   min-width: 180px; }
 
-/* line 844, ../../app/stylesheets/warehouse.sass */
+/* line 850, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li.defunct:hover > ul {
   display: none; }
 
-/* line 846, ../../app/stylesheets/warehouse.sass */
+/* line 852, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > ul > li {
   list-style-type: none;
   margin: 0;
   border-top: 1px solid #e2e2e2;
   font-size: 11px; }
-  /* line 851, ../../app/stylesheets/warehouse.sass */
+  /* line 857, ../../app/stylesheets/warehouse.sass */
   .subnav-bar > ul > li > ul > li:first-child {
     border-top: none; }
 
-/* line 853, ../../app/stylesheets/warehouse.sass */
+/* line 859, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > ul > li > a, .subnav-bar > ul > li > ul > li > strong {
   padding: 4px 5px;
   display: block;
   font-weight: bold; }
 
-/* line 857, ../../app/stylesheets/warehouse.sass */
+/* line 863, ../../app/stylesheets/warehouse.sass */
 .subnav-bar > ul > li > ul > li > a:hover {
   text-decoration: none;
   background-color: #eeeeee; }
 
-/* line 860, ../../app/stylesheets/warehouse.sass */
+/* line 866, ../../app/stylesheets/warehouse.sass */
 span.code-text {
   font-family: monospace; }
 
-/* line 863, ../../app/stylesheets/warehouse.sass */
+/* line 869, ../../app/stylesheets/warehouse.sass */
 .va-reset img {
   vertical-align: middle; }
 
+/* line 871, ../../app/stylesheets/warehouse.sass */
+#admin-nav-bar {
+  padding: 0px;
+  border: 1px solid #cccccc;
+  border-top: 1px solid #f7f7f7;
+  background: #eeeeee url(../images/app/controls-bg.png) bottom left repeat-x;
+  vertical-align: middle;
+  height: 35px; }
+  /* line 878, ../../app/stylesheets/warehouse.sass */
+  #admin-nav-bar ul {
+    position: relative;
+    margin: 0 0 0 0;
+    padding-left: 20px; }
+    /* line 882, ../../app/stylesheets/warehouse.sass */
+    #admin-nav-bar ul li {
+      position: relative;
+      list-style-type: none;
+      float: left;
+      margin-right: 10px;
+      width: 79px;
+      text-align: center;
+      height: 35px; }
+      /* line 890, ../../app/stylesheets/warehouse.sass */
+      #admin-nav-bar ul li a, #admin-nav-bar ul li span.text {
+        position: relative;
+        display: block;
+        padding: 8px 5px 5px 5px;
+        font-size: 11px;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+        border: 1px solid transparent;
+        z-index: 5;
+        text-shadow: 1px 1px #eeeeee; }
+      /* line 901, ../../app/stylesheets/warehouse.sass */
+      #admin-nav-bar ul li#nrepo a {
+        padding-left: 14px;
+        background: url(/images/icons/box-small.png) center left no-repeat;
+        margin-left: 8px; }
+      /* line 905, ../../app/stylesheets/warehouse.sass */
+      #admin-nav-bar ul li#nhooks a {
+        padding-left: 12px;
+        background: url(/images/icons/hooks-small.png) center left no-repeat;
+        margin-left: 12px; }
+      /* line 909, ../../app/stylesheets/warehouse.sass */
+      #admin-nav-bar ul li:hover {
+        background: url(/images/app/nav-hover.png) bottom left no-repeat; }
+      /* line 911, ../../app/stylesheets/warehouse.sass */
+      #admin-nav-bar ul li.selected, #admin-nav-bar ul li:active {
+        background: url(/images/app/nav-selected.png) bottom left no-repeat; }
+
 /* REPO ADD */
-/* line 866, ../../app/stylesheets/warehouse.sass */
+/* line 914, ../../app/stylesheets/warehouse.sass */
 .repo-add {
   padding: 5px;
   background: #e2e2e2;
@@ -1035,11 +1097,11 @@ span.code-text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 110%;
   font-weight: bold; }
-  /* line 876, ../../app/stylesheets/warehouse.sass */
+  /* line 924, ../../app/stylesheets/warehouse.sass */
   .repo-add:hover {
     background: #f7f7f7; }
 
-/* line 878, ../../app/stylesheets/warehouse.sass */
+/* line 926, ../../app/stylesheets/warehouse.sass */
 #service-hooks-header {
   height: 25px;
   color: black;
@@ -1057,33 +1119,33 @@ span.code-text {
   text-shadow: 1px 1px 0px #bad3ed;
   margin-bottom: 10px; }
 
-/* line 894, ../../app/stylesheets/warehouse.sass */
+/* line 942, ../../app/stylesheets/warehouse.sass */
 #service-hooks {
   display: table;
   width: 100%; }
-  /* line 897, ../../app/stylesheets/warehouse.sass */
+  /* line 945, ../../app/stylesheets/warehouse.sass */
   #service-hooks div.service-list-div, #service-hooks div.service-hook-div {
     display: table-cell; }
-  /* line 899, ../../app/stylesheets/warehouse.sass */
+  /* line 947, ../../app/stylesheets/warehouse.sass */
   #service-hooks div.service-list-div {
     width: 22%; }
-  /* line 901, ../../app/stylesheets/warehouse.sass */
+  /* line 949, ../../app/stylesheets/warehouse.sass */
   #service-hooks div.service-hook-div {
     width: 75%;
     padding: 5px; }
-    /* line 905, ../../app/stylesheets/warehouse.sass */
+    /* line 953, ../../app/stylesheets/warehouse.sass */
     #service-hooks div.service-hook-div div.hook div.head {
       font-size: 18px;
       padding-bottom: 3px;
       border-bottom: 1px solid #bbbbbb;
       margin-bottom: 5px; }
-    /* line 910, ../../app/stylesheets/warehouse.sass */
+    /* line 958, ../../app/stylesheets/warehouse.sass */
     #service-hooks div.service-hook-div div.hook form.formtastic fieldset > ol > li label {
       width: 15%; }
-    /* line 912, ../../app/stylesheets/warehouse.sass */
+    /* line 960, ../../app/stylesheets/warehouse.sass */
     #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons {
       padding-left: 15%; }
-      /* line 914, ../../app/stylesheets/warehouse.sass */
+      /* line 962, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons li.commit input, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons a.g-button {
         padding: 6px 10px;
         -webkit-border-radius: 2px;
@@ -1098,47 +1160,47 @@ span.code-text {
         text-align: center;
         text-shadow: 0px 1px 1px white;
         line-height: 1; }
-        /* line 928, ../../app/stylesheets/warehouse.sass */
+        /* line 976, ../../app/stylesheets/warehouse.sass */
         #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons li.commit input:hover, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons a.g-button:hover {
           background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to(#dddddd)); }
-        /* line 930, ../../app/stylesheets/warehouse.sass */
+        /* line 978, ../../app/stylesheets/warehouse.sass */
         #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons li.commit input:active, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons li.commit input.selected, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons a.g-button:active, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons a.g-button.selected {
           background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#dddddd)); }
-        /* line 932, ../../app/stylesheets/warehouse.sass */
+        /* line 980, ../../app/stylesheets/warehouse.sass */
         #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons li.commit input.disabled, #service-hooks div.service-hook-div div.hook form.formtastic fieldset.buttons a.g-button.disabled {
           color: #cccccc; }
-  /* line 935, ../../app/stylesheets/warehouse.sass */
+  /* line 983, ../../app/stylesheets/warehouse.sass */
   #service-hooks div.service-list-div ul {
     list-style-type: none;
     -webkit-padding-start: 0;
     margin: 0; }
-    /* line 939, ../../app/stylesheets/warehouse.sass */
+    /* line 987, ../../app/stylesheets/warehouse.sass */
     #service-hooks div.service-list-div ul li {
       padding: 4px;
       border-right: 1px solid #696969; }
-      /* line 942, ../../app/stylesheets/warehouse.sass */
+      /* line 990, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-list-div ul li:hover {
         background: #dfdfdf;
         cursor: pointer; }
-      /* line 945, ../../app/stylesheets/warehouse.sass */
+      /* line 993, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-list-div ul li.current, #service-hooks div.service-list-div ul li:active {
         background: #cccccc;
         -webkit-user-drag: none; }
-      /* line 948, ../../app/stylesheets/warehouse.sass */
+      /* line 996, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-list-div ul li.current {
         border-right: none; }
-      /* line 950, ../../app/stylesheets/warehouse.sass */
+      /* line 998, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-list-div ul li.service_active a {
         color: #33aa33;
         font-weight: bold; }
-      /* line 953, ../../app/stylesheets/warehouse.sass */
+      /* line 1001, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-list-div ul li.service_inactive a {
         color: #aa3333; }
-  /* line 955, ../../app/stylesheets/warehouse.sass */
+  /* line 1003, ../../app/stylesheets/warehouse.sass */
   #service-hooks div.service-arrows {
     width: 15px;
     display: table-cell; }
-    /* line 958, ../../app/stylesheets/warehouse.sass */
+    /* line 1006, ../../app/stylesheets/warehouse.sass */
     #service-hooks div.service-arrows .right-arrow {
       border: 12px solid #ebebeb;
       border-width: 12px 0 12px 12px;
@@ -1149,121 +1211,121 @@ span.code-text {
       top: -4px;
       width: 0px;
       margin-bottom: 1px; }
-      /* line 968, ../../app/stylesheets/warehouse.sass */
+      /* line 1016, ../../app/stylesheets/warehouse.sass */
       #service-hooks div.service-arrows .right-arrow.hidden {
         border-color: #ebebeb #ebebeb; }
 
 /* REPO SIDEBAR */
-/* line 971, ../../app/stylesheets/warehouse.sass */
+/* line 1019, ../../app/stylesheets/warehouse.sass */
 .sidebar-repo {
   border: 1px #cccccc solid;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
-  /* line 976, ../../app/stylesheets/warehouse.sass */
+  /* line 1024, ../../app/stylesheets/warehouse.sass */
   .sidebar-repo .sidebar-repo-head {
     background: #eeeeee url(../images/app/controls-bg.png) bottom left repeat-x;
     padding: 5px;
     border-bottom: 1px #cccccc solid; }
-    /* line 980, ../../app/stylesheets/warehouse.sass */
+    /* line 1028, ../../app/stylesheets/warehouse.sass */
     .sidebar-repo .sidebar-repo-head h2 {
       font-size: 110%;
       display: inline; }
-    /* line 983, ../../app/stylesheets/warehouse.sass */
+    /* line 1031, ../../app/stylesheets/warehouse.sass */
     .sidebar-repo .sidebar-repo-head span.new {
       float: right;
       font-size: 105%;
       font-variant: small-caps; }
-      /* line 987, ../../app/stylesheets/warehouse.sass */
+      /* line 1035, ../../app/stylesheets/warehouse.sass */
       .sidebar-repo .sidebar-repo-head span.new a {
         color: #0077bb; }
-        /* line 989, ../../app/stylesheets/warehouse.sass */
+        /* line 1037, ../../app/stylesheets/warehouse.sass */
         .sidebar-repo .sidebar-repo-head span.new a:hover {
           text-decoration: underline; }
-  /* line 992, ../../app/stylesheets/warehouse.sass */
+  /* line 1040, ../../app/stylesheets/warehouse.sass */
   .sidebar-repo .sidebar-repo-list ul {
     -webkit-padding-start: 0;
     list-style: none;
     margin: 0; }
-    /* line 996, ../../app/stylesheets/warehouse.sass */
+    /* line 1044, ../../app/stylesheets/warehouse.sass */
     .sidebar-repo .sidebar-repo-list ul li {
       padding-left: 25px;
       background: url(/images/icons/box-small.png) no-repeat 5px center;
       border-bottom: 1px #cccccc solid;
       font-weight: bold; }
-      /* line 1001, ../../app/stylesheets/warehouse.sass */
+      /* line 1049, ../../app/stylesheets/warehouse.sass */
       .sidebar-repo .sidebar-repo-list ul li.last {
         border-bottom: 0; }
-      /* line 1003, ../../app/stylesheets/warehouse.sass */
+      /* line 1051, ../../app/stylesheets/warehouse.sass */
       .sidebar-repo .sidebar-repo-list ul li:hover {
         background-color: #cccccc; }
-      /* line 1005, ../../app/stylesheets/warehouse.sass */
+      /* line 1053, ../../app/stylesheets/warehouse.sass */
       .sidebar-repo .sidebar-repo-list ul li a {
         padding: 3px 5px 3px 0;
         display: block;
         color: #0077bb;
         margin-right: 2px; }
-        /* line 1010, ../../app/stylesheets/warehouse.sass */
+        /* line 1058, ../../app/stylesheets/warehouse.sass */
         .sidebar-repo .sidebar-repo-list ul li a:hover {
           background: url(/images/icons/forward.png) no-repeat 4px right; }
 
 /* ACTIVITY FEED  */
-/* line 1014, ../../app/stylesheets/warehouse.sass */
+/* line 1062, ../../app/stylesheets/warehouse.sass */
 #dashbaord ul {
   -webkit-padding-start: 0;
   list-style: none; }
-  /* line 1017, ../../app/stylesheets/warehouse.sass */
+  /* line 1065, ../../app/stylesheets/warehouse.sass */
   #dashbaord ul li.commit, #dashbaord ul li.push {
     background: url(../images/icons/head.png) 0 5px no-repeat; }
-    /* line 1019, ../../app/stylesheets/warehouse.sass */
+    /* line 1067, ../../app/stylesheets/warehouse.sass */
     #dashbaord ul li.commit div.commit-div, #dashbaord ul li.commit div.push-div, #dashbaord ul li.push div.commit-div, #dashbaord ul li.push div.push-div {
       margin-left: 22px;
       border-bottom: 1px solid #bbbbbb;
       padding: 4px; }
-  /* line 1024, ../../app/stylesheets/warehouse.sass */
+  /* line 1072, ../../app/stylesheets/warehouse.sass */
   #dashbaord ul li.commit div.meta {
     font-weight: bold; }
-  /* line 1026, ../../app/stylesheets/warehouse.sass */
+  /* line 1074, ../../app/stylesheets/warehouse.sass */
   #dashbaord ul li.commit div.info-under {
     display: table; }
-    /* line 1028, ../../app/stylesheets/warehouse.sass */
+    /* line 1076, ../../app/stylesheets/warehouse.sass */
     #dashbaord ul li.commit div.info-under div.av {
       display: table-cell; }
-    /* line 1030, ../../app/stylesheets/warehouse.sass */
+    /* line 1078, ../../app/stylesheets/warehouse.sass */
     #dashbaord ul li.commit div.info-under div.comm-info {
       display: table-cell;
       vertical-align: top;
       padding: 3px; }
-      /* line 1034, ../../app/stylesheets/warehouse.sass */
+      /* line 1082, ../../app/stylesheets/warehouse.sass */
       #dashbaord ul li.commit div.info-under div.comm-info .code {
         font-family: monospace; }
-  /* line 1037, ../../app/stylesheets/warehouse.sass */
+  /* line 1085, ../../app/stylesheets/warehouse.sass */
   #dashbaord ul li.push div.meta {
     font-weight: bold; }
-  /* line 1039, ../../app/stylesheets/warehouse.sass */
+  /* line 1087, ../../app/stylesheets/warehouse.sass */
   #dashbaord ul li.push div.info-under {
     display: table; }
-    /* line 1041, ../../app/stylesheets/warehouse.sass */
+    /* line 1089, ../../app/stylesheets/warehouse.sass */
     #dashbaord ul li.push div.info-under div.av, #dashbaord ul li.push div.info-under div.commits-info {
       display: table-cell; }
-    /* line 1043, ../../app/stylesheets/warehouse.sass */
+    /* line 1091, ../../app/stylesheets/warehouse.sass */
     #dashbaord ul li.push div.info-under div.commits-info {
       vertical-align: top;
       padding: 3px; }
-      /* line 1046, ../../app/stylesheets/warehouse.sass */
+      /* line 1094, ../../app/stylesheets/warehouse.sass */
       #dashbaord ul li.push div.info-under div.commits-info .inline-commit {
         margin-bottom: 3px; }
-      /* line 1048, ../../app/stylesheets/warehouse.sass */
+      /* line 1096, ../../app/stylesheets/warehouse.sass */
       #dashbaord ul li.push div.info-under div.commits-info .avatar {
         width: 16px;
         height: 16px;
         vertical-align: middle; }
-      /* line 1052, ../../app/stylesheets/warehouse.sass */
+      /* line 1100, ../../app/stylesheets/warehouse.sass */
       #dashbaord ul li.push div.info-under div.commits-info .code {
         font-family: monospace; }
 
 /* MAKE THE FORM BUTTONS NICE */
-/* line 1055, ../../app/stylesheets/warehouse.sass */
+/* line 1103, ../../app/stylesheets/warehouse.sass */
 form.formtastic fieldset.buttons li.commit input, a.g-button {
   padding: 6px 10px;
   -webkit-border-radius: 2px;
@@ -1278,12 +1340,12 @@ form.formtastic fieldset.buttons li.commit input, a.g-button {
   text-align: center;
   text-shadow: 0px 1px 1px white;
   line-height: 1; }
-  /* line 1069, ../../app/stylesheets/warehouse.sass */
+  /* line 1117, ../../app/stylesheets/warehouse.sass */
   form.formtastic fieldset.buttons li.commit input:hover, a.g-button:hover {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to(#dddddd)); }
-  /* line 1071, ../../app/stylesheets/warehouse.sass */
+  /* line 1119, ../../app/stylesheets/warehouse.sass */
   form.formtastic fieldset.buttons li.commit input:active, form.formtastic fieldset.buttons li.commit input.selected, a.g-button:active, a.g-button.selected {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#dddddd)); }
-  /* line 1073, ../../app/stylesheets/warehouse.sass */
+  /* line 1121, ../../app/stylesheets/warehouse.sass */
   form.formtastic fieldset.buttons li.commit input.disabled, a.g-button.disabled {
     color: #cccccc; }

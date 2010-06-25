@@ -65,6 +65,8 @@ h2
 	font-size: 110%
 	margin-bottom: 10px
 	border-bottom: 1px solid #ccc
+	strong.highlight
+		background: black
 div.repo h2
 	border-bottom: none
 	display: inline
@@ -497,6 +499,8 @@ div.changeset
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 	font-size: 110%
 	font-weight: bold
+.repo
+	background: #e2e2e2 url(../images/icons/box.png) 5px 3px no-repeat
 /* AVATAR */
 .avatar
 	padding: 2px
@@ -751,17 +755,19 @@ span
 		list-style: none
 		padding: 5px
 		font-size: 92%
-#repo-search
+#repo-search, #repo-search-results
 	#repo-search-form
 		input.search
 			width: 100%
+#repo-search-results
+	padding-bottom: 10px
 #browser-search
 	margin: 5px
 	padding: 5px
 	#repo-search-form
 		input.search
 			width: 30%
-/* NAV *
+/* NAV */
 .subnav-bar.single
 	padding: 0px
 	border: 1px solid #ccc
@@ -862,6 +868,48 @@ span.code-text
 .va-reset
 	img
 		:vertical-align middle
+#admin-nav-bar
+	padding: 0px
+	border: 1px solid #ccc
+	border-top: 1px solid #f7f7f7
+	background: #eee url(../images/app/controls-bg.png) bottom left repeat-x
+	vertical-align: middle
+	height: 35px
+	ul
+		position: relative
+		margin: 0 0 0 0
+		padding-left: 20px
+		li
+			position: relative
+			list-style-type: none
+			float: left
+			margin-right: 10px
+			width: 79px
+			text-align: center
+			height: 35px
+			a, span.text
+				position: relative
+				display: block
+				padding: 8px 5px 5px 5px
+				font-size: 11px
+				text-decoration: none
+				color: #333
+				font-weight: bold
+				border: 1px solid transparent
+				z-index: 5
+				text-shadow: 1px 1px #eee
+			&#nrepo a
+				padding-left: 14px
+				background: url(/images/icons/box-small.png) center left no-repeat
+				margin-left: 8px
+			&#nhooks a
+				padding-left: 12px
+				background: url(/images/icons/hooks-small.png) center left no-repeat
+				margin-left: 12px
+			&:hover
+				background: url(/images/app/nav-hover.png) bottom left no-repeat
+			&.selected, &:active
+				background: url(/images/app/nav-selected.png) bottom left no-repeat
 /* REPO ADD */
 .repo-add
 	padding: 5px

@@ -2,13 +2,14 @@
 <%- flash.each do |name, msg| -%>
 	<%= content_tag :div, msg, :class => "flash-#{name}" %>
 <%- end -%>
-<div class="subnav-bar single">
+<!-- <div class="subnav-bar single"> -->
+<div id="admin-nav-bar">
 	<ul>
-		<li>
-			<%= link_to 'General', '', :class => 'selected' %>
+		<li id="nrepo" class="selected">
+			<%= link_to "General", '#', :class => 'selected' %>
 		</li>
-		<li>
-			<%= link_to 'Service Hooks', admin_hooks_path %>
+		<li id="nhooks">
+			<%= link_to "Hooks", admin_hooks_path %>
 		</li>
 	</ul>
 </div>
