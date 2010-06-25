@@ -103,7 +103,7 @@ module Simplabs
     	#  end 
     	#
     	# Also see Simplabs::Highlight.highlight
-      def highlight(language, code = nil, linenos = true, &block)
+      def code_highlight(language, code = nil, linenos = true, &block)
         raise ArgumentError.new('Either pass a srting containing the code or a block, not both!') if !code.nil? && block_given?
         raise ArgumentError.new('Pass a srting containing the code or a block!') if code.nil? && !block_given?
         code ||= yield
