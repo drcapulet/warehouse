@@ -775,96 +775,104 @@ span
 	background: #eee url(/images/app/controls-bg.png) bottom left repeat-x
 	vertical-align: middle
 	height: 35px
-.subnav-bar>ul
-	position: relative
-	margin: 4px 0 0 -6px
-	padding-left: 20px
-.subnav-bar>ul>li
-	position: relative
-	list-style-type: none
-	float: left
-	margin-right: 10px
-.subnav-bar>ul>li>a, .subnav-bar>ul>li>span.text
-	position: relative
-	display: block
-	height: 15px
-	padding: 3px 5px 5px 5px
-	font-size: 11px
-	text-decoration: none
-	color: #666
-	border: 1px solid transparent
-	z-index: 5
-	&.dropdown
-		padding-right: 15px
-		background-image: url(http://assets.github.com/images/modules/pagehead/subnav_dropdown_arrow.png)
-		background-position: 100% -20px
-		background-repeat: no-repeat
-	&.selected
-		color: #333
-		font-weight: bold
-		text-shadow: 1px 1px 0 rgba(255,255,255,0.6)
-		background: #ddd
-		border-color: #c5c5c5
-		border-right-color: #eee
-		border-bottom-color: #eee
-		-webkit-border-radius: 3px
-		-moz-border-radius: 3px
-		border-radius: 3px
-.subnav-bar>ul>li:hover>a
-	color: #333
-	background-color: #f8f8f8
-	border-color: #ccc
-	-webkit-border-radius: 3px
-	-moz-border-radius: 3px
-	&.selected
-		border-color: #c5c5c5
-		border-right-color: #eee
-		border-bottom-color: #eee
-		background: #ddd
-		cursor: default
-	&.dropdown
-		background-position: 100% 0
-		border-color: #ccc
-		border-bottom-color: #e2e2e2
-		-webkit-border-radius: 0
-		-moz-border-radius: 0
-.subnav-bar>ul>li>a.defunct
-	color: #999
-	background: transparent
-	border-color: transparent!important
-	cursor: default
-.subnav-bar>ul>li>ul
-	display: none
-	position: absolute
-	top: 22px
-	max-height: 275px
-	background: #f8f8f8
-	border: 1px solid #ccc
-	overflow: auto
-	z-index: 4
-	-webkit-padding-start: 0
-.subnav-bar>ul>li:hover>ul
-	display: block
-	margin: 0
-	min-width: 180px
-.subnav-bar>ul>li.defunct:hover>ul
-	display: none
-.subnav-bar>ul>li>ul>li
-	list-style-type: none
-	margin: 0
-	border-top: 1px solid #e2e2e2
-	font-size: 11px
-	&:first-child
-		border-top: none
-.subnav-bar>ul>li>ul>li>a, .subnav-bar>ul>li>ul>li>strong
-	padding: 4px 5px
-	display: block
-	font-weight: bold
-.subnav-bar>ul>li>ul>li>a:hover
-	text-decoration: none
-	background-color: #eee
+	> ul
+		padding-left: 20px
+		margin: 4px 0 0 -6px
+		> li
+			position: relative
+			list-style-type: none
+			float: left
+			margin-right: 10px
+			> a, > span.text
+				font-size: 11px
+				position: relative
+				display: block
+				height: 15px
+				padding: 3px 5px 5px 5px
+				color: #666
+				border: 1px solid transparent
+				&.dropdown
+					padding-right: 15px
+					background-image: url(/images/arrow_down.png)
+					background-position: 100% -20px
+					background-repeat: no-repeat
+			&.empty
+				> a
+					background: none
+					color: #888
+				&:hover
+					> a
+						background: none
+						color: #888
+						cursor: default
+			&:hover
+				> a
+					//background: rgb(235, 235, 235)
+					background-color: #222
+					color: white
+					border-bottom: none
+					-webkit-border-top-left-radius: 5px
+					-webkit-border-top-right-radius: 5px
+					-moz-border-radius-topleft: 5px
+					-moz-border-radius-topright: 5px
+					border-top-left-radius: 5px
+					border-top-right-radius: 5px
+					&.dropdown
+						background-position: 100% 0px
+				> ul
+					display: block
+					margin: 0
+					> li
+						border-bottom: none
+						display: block
+						min-width: 180px
+			> ul
+				display: none
+				position: absolute
+				top: 22px
+				background: #222
+				//background: rgb(221, 221, 221)
+				//background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(221, 221, 221)), to(rgb(180, 180, 180)))
+				z-index: 4
+				-webkit-padding-start: 0
+				margin: 0
+				-webkit-border-radius: 5px
+				-webkit-border-top-left-radius: 0
+				-moz-border-radius: 5px
+				-moz-border-radius-topleft: 0
+				border-radius: 5px
+				border-top-left-radius: 0
+				-webkit-box-shadow: 3px 3px 3px #555
+				-moz-box-shadow: 2px 2px 4px #000
+				box-shadow: 2px 2px 4px #000
+				> li
+					list-style-type: none
+					margin: 0
+					font-size: 11px
+					position: static
+					float: none
+					display: block
+					&:first-child a
+						-webkit-border-top-right-radius: 5px
+						-moz-border-radius-topright: 5px
+						border-top-right-radius: 5px
+					&:last-child a
+						-webkit-border-bottom-right-radius: 5px
+						-webkit-border-bottom-left-radius: 5px
+						-moz-border-radius-bottomright: 5px
+						-moz-border-radius-bottomleft: 5px
+						border-bottom-right-radius: 5px
+						border-bottom-left-radius: 5px
+					> a, > strong
+						display: block
+						padding: 4px 5px
+						font-weight: bold
+						color: white
+					> a:hover
+						background: #444
 span.code-text
 	font-family: monospace
+	margin-left: 5px
 .va-reset
 	img
 		:vertical-align middle

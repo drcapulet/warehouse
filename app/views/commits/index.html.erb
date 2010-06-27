@@ -8,19 +8,19 @@
 <div class="subnav-bar single">
 	<ul>
 		<li>
-			<span class="text">Branch: <span class="code-text"><%= params[:tree] %></span></span>
+			<span class="text">Branch:<span class="code-text"><%= params[:tree] %></span></span>
 			<%#= link_to 'All Commits', all_commits_path, :class => (params[:tree] ? '' : 'selected') %>
 		</li>
 		<li>
 			<a href="#" class="dropdown">Branches (<%= current_repository.heads.size %>)</a>
-			<ul>
-				<% current_repository.heads.each do |h| -%>
-				<li><%= params[:tree] == h.name ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, commits_path(:tree => h.name)) %>
-				<% end -%>
-			</ul>
+				<ul>
+					<% current_repository.heads.each do |h| -%>
+					<li><%= params[:tree] == h.name ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, commits_path(:tree => h.name)) %>
+					<% end -%>
+				</ul>
 		</li>
-		<li<%= ' class="defunct"' if current_repository.tags.size == 0 %>>
-			<a href="#" class="dropdown <%= 'defunct' if current_repository.tags.size == 0 %>">Tags (<%= current_repository.tags.size %>)</a>
+		<li<%= ' class="empty"' if current_repository.tags.size == 0 %>>
+			<a href="#" class="dropdown">Tags (<%= current_repository.tags.size %>)</a>
 			<ul>
 			<% current_repository.tags.each do |h| -%>
 				<li><%= (params[:tag].to_s == h.name) ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, tag_path(:tag => h.name)) %></li>

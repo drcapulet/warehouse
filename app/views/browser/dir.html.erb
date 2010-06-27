@@ -6,7 +6,7 @@
 	<thead>
 		<tr id="controls">
 			<td colspan="2">
-				<div class="subnav-bar">
+				<div class="subnav-bar single">
 					<ul>
 						<li>
 							<a href="#" class="dropdown">Branches (<%= current_repository.heads.size %>)</a>
@@ -16,8 +16,8 @@
 								<% end -%>
 							</ul>
 						</li>
-						<li<%= ' class="defunct"' if current_repository.tags.size == 0 %>>
-							<a href="#" class="dropdown <%= 'defunct' if current_repository.tags.size == 0 %>">Tags (<%= current_repository.tags.size %>)</a>
+						<li<%= ' class="empty"' if current_repository.tags.size == 0 %>>
+							<a href="#" class="dropdown">Tags (<%= current_repository.tags.size %>)</a>
 							<ul>
 							<% current_repository.tags.each do |h| -%>
 								<li><%= (params[:tag].to_s == h.name) ? "<strong>#{h(h.name)} &#x2713;</strong>" : link_to(h.name, tag_path(:tag => h.name)) %></li>
