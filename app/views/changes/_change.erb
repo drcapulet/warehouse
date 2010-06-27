@@ -1,0 +1,4 @@
+<li<%= cycle '', ' class="shade"' %>>
+	<span class="<%= change.mode.downcase %>" title=""><%= link_to change.path, "#diff-#{i}"%></span>
+	<%= link_to 'view', "#diff-#{i}", :class => 'viewdiff' %>
+</li>

@@ -4,11 +4,7 @@
 <ul id="change-list">
 <% @commit.changes.sort! { |x,y| x.path <=> y.path }.each do |change| -%>
 	<% i += 1 -%>
-  <li<%= cycle '', ' class="shade"' %>>
-    <span class="<%= change.mode.downcase %>" title=""><%= link_to change.path, "#diff-#{i}"%></span>
-	<%= link_to 'view', "##{i}", :class => 'viewdiff' %>
-    <%#= link_to_node change.path, change.path, changeset.revision %> <%# if change.modified? %> <%#= link_to 'view', "##{dom_id change}", :class => 'viewdiff' %><%# end %>
-  </li>
+	<%= render :partial => change, :locals => { :i => i } %>
 <% end -%>
 </ul>
 
