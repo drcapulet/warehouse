@@ -2,6 +2,8 @@ REPO_ROOT_REGEX = /^(\/?(admin|changesets|browser|install|login|logout|reset|for
 
 ActionController::Routing::Routes.draw do |map|
   map.resources :repositories, :only => [:index, :new, :create], :collection => [:search]
+  map.dashboard       "/dashboard", :controller => 'dashboard', :action => 'index'
+  map.dashboard_feed  "/dashboard.atom", :controller => 'dashboard', :action => 'index', :format => 'atom'
   
   map.with_options :path_prefix => '/:repo' do |repo|
     # repo.resources :admin, :except => [:index, :new, :create, :show], :controller_name => "Repositories"
@@ -19,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
       c.all_commits     "commits",            :action => "index"
       c.search_commits  "commits/search",     :action => "search"
       c.commits         "commits/:tree",      :action => "index"
+      c.commits_feed    "commits/:tree.atom", :action => "feed", :format => 'atom'
       c.commit          "commit/:id",         :action => "show"
     end
     repo.with_options :controller => "browser" do |b|
@@ -36,7 +39,6 @@ ActionController::Routing::Routes.draw do |map|
       # b.repo        "tree/*paths",    :action => "index"
       b.repo        "*paths",         :action => "index"
     end
-    
   end
   
   map.root :controller => "dashboard"

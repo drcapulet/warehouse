@@ -1,3 +1,6 @@
+<% content_for :head do %>
+<%= auto_discovery_link_tag(:atom, dashboard_feed_url) %>
+<% end %>
 <div id="dashbaord">
 	<ul>
 	<% @events.each do |e| -%>
@@ -37,4 +40,5 @@
 		</ul>
 	</div>
 </div>
+<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} News Feed", dashboard_feed_url, :id => 'subscribe-btn' %></div>
 <% end -%>

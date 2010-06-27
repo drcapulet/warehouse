@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<%#= auto_discovery_link_tag %>
+<%= auto_discovery_link_tag(:atom, commits_feed_url(:tree => params[:tree])) %>
 <% end %>
 <% if current_repository.has_unsynced_revisions? -%>
 	<div class="info">Some revisions need to be synced. You can do this by syncing through the command line or in the repository admin.</div>
@@ -80,7 +80,7 @@
 		  <input type="hidden" name="tree" value="<%= params[:tree] %>">
 		<% end %>
 	</div>
-	<div id="subscribe"><%= link_to 'Subscribe to Changesets', 'changeset_feed_url', :id => 'subscribe-btn' %></div>
+	<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} Subscribe to Commits", commits_feed_url(:tree => params[:tree]), :id => 'subscribe-btn' %></div>
 	<h3>Active Members on this Branch</h3>
 	<ul id="members">
 		<% current_repository.all_committers(params[:tree]).each do |member| -%>

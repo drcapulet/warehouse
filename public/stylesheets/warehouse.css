@@ -839,70 +839,98 @@ span.cp {
   margin: 10px 0; }
   /* line 716, ../../app/stylesheets/warehouse.sass */
   #subscribe #subscribe-btn {
-    display: block;
-    text-indent: -9999px;
-    background: url(/images/app/subscribe-btn.png) no-repeat;
-    padding: 7px 0; }
+    width: 220px;
+    padding: 6px 10px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    -moz-border-radius: 14px;
+    border: solid 2px #999999;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#dddddd));
+    color: #333333;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px white;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 13px; }
+    /* line 733, ../../app/stylesheets/warehouse.sass */
+    #subscribe #subscribe-btn img {
+      vertical-align: top;
+      margin-right: 5px; }
+    /* line 736, ../../app/stylesheets/warehouse.sass */
+    #subscribe #subscribe-btn:hover {
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to(#dddddd)); }
+    /* line 738, ../../app/stylesheets/warehouse.sass */
+    #subscribe #subscribe-btn:active, #subscribe #subscribe-btn.selected {
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#dddddd)); }
+    /* line 740, ../../app/stylesheets/warehouse.sass */
+    #subscribe #subscribe-btn.disabled {
+      color: #cccccc; }
+      /* line 742, ../../app/stylesheets/warehouse.sass */
+      #subscribe #subscribe-btn.disabled:hover, #subscribe #subscribe-btn.disabled:active, #subscribe #subscribe-btn.disabled.selected {
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#dddddd)); }
 
-/* line 721, ../../app/stylesheets/warehouse.sass */
+/* line 744, ../../app/stylesheets/warehouse.sass */
 #members {
   list-style: none; }
-  /* line 724, ../../app/stylesheets/warehouse.sass */
+  /* line 747, ../../app/stylesheets/warehouse.sass */
   #members li {
     min-height: 38px;
     padding: 5px 0;
     border-bottom: 1px solid #cccccc; }
-  /* line 729, ../../app/stylesheets/warehouse.sass */
+  /* line 752, ../../app/stylesheets/warehouse.sass */
   #members .avatar {
     float: left;
     margin-right: 5px; }
-  /* line 733, ../../app/stylesheets/warehouse.sass */
+  /* line 756, ../../app/stylesheets/warehouse.sass */
   #members .author {
     font-weight: bold;
     display: block;
     font-size: 110%; }
-  /* line 738, ../../app/stylesheets/warehouse.sass */
+  /* line 761, ../../app/stylesheets/warehouse.sass */
   #members .activity {
     color: #777777;
     font-size: 92%; }
 
-/* line 741, ../../app/stylesheets/warehouse.sass */
+/* line 764, ../../app/stylesheets/warehouse.sass */
 .sideblock {
   margin: 20px 0; }
-  /* line 744, ../../app/stylesheets/warehouse.sass */
+  /* line 767, ../../app/stylesheets/warehouse.sass */
   .sideblock p {
     padding: 5px; }
-  /* line 747, ../../app/stylesheets/warehouse.sass */
+  /* line 770, ../../app/stylesheets/warehouse.sass */
   .sideblock h3 {
     background: white;
     padding: 5px;
     border: 1px solid #dddddd;
     border-bottom: 1px solid #cccccc;
     border-right: 1px solid #cccccc; }
-  /* line 754, ../../app/stylesheets/warehouse.sass */
+  /* line 777, ../../app/stylesheets/warehouse.sass */
   .sideblock ul {
     list-style: none;
     padding: 5px;
     font-size: 92%; }
 
-/* line 760, ../../app/stylesheets/warehouse.sass */
+/* line 783, ../../app/stylesheets/warehouse.sass */
 #repo-search #repo-search-form input.search, #repo-search-results #repo-search-form input.search {
   width: 100%; }
 
-/* line 762, ../../app/stylesheets/warehouse.sass */
+/* line 785, ../../app/stylesheets/warehouse.sass */
 #repo-search-results {
   padding-bottom: 10px; }
 
-/* line 764, ../../app/stylesheets/warehouse.sass */
+/* line 787, ../../app/stylesheets/warehouse.sass */
 #browser-search {
   margin: 5px;
   padding: 5px; }
-  /* line 768, ../../app/stylesheets/warehouse.sass */
+  /* line 791, ../../app/stylesheets/warehouse.sass */
   #browser-search #repo-search-form input.search {
     width: 30%; }
 
 /* NAV */
-/* line 771, ../../app/stylesheets/warehouse.sass */
+/* line 794, ../../app/stylesheets/warehouse.sass */
 .subnav-bar.single {
   padding: 0px;
   border: 1px solid #cccccc;

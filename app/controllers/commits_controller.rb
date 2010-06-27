@@ -11,6 +11,14 @@ class CommitsController < ApplicationController
     render :action => 'index'
   end
   
+  def feed
+    @commits = !params[:tree].empty? ? current_repository.commits.all(:conditions => { :branch => params[:tree] }, :order => 'committed_date DESC', :limit => 30) : current_repository.commits(:order => 'committed_date DESC', :limit => 30)
+    respond_to do |wants|
+      wants.atom
+      wants.rss
+    end
+  end
+  
   protected
     def find_query
       params[:tree] ||= 'master'
@@ -21,7 +29,7 @@ class CommitsController < ApplicationController
       else
         conds = nil
       end
-      @commits = current_repository.commits.paginate(:page => params[:page], :per_page => 15, :conditions => conds)
+      @commits = current_repository.commits.paginate(:page => params[:page], :per_page => 15, :conditions => conds, :order => 'committed_date DESC') 
     end
 
 end
