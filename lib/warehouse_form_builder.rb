@@ -16,6 +16,7 @@ class WarehouseFormBuilder < Formtastic::SemanticFormBuilder
     wrapper_html = options.delete(:wrapper_html) || {}
     wrapper_html[:id]  ||= generate_html_id(method)
     wrapper_html[:class] = (html_class << wrapper_html[:class]).flatten.compact.join(' ')
+    (wrapper_html[:id] = (options.delete(:id_prefix) + "_" + wrapper_html[:id])) if options[:id_prefix]
 
     if options[:input_html] && options[:input_html][:id]
       options[:label_html] ||= {}

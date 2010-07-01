@@ -50,8 +50,12 @@ class RepositoriesController < ApplicationController
       hook.active  = active
       hook.save
     end
-    flash[:notice] = "Your hooks have been updated successfully!"
-    redirect_to admin_hooks_path
+    if request.xhr?
+      render :text => "<div class=\"flash-notice mini\">Your #{hook_name.gsub!(/_/, ' ')} hook was updated successfully! <span class=\"close\">x</span></div>"
+    else
+      flash[:notice] = "Your hooks have been updated successfully!"
+      redirect_to admin_hooks_path
+    end
   end
   
   def hooks_update_post
@@ -68,8 +72,12 @@ class RepositoriesController < ApplicationController
     else
       current_repository.hooks.post_receive.delete if current_repository.hooks.post_receive
     end
-    flash[:notice] = "Your hooks have been updated successfully!"
-    redirect_to admin_hooks_path
+    if request.xhr?
+      render :text => "<div class=\"flash-notice mini\">Your post receive hook was updated successfully! <span class=\"close\">x</span></div>"
+    else
+      flash[:notice] = "Your hooks have been updated successfully!"
+      redirect_to admin_hooks_path
+    end
   end
   
   def hooks_update_email
@@ -86,8 +94,12 @@ class RepositoriesController < ApplicationController
     else
       current_repository.hooks.email.delete if current_repository.hooks.email
     end
-    flash[:notice] = "Your hooks have been updated successfully!"
-    redirect_to admin_hooks_path
+    if request.xhr?
+      render :text => "<div class=\"flash-notice mini\">Your email hook was updated successfully!</div> <span class=\"close\">x</span></div>"
+    else
+      flash[:notice] = "Your hooks have been updated successfully!"
+      redirect_to admin_hooks_path
+    end
   end
   
   def sync

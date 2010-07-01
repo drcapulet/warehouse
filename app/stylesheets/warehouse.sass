@@ -112,6 +112,15 @@ div
 	background: #DCF0C9 url(/images/icons/check.png) 5px 50% no-repeat
 	border: 1px solid #6A3
 	color: #460
+	&.mini
+		background: #DCF0C9 url(/images/icons/check-small.png) 5px 50% no-repeat
+		padding: 5px 10px 5px 30px
+		width: 60%
+		span.close
+			float: right
+			&:hover
+				color: #F00
+				cursor: pointer
 .flash-error
 	padding: 15px 10px 15px 60px
 	margin: 20px 0
@@ -1010,6 +1019,8 @@ span.code-text
 						background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221)))
 					&.disabled
 						color: #ccc
+						&:hover, &:active, &.selected
+							background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)))
 	div.service-list-div
 		ul
 			list-style-type: none
