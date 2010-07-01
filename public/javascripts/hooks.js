@@ -55,9 +55,8 @@ $(document).ready(function() {
 			if (active) {
 				if (id.replace(/_form/, "") == "post_receive") {
 					toggle.find('span.count').html(items.length);
-				} else {
-					enable_g_button($(test_id));
 				}
+				enable_g_button($(test_id));
 				toggle_link_status(toggle, true);
 			} else {
 				if (id.replace(/_form/, "") == "post_receive") {

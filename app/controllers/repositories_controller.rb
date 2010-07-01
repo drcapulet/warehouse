@@ -95,7 +95,7 @@ class RepositoriesController < ApplicationController
       current_repository.hooks.email.delete if current_repository.hooks.email
     end
     if request.xhr?
-      render :text => "<div class=\"flash-notice mini\">Your email hook was updated successfully!</div> <span class=\"close\">x</span></div>"
+      render :text => "<div class=\"flash-notice mini\">Your email hook was updated successfully! <span class=\"close\">x</span></div>"
     else
       flash[:notice] = "Your hooks have been updated successfully!"
       redirect_to admin_hooks_path
