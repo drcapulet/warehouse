@@ -4,7 +4,7 @@ module ApplicationHelper
   #### PATHS
   # returns a link to the commit passed for the current repository
   def commit_path_for_current(commit)
-    commit_path(:id => commit.sha)
+    commit_path(:repo => commit.repository, :id => commit.sha)
   end
   
   def repo_path_for_current(opt = {})
@@ -38,6 +38,11 @@ module ApplicationHelper
     else
       [args.shift, args.shift]
     end
+  end
+  
+  # AUTH
+  def logged_in?
+    !!current_user
   end
   
   #### TABS
@@ -75,11 +80,15 @@ module ApplicationHelper
   end
   
   ### USERS
-  def avatar_for(commit)
+  def avatar_for(commit_or_user, classes = "")
     # img = '/images/app/icons/member.png'
     # img = user && user.avatar? ? user.avatar_path : '/images/app/icons/member.png'
     # tag('img', :src => img, :class => 'avatar', :alt => 'avatar')
-    image_tag commit.gravatar_url(:default => root_url + 'images/app/icons/member.png'), :class => 'avatar', :alt => 'avatar'
+    if commit_or_user.is_a?(User)
+      image_tag commit_or_user.gravatar_url(:default => root_url + 'images/app/icons/member.png'), :class => "avatar #{classes}", :alt => 'avatar'
+    else
+      image_tag commit_or_user.gravatar_url(:default => root_url + 'images/app/icons/member.png'), :class => 'avatar', :alt => 'avatar'
+    end
   end
   
   ### TIME

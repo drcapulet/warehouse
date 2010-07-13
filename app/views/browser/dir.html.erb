@@ -41,7 +41,7 @@
 	</thead>
 	<% @node.data.each do |node| -%>
 	<tr>
-		<td class="item"><%= link_to h(node.name), url_for_node(node, @revision), :class => css_class_for(node) %></td>
+		<td class="item"><%= link_to h(node.name), url_for_node(node, @text_revision), :class => css_class_for(node) %></td>
 		<td>
 			<span class="rev<% if current_commit && current_commit.sha == latest_revision_for_node(node).sha %> changed<% end %>"><%=h latest_revision_for_node(node).sha %></span>
 			<%=h latest_revision_for_node(node).name %> <%= time_ago_in_words(latest_revision_for_node(node).committed_date) + ' ago' if latest_revision_for_node(node).committed_date %>

@@ -1,0 +1,32 @@
+<%- content_for :head do -%>
+	<%= auto_discovery_link_tag(:atom, user_path(@user, :atom, :user_credentials => @current_user.single_access_token)) %>
+<%- end -%>
+<div id="user-profile">
+	<div id="user-info">
+		<h1><%= avatar_for(@user, 'large') %> <%= @user.login %> <% if @user.name && !@user.name.empty? -%>(<%= @user.name %>)<% end -%></h1>
+		<span class="profile-links">
+			<%= link_to("Edit My Profile", edit_account_path, :class => 'g-button') if @user == @current_user %>
+		</span>
+		<div class="clear">&nbsp;</div>
+		<div id="user-activity">
+			<div id="recent-repo-activity">
+				<%- if @user.name -%><strong>Name:</strong> <%= @user.name %><br /><%- end -%>
+				<strong>Email:</strong> <%= @user.email %>
+				
+				<h2>Recent Repository Activity</h2>
+				<%- @user.find_repositories_committed_to.each do |r| -%>
+				<span class="recent-repo"><%= link_to r.name, repo_path(r) %></span>
+				<%- end -%>
+			</div>
+			<div id="recent-user-commits">
+				<h2>Recent Activity</h2>
+				<div id="dashbaord">
+					<ul>
+					<%= render :partial => @user.recent_activity %>
+					</ul>
+					<%= '<div class="info">No activity</div>' unless !@user.recent_activity.empty? %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

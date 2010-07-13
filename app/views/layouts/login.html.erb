@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Warehouse: <%= @title %></title>
+		<link rel="shortcut icon" href="/favicon.png" type="image/png" />
+		<%= stylesheet_link_tag 'warehouse', 'formtastic' %>
+		<%= yield(:head) %>
+	</head>
+	<body class="mini">
+		<!-- container -->
+		<div id="container">
+			<!-- header -->
+			<div id="login-header">
+					<h1><%= link_to "Warehouse#{@title ? ": #{@title}": ''}", root_path %><%=  %></h1>
+			</div>
+			<!-- content -->
+			<div id="login-content" class="clearfix">
+				<div id="login-messages">
+					<%- flash.each do |name, msg| -%>
+						<%= content_tag :div, msg, :class => "flash-#{name} mini full" %>
+					<%- end -%>
+				</div>
+				<div id="main">
+					<%= yield %>
+				</div>
+			</div>
+		</div>
+		<div id="login-footer"><%= yield(:footer) %></div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+<% if timeline_event.event_type == "push" -%>
+<li class="push">
+	<div class="push-div">
+		<div class="meta"><%= actor_link_for_event(timeline_event) %> pushed to <%= link_to timeline_event.subject.name, repo_path(timeline_event.subject) %>/<%= timeline_event.extra["ref"] %> <%= (Time.now - timeline_event.created_at) < 5.days ? "#{time_ago_in_words(timeline_event.created_at)} ago" : "on #{timeline_event.created_at.strftime("%B %d, %Y")}" %></div>
+		<div class="info-under">
+			<div class="av"><%= timeline_event_avatar_for(timeline_event) %></div>
+			<div class="commits-info">
+				<% timeline_event.commits.each do |c| -%>
+				<div class="inline-commit"><%= avatar_for(c) %> <%= link_to truncate(c.sha, :length => 7, :omission => ''), commit_path(:id => c.sha, :repo => c.repository), :class => 'code' %> <%= c.message %></div>
+				<% end -%>
+			</div>
+		</div>
+	</div>
+</li>
+<% end -%>

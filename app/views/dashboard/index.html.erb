@@ -1,26 +1,9 @@
 <% content_for :head do %>
-<%= auto_discovery_link_tag(:atom, dashboard_feed_url) %>
+<%= auto_discovery_link_tag(:atom, dashboard_feed_url(:user_credentials => @current_user.single_access_token)) %>
 <% end %>
 <div id="dashbaord">
 	<ul>
-	<% @events.each do |e| -%>
-		<% if e.event_type == "push" -%>
-		<li class="push">
-			<div class="push-div">
-				<div class="meta"><%= e.commits.last.name %> pushed to <%= link_to e.subject.name, repo_path(e.subject) %>/<%= e.extra["ref"] %> <%= (Time.now - e.created_at) < 5.days ? "#{time_ago_in_words(e.created_at)} ago" : "on #{e.created_at.strftime("%B %d, %Y")}" %></div>
-				<div class="info-under">
-					<div class="av"><%= avatar_for(e.commits.last) %></div>
-					<div class="commits-info">
-						<% e.commits.each do |c| -%>
-						<div class="inline-commit"><%= avatar_for(c) %> <%= link_to truncate(c.sha, :length => 7, :omission => ''), commit_path(:id => c.sha, :repo => c.repository), :class => 'code' %> <%= c.message %>
-						</div>
-						<% end -%>
-					</div>
-				</div>
-			</div>
-		</li>
-		<% end -%>
-	<% end -%>
+		<%= render :partial => @events %>
 	</ul>
 	<%= '<div class="info">No activity</div>' unless !@events.empty? %>
 	<%= will_paginate @events %>

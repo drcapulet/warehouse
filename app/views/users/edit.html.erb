@@ -1,0 +1,67 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'user-tabs', 'chroma-hash' %>
+<% end %>
+<div id="user-profile">
+	<div id="user-info">
+		<h1><%= avatar_for(@user, 'large') %> Editing <%= @user.login %>'s Profile</h1>
+		<span class="profile-links">
+			<%= link_to "&laquo; Back to My Profile", account_path, :class => 'g-button' %>
+		</span>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<%- flash.each do |name, msg| -%>
+		<%= content_tag :div, msg, :class => "flash-#{name} mini full" %>
+	<%- end -%>
+	<div id="admin-nav-bar">
+		<ul>
+			<li class="selected"><%= link_to "Personal Info", '#personal_info' %></li>
+			<li><%= link_to "Account Settings", '#settings' %></li>
+			<li><%= link_to "Emails", '#emails' %></li>
+		</ul>
+	</div>
+	<div id="user-edit">
+		<div id="edit-divs">
+			<div class="edit-div" id="personal_info">
+				<% semantic_form_for @user, :url => account_url do |form| %>
+					<%= form.inputs :name, :login %>
+					<% form.buttons do -%>
+						<%= form.commit_button "Update Information" %>
+					<% end -%>
+				<% end %>
+			</div>
+			<div class="edit-div" id="settings">
+				<h2>Change Your Password</h2>
+				<p>Enter in your new password and confirm it.</p>
+				<% form_tag account_url, :class => 'formtastic user', :method => :put do %>
+				<fieldset class="inputs"><ol>
+					<li class="password required" id="user_password_input">
+						<input id="user_password" name="user[password]" size="25" type="password" /><span class="seperator">&nbsp;</span>
+						<input id="user_password_confirmation" name="user[password_confirmation]" size="25" type="password" />
+					</li>
+					<li class="commit"><input class="update" id="user_submit" name="commit" type="submit" value="Change Password" /></li></ol></fieldset>
+				<% end -%>
+				<div id="nuke_it">
+					<span class="delete">
+					<% form_tag account_url, :class => 'formtastic user' do %>
+						<%= submit_tag "Delete My Account", :confirm => 'Are you sure you want to delete your account?' %>
+					<% end -%>
+					</span>
+					<h2>Delete My Account</h2>
+					<span>This will delete your account, but all of your commits will remain intact</span>
+				</div>
+			</div>
+			<div class="edit-div" id="emails">
+				<% semantic_form_for @user, :url => account_url do |form| %>
+					<%= form.inputs :email %>
+					<% form.buttons do -%>
+						<%= form.commit_button "Update Email" %>
+					<% end -%>
+				<% end %>
+				<small>Your email is how we match your commits to your profile. Multiple will be supported in the future.</small>
+			</div>
+		</div>
+		<div id="edit-sidebar">
+			&nbsp;
+		</div>
+	</div>
+</div>

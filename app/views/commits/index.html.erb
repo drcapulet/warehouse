@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<%= auto_discovery_link_tag(:atom, commits_feed_url(:tree => params[:tree])) %>
+<%= auto_discovery_link_tag(:atom, commits_feed_url(:tree => params[:tree], :user_credentials => @current_user.single_access_token)) %>
 <% end %>
 <% if current_repository.has_unsynced_revisions? -%>
 	<div class="info">Some revisions need to be synced. You can do this by syncing through the command line or in the repository admin.</div>
@@ -32,7 +32,7 @@
 <div class="clear">&nbsp;</div>
 
 <% unless params[:q].blank? -%>
-<h2>Commits including the term "<%=h params[:q] %>"</h2>
+<h2>Commits including the term "<%=h params[:q] %>" on <%= current_repository.name %>/<%=h params[:tree] %></h2>
 <% else -%>
 <h2>
 <% if params[:tree]%>

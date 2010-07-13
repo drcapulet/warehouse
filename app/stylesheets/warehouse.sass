@@ -121,6 +121,9 @@ div
 			&:hover
 				color: #F00
 				cursor: pointer
+		&.full
+			width: auto
+			margin: 5px 20px 10px
 .flash-error
 	padding: 15px 10px 15px 60px
 	margin: 20px 0
@@ -129,6 +132,13 @@ div
 	color: #F00
 	font-weight: bold
 	margin: 10 0
+	&.mini
+		background: #fee url(/images/icons/delete.png) 5px 50% no-repeat
+		padding: 5px 10px 5px 30px
+		width: 60%
+		&.full
+			width: auto
+			margin: 5px 20px 10px
 /* MAJOR */
 #header
 	background: #232C30
@@ -519,6 +529,12 @@ div.changeset
 	border-bottom: 1px solid #ccc
 	width: 32px
 	height: 32px
+	&.large
+		width: 40px
+		height: 40px
+	&.xlarge
+		width: 80px
+		height: 80px
 /* PAGINATION */
 .pagination
 	padding: 3px
@@ -924,32 +940,34 @@ span.code-text
 			list-style-type: none
 			float: left
 			margin-right: 10px
-			width: 79px
+			//width: 79px
 			text-align: center
 			height: 35px
+			border-left: 0
 			a, span.text
 				position: relative
 				display: block
-				padding: 8px 5px 5px 5px
+				padding: 9px 14px 0
 				font-size: 11px
 				text-decoration: none
 				color: #333
 				font-weight: bold
-				border: 1px solid transparent
 				z-index: 5
 				text-shadow: 1px 1px #eee
-			&#nrepo a
-				padding-left: 14px
-				background: url(/images/icons/box-small.png) center left no-repeat
-				margin-left: 8px
-			&#nhooks a
-				padding-left: 12px
-				background: url(/images/icons/hooks-small.png) center left no-repeat
-				margin-left: 12px
+				height: 26px
+				img
+					vertical-align: sub
+					margin-right: 2px
+				a
+					display: block
 			&:hover
-				background: url(/images/app/nav-hover.png) bottom left no-repeat
+				background: url(/images/app/nav-hover-right.png) bottom right no-repeat
+				a
+					background: url(/images/app/nav-hover-left.png) bottom left no-repeat
 			&.selected, &:active
-				background: url(/images/app/nav-selected.png) bottom left no-repeat
+				background: url(/images/app/nav-selected-right.png) bottom right no-repeat
+				a
+					background: url(/images/app/nav-selected-left.png) bottom left no-repeat
 /* REPO ADD */
 .repo-add
 	padding: 5px
@@ -1142,7 +1160,7 @@ span.code-text
 					.code
 						:font-family monospace
 /* MAKE THE FORM BUTTONS NICE */
-form.formtastic fieldset.buttons li.commit input, a.g-button
+form.formtastic li.commit input, a.g-button
 	padding: 6px 10px
 	-webkit-border-radius: 2px
 	border-radius: 2px
@@ -1162,3 +1180,193 @@ form.formtastic fieldset.buttons li.commit input, a.g-button
 		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221)))
 	&.disabled
 		color: #ccc
+/* LOGIN/LOGOUT */
+form.formtastic.user_session, form.formtastic.user, form.formtastic.forgot
+	fieldset > ol > li label
+		width: 15%
+	fieldset.buttons
+		padding-left: 15%
+	fieldset > ol > li p.inline-errors
+		margin-left: 15%
+form.formtastic.user
+	fieldset > ol > li label
+		width: 20%
+	fieldset.buttons
+		padding-left: 20%
+	fieldset > ol > li.string input, fieldset > ol > li.password input
+		width: 70%
+	fieldset > ol > li p.inline-errors
+		margin-left: 20%
+body.mini
+	background: #ccc
+	#container
+		width: 500px
+		margin: 10% auto 20px auto
+		-webkit-border-radius: 10px
+		-moz-border-radius: 10px
+		border-radius: 10px
+		-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 1px 2px 6px
+		background: #E9EAEE
+		img
+			vertical-align: middle
+		#login-header
+			background: #232C30
+			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#465862), to(#232C30))
+			padding: 15px
+			margin-bottom: 10px
+			-webkit-border-top-left-radius: 10px
+			-webkit-border-top-right-radius: 10px
+			-moz-border-radius-topleft: 10px
+			-moz-border-radius-topright: 10px
+			border-top-left-radius: 10px
+			border-top-right-radius: 10px
+			border-bottom: 1px solid #999
+			h1 a
+				color: #fff
+				text-decoration: none
+				font-size: 150%
+		#login-content
+			form.formtastic
+				fieldset > ol > li label
+					text-align: right
+				fieldset > ol > li.boolean label
+					padding-left: 16%
+				fieldset > ol > li p.inline-errors
+					text-align: left
+					margin-left: 20%
+				fieldset.buttons
+					padding: 0 20px
+					margin: 0 auto
+					li input
+						padding: 12px 0
+						font-size: 21px
+						font-weight: bold
+						width: 460px
+			form.formtastic.user_session, form.formtastic.user
+				fieldset.buttons
+					li input
+						background: url(/images/icons/lock.png) 36% 50% no-repeat, -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)))
+						&:hover
+							background: url(/images/icons/lock.png) 36% 50% no-repeat,-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(248, 248, 248)), to(rgb(221, 221, 221)))
+						&:active, &.selected
+							background: url(/images/icons/lock.png) 36% 50% no-repeat,-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221)))
+			#login-links
+				margin-bottom: 5px
+			form.formtastic.user
+				fieldset > ol > li p.inline-errors
+					text-align: left
+					margin-left: 24%
+	#login-footer
+		width: 500px
+		margin: 0 auto
+		font-size: smaller
+		text-align: center
+		img
+			vertical-align: middle
+/* USER SHOW */
+#user-profile
+	div#user-info
+		margin: 5px auto 10px auto
+		img
+			vertical-align: middle
+		h1
+			font-size: 25px
+			display: inline-block
+		span.profile-links
+			float: right
+		div#user-activity
+			display: table
+			width: 100%
+			div#recent-user-commits
+				display: table-cell
+				width: 65%
+				margin-left: 10px
+				h2
+					font-size: 18px
+			div#recent-repo-activity
+				display: table-cell
+				width: 33%
+				padding: 5px
+				strong
+					width: 15%
+					display: inline-block
+				span.recent-repo
+					display: block
+					padding: 5px
+					padding-left: 28px
+					background: #e2e2e2 url(/images/icons/box-small.png) 5px 6px no-repeat
+					margin-bottom: 10px
+					border: 1px solid #ddd
+					border-bottom-color: #ccc
+					border-right-color: #ccc
+					font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+					font-size: 110%
+					font-weight: bold
+	/* EDIT */
+	#admin-nav-bar
+		ul li
+			border-bottom: 1px solid #c3c3c3
+	div#user-edit
+		display: table
+		width: 100%
+		#edit-sidebar
+			width: 23%
+			display: table-cell
+			padding: 10px
+		#edit-divs
+			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c3c3c3), to(#ebebeb))
+			width: 75%
+			padding: 10px
+			display: table-cell
+			border-left: 1px solid #ccc
+			border-right: 1px solid #ccc
+			div.edit-div
+				p
+					margin-bottom: 8px
+				&#settings
+					form.formtastic.user
+						fieldset > ol > li
+							display: inline
+							label
+								width: 0px
+							span.seperator
+								width: 10px
+						fieldset > ol > li.string input, fieldset > ol > li.password input
+							width: 35%
+					#nuke_it
+						border: #900 1px solid
+						-webkit-border-radius: 5px
+						-moz-border-radius: 5px
+						border-radius: 5px
+						margin: 10px 0
+						padding: 0 0 5px 5px
+						h2
+							color: #900
+							border-bottom: none
+							margin-bottom: 5px
+						span.delete
+							float: right
+							margin: 10px 10px 0 0
+							input
+								color: #900
+								padding: 6px 10px
+								-webkit-border-radius: 2px
+								border-radius: 2px
+								-moz-border-radius: 2px
+								border: solid 1px rgb(153, 153, 153)
+								background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)))
+								color: #333
+								text-decoration: none
+								cursor: pointer
+								display: inline-block
+								text-align: center
+								text-shadow: 0px 1px 1px rgba(255,255,255,1)
+								line-height: 1
+								&:hover
+									color: white
+									text-shadow: none
+									background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FF0000), to(#960101))
+								&:active
+									color: white
+									text-shadow: none
+									background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#960101), to(#FF0000))

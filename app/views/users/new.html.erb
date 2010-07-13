@@ -1,0 +1,22 @@
+<% content_for :head do -%>
+	<%= javascript_include_tag 'jquery-1.4.1', 'chroma-hash' %>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("li.password input").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
+	});
+	</script>
+<% end -%>
+<% semantic_form_for @user, :url => signup_path do |form| -%>
+	<% form.inputs do -%>
+		<%= form.inputs :name, :login, :email, :password %>
+		<%= form.input :password_confirmation, :label => 'Confirmation' %>
+	<% end -%>
+	<% form.buttons do %>
+    	<%= form.commit_button "Sign up" %>
+    <% end %>
+<% end -%>
+<% content_for :footer do %>
+<div id="login-links"><%= link_to "login", login_path %> / <%= link_to "forgot your password?", forgot_pw_path %></div>
+powered by <%= link_to "#{image_tag('icons/box-small.png')} Warehouse", 'http://github.com/drcapulet/warehouse' %>
+<% end %>
+

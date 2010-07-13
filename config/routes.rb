@@ -4,6 +4,18 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :repositories, :only => [:index, :new, :create], :collection => [:search]
   map.dashboard       "/dashboard", :controller => 'dashboard', :action => 'index'
   map.dashboard_feed  "/dashboard.atom", :controller => 'dashboard', :action => 'index', :format => 'atom'
+  # AUTH
+  map.resource    :account, :controller => "users"
+  map.resources   :users, :only => [:show]
+  map.login       "/login", :controller => "user_sessions", :action => 'new', :conditions => { :method => :get }
+  map.login       "/login", :controller => "user_sessions", :action => 'create', :conditions => { :method => :post }
+  map.logout      "/logout", :controller => "user_sessions", :action => 'destroy'
+  map.signup      "/signup", :controller => 'users', :action => 'new', :conditions => { :method => :get }
+  map.signup      "/signup", :controller => 'users', :action => 'create', :conditions => { :method => :post }
+  map.forgot_pw   "/forgot", :controller => 'users', :action => 'forgot', :conditions => { :method => :get }
+  map.forgot_pw   "/forgot", :controller => 'users', :action => 'forgot_post', :conditions => { :method => :post }
+  map.reset_pw    "/reset/:token", :controller => 'users', :action => 'reset', :conditions => { :method => :get }
+  map.reset_pw    "/reset/:token", :controller => 'users', :action => 'reset_post', :conditions => { :method => [:post, :put] }
   
   map.with_options :path_prefix => '/:repo' do |repo|
     # repo.resources :admin, :except => [:index, :new, :create, :show], :controller_name => "Repositories"

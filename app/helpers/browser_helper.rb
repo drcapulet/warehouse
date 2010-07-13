@@ -43,7 +43,7 @@ module BrowserHelper
   def link_to_crumbs(path, rev = nil)
     pieces    = path.split '/'
     name      = pieces.pop
-    home_link = %(<li#{' class="crumb-divide-last"' if pieces.size == 0 && !name.nil?}>#{link_to("~ @ " + current_commit.branch, (@revision ? tree_path(:rev => current_commit.tree) : repo_path_for_current))}</li>)
+    home_link = %(<li#{' class="crumb-divide-last"' if pieces.size == 0 && !name.nil?}>#{link_to("~ @ " + current_commit.branch, (@text_revision ? tree_path(:rev => @text_revision) : repo_path_for_current))}</li>)
     # home_link = %(<li#{' class="crumb-divide-last"' if pieces.size == 0 && !name.nil?}>#{link_to '~', hosted_url(rev ? :rev_browser : :browser)}</li>)
     return home_link unless name
     prefix = ''

@@ -5,26 +5,29 @@ class RepositoriesController < ApplicationController
   end
   
   def new
+    @title = "New Repository"
     @repo = Repository.new
   end
   
   def create
     @repo = Repository.new(params[:repository])
     if @repo.save
-      flash[:notice] = "Repository created successfully!"
+      flash.now[:notice] = "Repository created successfully!"
       redirect_to repositories_path
     else
-      flash[:error] = "Repository couldn't be created!"
+      flash.now[:error] = "Repository couldn't be created!"
+      @title = "New Repository"
       render :action => 'new'
     end
   end
   
   def edit
+    @title = "Admin"
   end
   
   def update
     if current_repository.update_attributes(params[:repository])
-      flash[:notice] = "The repository was updates successfully!"
+      flash.now[:notice] = "The repository was updates successfully!"
       redirect_to admin_path
     else
       render :action => "edit"
@@ -35,6 +38,7 @@ class RepositoriesController < ApplicationController
   end
   
   def hooks
+    @title = "Hooks"
     @hooks = Warehouse::Hooks.list
   end
   
@@ -53,7 +57,7 @@ class RepositoriesController < ApplicationController
     if request.xhr?
       render :text => "<div class=\"flash-notice mini\">Your #{hook_name.gsub!(/_/, ' ')} hook was updated successfully! <span class=\"close\">x</span></div>"
     else
-      flash[:notice] = "Your hooks have been updated successfully!"
+      flash.now[:notice] = "Your hooks have been updated successfully!"
       redirect_to admin_hooks_path
     end
   end
@@ -75,7 +79,7 @@ class RepositoriesController < ApplicationController
     if request.xhr?
       render :text => "<div class=\"flash-notice mini\">Your post receive hook was updated successfully! <span class=\"close\">x</span></div>"
     else
-      flash[:notice] = "Your hooks have been updated successfully!"
+      flash.now[:notice] = "Your hooks have been updated successfully!"
       redirect_to admin_hooks_path
     end
   end
@@ -97,7 +101,7 @@ class RepositoriesController < ApplicationController
     if request.xhr?
       render :text => "<div class=\"flash-notice mini\">Your email hook was updated successfully! <span class=\"close\">x</span></div>"
     else
-      flash[:notice] = "Your hooks have been updated successfully!"
+      flash.now[:notice] = "Your hooks have been updated successfully!"
       redirect_to admin_hooks_path
     end
   end

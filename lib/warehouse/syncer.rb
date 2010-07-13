@@ -109,7 +109,7 @@ module Warehouse
             LOGGER.error(e.backtrace.join("\n")) if LOGGER
           end
           e = TimelineEvent.new(:event_type => 'push', :subject => @repo, :extra => { "commits" => comms.collect(&:id), "ref" => branch }, :created_at => Time.now.utc)
-          # e.actor = User.find_by_email(comms.last.email) if User.find_by_email(comms.last.email)
+          e.actor = User.find_by_email(comms.last.email) if User.find_by_email(comms.last.email)
           e.save
           LOGGER.info("Finished syncing #{@repo.name}/#{branch} with #{comms.size} commits") if LOGGER
         end

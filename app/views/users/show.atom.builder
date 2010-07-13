@@ -1,8 +1,8 @@
-atom_feed(:root_url => root_url, :schema_date => Time.utc(2010, 1, 1)) do |feed|
-  feed.title("Warehouse Activity Feed")
-  feed.updated((@events.first ? @events.first.created_at : Time.now.utc))
+atom_feed(:root_url => user_path(@user), :schema_date => Time.utc(2010, 1, 1)) do |feed|
+  feed.title("Warehouse Activity Feed for #{@user.login} #{("(" + @user.name + ")") if @user.name}")
+  feed.updated((@user.recent_activity.first ? @user.recent_activity.first.created_at : Time.now.utc))
   
-  @events.each do |event|
+  @user.recent_activity.each do |event|
     if event.event_type == "push"
       feed.entry(event, :url => commits_url(:repo => event.subject, :tree => event.extra['ref'])) do |entry|
         entry.title("#{actor_link_for_event(event)} pushed to #{event.subject.name}/#{event.extra['ref']}")

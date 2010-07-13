@@ -1,0 +1,14 @@
+<% semantic_form_for @user_session, :url => login_path do |form| -%>
+	<% form.inputs do -%>
+		<%= form.inputs :login, :password  %>
+		<%= form.input :remember_me, :as => :boolean %>
+	<% end -%>
+	<% form.buttons do %>
+    	<%= form.commit_button "Login" %>
+    <% end %>
+<% end -%>
+<% content_for :footer do %>
+<div id="login-links"><%= link_to "sign up", signup_path %> / <%= link_to "forgot your password?", forgot_pw_path %></div>
+powered by <%= link_to "#{image_tag('icons/box-small.png')} Warehouse", 'http://github.com/drcapulet/warehouse' %>
+<% end %>
+

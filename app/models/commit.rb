@@ -8,10 +8,22 @@ class Commit < ActiveRecord::Base
   
   def actor
     actor_id ? user : name
-  end  
+  end
+  
+  def user
+    User.find_by_email(email)
+  end
   
   def to_param
     sha
+  end
+  
+  def self.find_by_tree_and_or_branch(b, t = nil)
+    if b && t
+      first(:conditions => { :branch => b, :tree => t }, :order => 'committed_date DESC')
+    else
+      first(:conditions => { :branch => b }, :order => 'committed_date DESC')
+    end
   end
   
   def grit_object

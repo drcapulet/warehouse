@@ -1,0 +1,23 @@
+<% unless @hide_form -%>
+	<% form_tag forgot_pw_path, :class => 'formtastic forgot' do |form| -%>
+		<fieldset class="inputs">
+			<ol>
+				<li class="string required" id="user_email_input">
+					<label for="user_email">Email<abbr title="required">*</abbr></label>
+					<input id="user_email" maxlength="255" name="email" size="50" type="text" />
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset class="buttons">
+			<ol>
+				<li class="commit">
+					<input class="create" id="user_submit" name="commit" type="submit" value="Reset my Password" />
+				</li>
+			</ol>
+		</fieldset>
+	<% end -%>
+<% end -%>
+<% content_for :footer do -%>
+<div id="login-links"><%= link_to "login", login_path %> / <%= link_to "sign up", signup_path %></div>
+powered by <%= link_to "#{image_tag('icons/box-small.png')} Warehouse", 'http://github.com/drcapulet/warehouse' %>
+<% end -%>

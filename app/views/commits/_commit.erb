@@ -1,0 +1,9 @@
+<div class="cs-meta">
+	<%= avatar_for(commit) %>
+	<span class="change-number"><%= link_to truncate(commit.sha, :length => 7, :omission => ''), commit_path_for_current(commit) %></span>
+</div>
+<div class="cs-log clearfix">      
+	<%= simple_format(h(commit.message)) %>
+	<span class="timenauthor">by <%= commit.name %>, <%= time_ago_in_words commit.committed_date %></span>
+	<span class="timenauthor">tree: <%= link_to commit.tree, tree_path(:rev => commit.tree, :repo => commit.repository) %></span>
+</div>

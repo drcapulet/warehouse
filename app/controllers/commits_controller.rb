@@ -1,13 +1,16 @@
 class CommitsController < ApplicationController
   before_filter :find_query, :except => :show
   def index
+    @title = "Commits on #{params[:tree]}"
   end
 
   def show
     @commit = current_repository.commits.find_by_sha(params[:id])
+    @title = "Commit #{@commit.sha}"
   end
   
   def search
+    @title = "Searching commits for \"#{params[:q]}\""
     render :action => 'index'
   end
   

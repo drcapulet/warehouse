@@ -90,7 +90,7 @@ form.formtastic fieldset > ol > li ul.errors li { padding:0; border:none; displa
 /* STRING & NUMERIC OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.string input { max-width:74%; font-size: 16px; padding:3px;}
-form.formtastic fieldset > ol > li.password input { max-width: 13em; }
+form.formtastic fieldset > ol > li.password input { max-width:74%; font-size: 16px; padding:3px;}
 form.formtastic fieldset > ol > li.numeric input { max-width:74%; }
 
 

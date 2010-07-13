@@ -4,6 +4,7 @@ class BrowserController < ApplicationController
   before_filter :render_sync_required_unless_current_commit, :only => [:index, :blame]
     
   def index
+    @title = (!params[:paths].empty? ? (params[:paths] * '/') : '/') + " @ #{current_commit.branch}#{ " (#{@text_revision[0,7]})" if @text_revision.match(/[a-zA-Z0-9]{40}/)}"
     render :action => @node.node_type
   end
   
@@ -26,6 +27,7 @@ class BrowserController < ApplicationController
   end
   
   def multi
+    @title = "Multi"
   end
   
   def multi_list
@@ -33,11 +35,12 @@ class BrowserController < ApplicationController
   end
   
   def search
-    
+    @title = "Search"
   end
   
   def history
     @changes = Change.paginate(:page => params[:page], :per_page => 15, :conditions => { :path =>  (params[:paths] * '/'), :commit_id => current_repository.commits.all(:conditions => { :branch => current_commit.branch }) })
+    @title = "History for #{(!params[:paths].empty? ? (params[:paths] * '/') : '/')}"
   end
   
   def tag

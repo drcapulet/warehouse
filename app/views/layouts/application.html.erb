@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title><%= current_repository.name rescue 'Warehouse: ' %> <%= @title rescue '' %></title>
+		<title><%= current_repository ? (current_repository.name + ": ") : 'Warehouse: ' %><%= @title rescue '' %></title>
 		<link rel="shortcut icon" href="/favicon.png" type="image/png" />
 		<%#= stylesheet_link_tag 'reset', 'main', 'highlight', :media => 'screen, projection' %>
 		<%= stylesheet_link_tag 'warehouse', 'highlight', 'formtastic' %>
@@ -29,7 +28,7 @@
 						<% end -%>
 					 </ul>
 					<ul id="utils">
-						<li id="login-link"><%= link_to 'Login', '#' %></li>
+						<li id="login-link"><%= logged_in? ? link_to('Logout', logout_path) + " | " + link_to('My Account', account_path) : link_to('Login', login_path) %></li>
 					</ul>
 				</div>
 			</div>
