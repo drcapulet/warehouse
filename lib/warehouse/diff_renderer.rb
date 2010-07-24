@@ -26,6 +26,8 @@ protected
     line.gsub!(/>/n,  '&gt;')
     line.gsub!(/</n,  '&lt;')
     line.gsub!(/ /,   "&nbsp;")
+    line.gsub!(/\\0/, "<span class='darker'>")
+    line.gsub!(/\\1/, "</span>")
     %(<tr><td class="ln">#{line.old_number || "&nbsp;"}</td><td class="ln">#{line.new_number || "&nbsp;"}</td><td class="code#{css_class ? " #{css_class}" : nil}">&nbsp;#{line}</td></tr>)
   end
 end
