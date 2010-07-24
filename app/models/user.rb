@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
+  acts_as_authentic unless $disable_authlogic
   is_gravtastic :email
-  has_permalink :login, :update => true
+  has_permalink :login, :update => true unless $disable_authlogic
   
   def to_param
     permalink

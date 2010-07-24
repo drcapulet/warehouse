@@ -14,6 +14,8 @@ require 'app/models/commit'
 require 'app/models/change'
 require 'app/models/hook'
 require 'app/models/timeline_event'
+$disable_authlogic = true
+require 'app/models/user'
 require 'warehouse/repo'
 require 'warehouse/node'
 require 'progressbar'
@@ -32,14 +34,24 @@ module Warehouse
       @grit = repo.silo.grit_object
     end
     
-    def self.process(repo = nil)
+    def self.process(repo_or_repo_path = nil)
       Warehouse::Hooks.discover
       unless APP_CONFIG[:host] && !APP_CONFIG[:host].empty?
         puts "You need to set the host value under #{RAILS_ENV} in config/warehouse.yml"
         LOGGER.error("You need to set the host value under #{RAILS_ENV} in config/warehouse.yml") if LOGGER
         exit 1
       end
-      if repo
+      if repo_or_repo_path
+        if repo_or_repo_path.is_a?(Repository)
+          repo = repo_or_repo_path
+        else
+          repo = Repository.find_by_path(repo_or_repo_path)
+          unless repo
+            puts "Repository with the path of #{repo_or_repo_path} could not be found. Exiting"
+            LOGGER.error("Repository with the path of #{repo_or_repo_path} could not be found. Exiting") if LOGGER
+            exit 1
+          end
+        end
         new(repo).process
       else
         Repository.all.each { |r| r.sync_revisions }
@@ -93,7 +105,7 @@ module Warehouse
           begin
             payload = create_payload_for_hooks(before, comms, branch)
             # @repo.process_hooks(payload) # We are bypassing this so that when one failes it gets logged and then the rest continue
-            hooks.active.each do |h|
+            @repo.hooks.active.each do |h|
               begin
                 h.runnit(payload)
               rescue => e
