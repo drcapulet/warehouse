@@ -8,15 +8,25 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   before_filter :login_required
+  before_filter :check_for_repo
   
   protected
   
     def current_repository
-      @repo = Repository.find_by_slug(repository_name)
+      if repository_name
+        @repo = Repository.find_by_slug(repository_name)
+      end
     end
     
     def repository_name
       @repository_name ||= params.delete(:repo)
+    end
+    
+    def check_for_repo
+      if repository_name && !current_repository
+        render :file => 'repositories/not_found', :layout => 'application'
+        return false
+      end
     end
     
     def current_commit

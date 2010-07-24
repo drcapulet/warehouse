@@ -15,6 +15,10 @@ module Warehouse
       else
          @node = current_repository.node('/', @text_revision)
       end
+      if params[:paths] && !params[:paths].empty? && !@node.exists?
+        render :action => 'file_not_found'
+        return false
+      end
     end
     
     # def find_current_revision

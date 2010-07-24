@@ -63,6 +63,10 @@ module Warehouse
       @blame ||= Grit::Blame.new(@repository.grit_object, path, revision)
     end
     
+    def exists?
+      !!grit_object
+    end
+    
     protected
       def grit_object
         if @path.empty?
