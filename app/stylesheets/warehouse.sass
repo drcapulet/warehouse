@@ -669,7 +669,29 @@ div.diff-table
 		padding: 5px
 		border-bottom: 1px solid #ddd
 		position: relative
-
+		span.a, span.m, span.d, span.mv, span.cp
+			background: #7b0
+			color: #fff
+			font-size: 82%
+			border: 1px solid #fff
+			line-height: 100%
+			padding: 2px
+			font-weight: bold
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+			a
+				:text-decoration none
+				color: #fff
+		span
+			&.m
+				background-color: #06b
+			&.mv
+				color: #540
+				background: #ca0
+			&.d
+				background: #c00
+			&.cp
+				background: #ccc
+				color: #333
 
 .viewdiff
 	display: block
@@ -684,35 +706,6 @@ div.diff-table
 
 #change-list .shade
 	background: #eee
-
-
-span.a, .m, .d, .mv, .cp
-	background: #7b0
-	color: #fff
-	font-size: 82%
-	border: 1px solid #fff
-	line-height: 100%
-	padding: 2px
-	font-weight: bold
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-	a
-		:text-decoration none
-		color: #fff
-
-span
-	&.m
-		background-color: #06b
-
-	&.mv
-		color: #540
-		background: #ca0
-
-	&.d
-		background: #c00
-
-	&.cp
-		background: #ccc
-		color: #333
 		
 .linenos
 	:vertical-align sub
