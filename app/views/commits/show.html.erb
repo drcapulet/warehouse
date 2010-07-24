@@ -20,7 +20,7 @@
 		<thead>
 			<tr class="controls">
 				<td colspan="3">
-					<div class="control"><%= (c.a_path != c.b_path) ? c.a_path + ' → ' + c.b_path : c.b_path %></div>
+					<div class="control"><%= (c.a_path != c.b_path) ? c.a_path + ' → ' + c.b_path : c.b_path %><span class="view-file"><%= link_to_node("view file @ <span class=\"sha\">#{@commit.tree[0,8]}</span>", c.b_path, @commit.tree) unless c.deleted_file %></span></div>
 				</td>
 			</tr>
 			<tr>
