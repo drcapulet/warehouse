@@ -20,7 +20,7 @@
 		</div>
 		<script type="text/javascript">
 			$.ajax({
-				url: '<%= multi_list_path %>',
+				url: '<%= multi_list_path(:tree => params[:tree] || "master") %>',
 				success: function(data) {
 					$('.loading').hide();
 					$('#treecont').html(data);
