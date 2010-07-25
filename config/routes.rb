@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
       a.admin_hooks_post "admin/hooks/post_receive", :action => 'hooks_update_post', :conditions => { :method => [:post, :put] }
       a.admin_hooks_email "admin/hooks/email", :action => 'hooks_update_email', :conditions => { :method => [:post, :put] }
       a.admin_delete    "admin/nuke", :action => 'delete',  :conditions => { :method => [:get, :post, :delete] }
+      a.admin_git_hook  "admin/install_git_hook", :action => 'install_git_hook', :conditions => { :method => [:get] }
     end
     repo.connect 'admin/:action', :controller => "repositories"
     repo.with_options :controller => "commits" do |c|

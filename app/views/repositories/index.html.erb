@@ -8,6 +8,7 @@
 <% @repos.each do |r| -%>
 <div class="repo">
 	<h2><%= link_to r.name, repo_path(r) %></h2>latest commit: <span style="font-weight:normal;"><%= link_to r.latest_commit_for_branch.sha, commit_path(r, r.latest_commit_for_branch.sha) if r.latest_commit_for_branch %></span>
+	<span style="float:right;"><small><%= hook_installed?(r) ? "&#x2713; hook installed" : link_to("hook needs to be installed", admin_git_hook_path(:repo => r)) %><%= "hook needs updating!" if hook_installed?(r) && !hook_latest?(r) %></small></span>
 	<% if r.has_unsynced_revisions? -%>
 		<span style="float:right;"><small>needs to be synced</small><%= image_tag('icons/sync.png', :style => 'vertical-align:text-top;') %></span>
 	<% end -%>

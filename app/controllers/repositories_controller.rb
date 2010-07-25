@@ -113,6 +113,25 @@ class RepositoriesController < ApplicationController
     @repos = Repository.all(:conditions => ["name LIKE ?", '%' + params[:q] + '%'])
   end
   
+  def install_git_hook
+    @root = RAILS_ROOT
+    template = ERB.new File.new("lib/post_receive.erb").read, nil, "%"
+    file = template.result(binding)
+    # this is where we need to write the file to the correct directory
+    if File.exist?(File.join(current_repository.path, '.git'))
+      p = File.join(current_repository.path, '.git', 'hooks')
+    elsif File.exist?(current_repository.path) && (current_repository.path =~ /\.git$/)
+      p = File.join(current_repository.path, 'hooks')
+    else
+    end
+    if p
+      path = File.join(p, 'post-receive')
+      File.open(path, 'w') { |f| f.write(file); f.chmod(0755) }
+    end
+    flash[:notice] = "The hook was successfully installed!"
+    redirect_to admin_path
+  end
+  
   Warehouse::Hooks.list.each do |k, hook|
     class_eval("def #{k}_hook_test
       h = eval(\"current_repository.hooks.#{k}\")

@@ -1,0 +1,9 @@
+#!/bin/sh
+# The Warehouse Git Post-Receive Hook
+# VERSION: 0.0.1
+ROOT='<%= @root %>'
+DIR=`pwd`
+RAKE=`which rake`
+GIT_ROOT=
+cd $ROOT
+echo `$RAKE warehouse:sync[$DIR]`

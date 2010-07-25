@@ -88,7 +88,7 @@
 			<div class="head"><%= hook.plugin_name.capitalize %></div>
 			<% h = eval("current_repository.hooks.#{hook.plugin_name}_new") %>
 			<% b = {} %>
-			<div id="<%= hook.plugin_name + "_messages" %>"></div>
+			<div id="<%= hook.plugin_name + "_messages" %>"></div>			
 			<% semantic_form_for h, :html => { :id => hook.plugin_name + "_form",  :class => 'hook-form' },:url => admin_hooks_path do |form| %>
 				<% form.inputs do %>
 					<%= form.input :name, :as => :hidden %>

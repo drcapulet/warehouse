@@ -2,6 +2,8 @@
 <%- flash.each do |name, msg| -%>
 	<%= content_tag :div, msg, :class => "flash-#{name}" %>
 <%- end -%>
+<% unless hook_installed?(current_repository) %><div class="info">You need to install the post-receive hook for git. <%= link_to "Do it now", admin_git_hook_path, :class => 'g-button' %></div><% end %>
+<% if hook_installed?(current_repository) && !hook_latest?(current_repository) %><div class="info">You need to upgrade the post-receive hook for git. <%= link_to "Upgrade it", admin_git_hook_path, :class => 'g-button' %></div><% end %>
 <!-- <div class="subnav-bar single"> -->
 <div id="admin-nav-bar">
 	<ul>
@@ -19,3 +21,4 @@
 	<%= form.inputs :name, :path %>
 	<%= form.buttons %>
 <% end %>
+
