@@ -23,5 +23,5 @@
 		</ul>
 	</div>
 </div>
-<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} News Feed", dashboard_feed_url, :id => 'subscribe-btn' %></div>
+<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} News Feed", dashboard_feed_url(:user_credentials => @current_user.single_access_token), :id => 'subscribe-btn' %></div>
 <% end -%>

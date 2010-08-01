@@ -80,7 +80,7 @@
 		  <input type="hidden" name="tree" value="<%= params[:tree] %>">
 		<% end %>
 	</div>
-	<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} Subscribe to Commits", commits_feed_url(:tree => params[:tree]), :id => 'subscribe-btn' %></div>
+	<div id="subscribe"><%= link_to "#{image_tag('icons/feed-icon-small.png')} Subscribe to Commits", commits_feed_url(:tree => params[:tree], :user_credentials => @current_user.single_access_token), :id => 'subscribe-btn' %></div>
 	<h3>Active Members on this Branch</h3>
 	<ul id="members">
 		<% current_repository.all_committers(params[:tree]).each do |member| -%>
