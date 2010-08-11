@@ -138,6 +138,20 @@ class RepositoriesController < ApplicationController
       h.runnit(Warehouse::Hooks.fake_payload)
       render :text => 'success'
     end")
+    # Couldn't get this to work
+    # hook.controller_actions.each do |name, proc|
+    #   class_eval("def #{k}_#{name}
+    #     p = Warehouse::Hooks.list['#{k}'].controller_actions['#{name}']
+    #     p.call(binding)
+    #     end")
+    # end
+    hook.controller_actions.each do |name, proc|
+      class_eval("def #{k}_#{name}
+        p = Warehouse::Hooks.list['#{k}'].controller_actions['#{name}']
+        hook = eval(\"current_repository.hooks.#{k}_new\")
+        eval(p)
+        end")
+    end
   end
   
   

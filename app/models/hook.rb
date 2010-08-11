@@ -35,19 +35,31 @@ class Hook < ActiveRecord::Base
   end
   
   def hook_options
-    Warehouse::Hooks[name].options_info
+    wh_hook.options_info
   end
   
   def hook_options_html
-    Warehouse::Hooks[name].options_html
+    wh_hook.options_html
+  end
+  
+  def hook_display_variables
+    wh_hook.display_info
   end
   
   def html_name
-    Warehouse::Hooks[name].html_name.gsub(/([A-Z])/, ' \1').strip
+    wh_hook.html_name.gsub(/([A-Z])/, ' \1').strip
+  end
+  
+  def help
+     wh_hook.help_text
+  end
+  
+  def config
+    wh_hook.config
   end
   
   def runnit(payload)
-    h = Warehouse::Hooks[name].new(self, payload)
+    h = wh_hook.new(self, payload)
     h.run!
   end
   
@@ -59,4 +71,7 @@ class Hook < ActiveRecord::Base
     #     super
     #   end
     # end
+    def wh_hook
+      @wh_hook ||= Warehouse::Hooks[name]
+    end
 end

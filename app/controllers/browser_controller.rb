@@ -39,8 +39,9 @@ class BrowserController < ApplicationController
   end
   
   def history
-    @changes = Change.paginate(:page => params[:page], :per_page => 15, :conditions => { :path =>  (params[:paths] * '/'), :commit_id => current_repository.commits.all(:conditions => { :branch => current_commit.branch }) })
-    @title = "History for #{(!params[:paths].empty? ? (params[:paths] * '/') : '/')}"
+    # @changes = Change.paginate(:page => params[:page], :per_page => 15, :conditions => { :path =>  (params[:paths] * '/'), :commit_id => current_repository.commits.all(:conditions => { :branch => current_commit.branch }) })
+    @changes = Change.paginate(:page => params[:page], :per_page => 15, :conditions => { :path =>  (params[:paths] * '/'), :commit_id => current_repository.commits.all(:conditions => { :branch => params[:tree] }) })
+    # @title = "History for #{(!params[:paths].empty? ? (params[:paths] * '/') : '/')}"
   end
   
   def tag

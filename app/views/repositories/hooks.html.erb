@@ -92,6 +92,9 @@
 			<% semantic_form_for h, :html => { :id => hook.plugin_name + "_form",  :class => 'hook-form' },:url => admin_hooks_path do |form| %>
 				<% form.inputs do %>
 					<%= form.input :name, :as => :hidden %>
+					<% h.hook_display_variables.each do |a| %>
+						<%= form.input a, :input_html => { :disabled => true, :value => (h.new_record? ? "" : h.options[a.to_s]) } %>
+					<% end %>
 					<% form.inputs :for => :options do |opts| %>
 						<% h.hook_options_html.each do |k,v| %>
 							<% b[k] = v if v[:as] && v[:as] == :boolean %>
@@ -111,9 +114,13 @@
 				<% end %>
 				<% form.buttons do %>
 					<%= form.commit_button :label => "Update #{hook.plugin_name.capitalize} Settings" %>
-					<%= link_to "Test Hook", admin_hooks_path.gsub(/hooks$/, "#{hook.plugin_name}_hook_test"), :class => "g-button test-hook #{'disabled' unless h.active?}", :id => hook.plugin_name + "_link" %>
+					<%= link_to "Test Hook", admin_hooks_path.gsub(/hooks$/, "#{hook.plugin_name}_hook_test"), :class => "g-button test-hook #{'disabled' if h.new_record? || !h.active? }", :id => hook.plugin_name + "_link", :disabled => h.new_record? %>
+					<% hook.view_links.each do |sym, text| %>
+						<%= link_to text, eval("admin_#{hook.plugin_name}_#{sym.to_s}_path"), :class => "g-button"%>
+					<% end %>
 					<%= image_tag "loading.gif", :style => 'vertical-align: middle; display: none;', :id => hook.plugin_name + "_loading" %>
 				<% end %>
+				<%= h.help %>
 			<% end %>
 		</div>
 		<% end -%>

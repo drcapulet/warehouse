@@ -13,14 +13,13 @@ I'm working on this section :)
 * Multi-View
 * Command-Line Syncer
 * Admin and Post-Recieve Hooks
+* Dashboard
+* Authentication
+* Git Post-Push sync script
 
 == Not Done
 
-* Dashboard
-* Authentication
-* Git Post-Commit/Post-Push/Post-something hook to sync the repo
 * Tests
-* Error Handling
 
 == Installing
 

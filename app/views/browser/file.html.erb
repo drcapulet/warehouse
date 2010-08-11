@@ -6,7 +6,7 @@
 	<div class="controls control-head">
 		<ul class="formats">
 			<li><%= link_to 'Blame', link_to_blame(@node), :class => (controller.action_name == 'blame' ? 'sel' : '') %><%#= link_to_blame 'Blame', @node %></li>
-			<li><%= link_to 'History', link_to_history(@node) %></li>
+			<li><%= link_to 'History', link_to_history(@node, current_commit.branch) %></li>
 			<li<% unless @node.text? %> class="end"<% end %>><%= link_to 'Raw', link_to_raw_for_node(@node) %></li>
 			<% if @node.text? -%><li class="end"><%= link_to 'Text', link_to_text_for_node(@node) %></li><% end -%>
 		</ul>

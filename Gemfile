@@ -16,6 +16,7 @@ gem 'json'
 gem 'pony', '>= 1.0'
 gem 'tinder'
 gem 'xml-simple'
+gem 'twitter_oauth'
 
 group :cucumber do
   gem "cucumber",         ">=0.6.1"

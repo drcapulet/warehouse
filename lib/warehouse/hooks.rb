@@ -22,6 +22,8 @@ $LOAD_PATH.unshift *Dir["#{RAILS_ROOT}/vendor/hooks/**/lib"]
 # require 'xmpp4r'
 # require 'xmpp4r-simple'
 # require 'rubyforge'
+require 'net/http'
+require 'uri'
 
 module Warehouse
   module Hooks
@@ -34,6 +36,8 @@ module Warehouse
         index[plugin_name.to_s]
       end
     end
+    BITLY_API_LOGIN = YAML.load_file("config/bitly.yml")['login']
+    BITLY_API_KEY   = YAML.load_file("config/bitly.yml")['key']
     
     self.discovered = []
     self.index      = {}
@@ -83,8 +87,8 @@ module Warehouse
             }
           ],
           :repository => {
-            :name => "Skribit",
-            :url => "http://localhost:5060/skribit"
+            :name => "Warehouse",
+            :url => "http://localhost:5060/warehouse"
           }
         }
       end
@@ -103,6 +107,12 @@ module Warehouse
           end
           def payload
             @payload
+          end
+          def config
+            self.class.config
+          end
+          def shorten_url(url)
+            self.class.shorten_url(url)
           end
         end
         EOF
@@ -155,6 +165,26 @@ module Warehouse
           @options_html ||= {}
         end
         
+        def controller_actions
+          @controller_actions ||= {}
+        end
+        
+        def view_links
+          @view_links ||= {}
+        end
+        
+        def display_info
+          @display_info ||= []
+        end
+        
+        def help_text
+          @help ||= ""
+        end
+        
+        def config
+          @config
+        end
+        
         def option(property, *args)
           format  = args.first.is_a?(Regexp) ? args.shift : nil
           desc    = args.shift
@@ -176,14 +206,58 @@ module Warehouse
           # option_formats[property.to_sym]  = format if format
         end
         
-        # Going tp be parsed with markdown. Probably. Or something similar. This isnt done.
+        # Going to be parsed with markdown. Probably. Or something similar. This isnt done.
         def help(h)
-          warn("Help for hooks isn't done yet. It is just a future TODO")
-          # class_eval <<-END, __FILE__, __LINE__
-          #     def help
-          #       @help
-          #     end
-          #   END
+          warn("Help for hooks isn't done yet. It currently just spits out whatever you pass it.")
+          @help = h
+        end
+        
+        # DISPLAYS VARIABLE TEXT - MUST ALSO BE DEFINED AS AN OPTION - and the value will be auto populated
+        # if there is a variable saved for that key
+        #   display_variable :some_option
+        #   option :some_option, "", :as => :hidden
+        def display_variable(property)
+          display_info << property
+        end
+        
+        # ADDING this to the top of your hook will automatically load RAILS_ROOT/config/hooks/plugin_name.yml
+        def has_config
+          @config = YAML.load_file("config/hooks/#{plugin_name}.yml")
+        end
+        
+        # Let's start imagining examples:
+        #   define_controller_action :action_name, <<-EOF
+        #     &block
+        #   EOF
+        #   end
+        # would generate
+        #   def hook_name_action_name
+        #     &block
+        #   end
+        # and a named root
+        #  map.with_options :path_prefix => '/:repo' do |repo|
+        #    repo.with_options :controller => "repositories" do |a|
+        #      ....
+        #      a.hook_name_action_name "admin/hooks/hook_name/action_name", :action => "hook_name_action_name"
+        #    end
+        #  end
+        # The block you pass will be stored as a proc and then called whenver the action is requested
+        def define_controller_action(name, *args, &block)
+          controller_actions[name.to_s] = args.first
+        end
+        
+        # Add in links to the view - must match an action defined by define_controller_action
+        # They look the same as the other buttons and are added after the test hook button
+        # Example:
+        #   define_view_link "Some Text", :action_name
+        def define_view_link(text, action_symbol)
+          view_links[action_symbol] = text
+        end
+        
+        # Call shorten_url (it is remapped to the class method by the service class wich your hook inherits from)
+        # to shorten a url using the bit.ly service - login & api_key set in config/bitly.yml
+        def shorten_url(url)
+          Net::HTTP.get(URI.parse("http://api.bit.ly/v3/shorten?login=#{BITLY_API_LOGIN}&apiKey=#{BITLY_API_KEY}&longUrl=#{CGI.escape(url)}&format=txt")).gsub!(/\n/,'')
         end
         
         private
@@ -218,22 +292,22 @@ module Warehouse
       private
         def method_missing(name, *args, &block)
           if klass.respond_to?(name)
-            klass.send(name, *args)
+            klass.send(name, *args, &block)
           else
             if %w(run init).include?(name.to_s)
               method_name = name
-            else
-              method_name = "retrieving_#{name}"
-              var_name    = method_name.to_s.gsub(/\W/, '')
-              # klass.expiring_attr_reader name, method_name
-              klass.send :class_eval, ("
-                def #{method_name}
-                  def self.#{method_name}; @#{var_name}; end
-                  @#{var_name} ||= eval(%(#{name}))
-                end
-              ")
+              klass.send :define_method, method_name, &block
+            # else
+              # method_name = "retrieving_#{name}"
+              # var_name    = method_name.to_s.gsub(/\W/, '')
+              # # klass.expiring_attr_reader name, method_name
+              # klass.send :class_eval, ("
+              #   def #{method_name}
+              #     def self.#{method_name}; @#{var_name}; end
+              #     @#{var_name} ||= eval(%(#{name}))
+              #   end
+              # ")
             end
-            klass.send :define_method, method_name, &block
           end
         end
     end

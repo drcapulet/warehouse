@@ -6,3 +6,5 @@ vendor/gems
 log/
 db/*.sqlite3
 .bundle/
+config/hooks/*
+config/bitly.yml

@@ -77,6 +77,7 @@ module ApplicationHelper
   ## SRC CODE
   def highlight_source_for_node(node)
     code_highlight(node.mime_type, node.data)
+    # CodeRay.scan()
   end
   
   ### USERS
