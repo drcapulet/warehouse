@@ -21,7 +21,7 @@
 						<li id="repos"<%= selected_navigation?(:repos) %>><%= link_to 'Repositories', repositories_path %></li>
 						<% if current_repository -%>
 						<li id="code"<%= selected_navigation?(:browser) %>><%= link_to 'Browser', repo_path_for_current %></li>
-						<li id="code"<%= selected_navigation?(:multi) %>><%= link_to 'Multi', multi_path(:repo => current_repository) %></li>
+						<li id="code"<%= selected_navigation?(:multi) %>><%= link_to 'Multi', multi_path(:repo => current_repository, :rev => 'master') %></li>
 						<li id="activity"<%= selected_navigation?(:activity) %>><%= link_to 'Commits', commits_path(:tree => 'master') %></li>
 						<li id="admin"<%= selected_navigation?(:admin) %>><%= link_to 'Admin', admin_path %></li>
 						<% else -%>

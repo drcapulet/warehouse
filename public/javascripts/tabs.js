@@ -49,12 +49,12 @@ jQuery.fn.showSource = function() {
 		} else { 
 			// Creeate the Tab
 	 		$("div.sourcecode div.controls div#tabs ul").append('<li path="' + path + '" class="selected">' + path.split('/')[path.split('/').length-1] + '<span class="close">x</span></li>');
-			url = '/' + $('div.sourcecode').attr('repo') + '/hil' + path;
+			url = '/' + $('div.sourcecode').attr('repo') + '/tree/' + $('#repotree').attr('value') + '/hil' + path;
 			$.get(url, function(data){
 		    $("div.sourcecode div#source").append("<pre class='viewsource' path='" + path + "' style='height:" + height + "px; width:" + width + "px;'><code>" + data + "</code></pre>");
 		  });
 		}
 		
-		$("div.sourcecode div.sub-controls").html(epath);
+		$("div.sourcecode div.sub-controls span#filename").html(epath);
 		$("div.sourcecode div#source > pre[path='" + path + "']").show();
 };

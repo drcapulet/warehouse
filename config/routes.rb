@@ -44,14 +44,18 @@ ActionController::Routing::Routes.draw do |map|
     end
     repo.with_options :controller => "browser" do |b|
       b.history     "tree/:tree/history/*paths", :action => "history"
+      b.raw         "tree/:rev/raw/*paths", :action => 'raw'
+      b.hil         "tree/:rev/hil/*paths", :action => 'hil'
+      b.text        "tree/:rev/text/*paths", :action => "text"
       b.tree        "tree/:rev/*paths", :action => "index"
       # b.browser     "browser/*paths"
       b.tag         "tag/*tag",       :action => "tag"
       b.blame       "blame/:rev/*paths",   :action => "blame"
-      b.text        "text/*paths",    :action => "text"
-      b.raw         "raw/*paths",     :action => "raw"
-      b.hil         "hil/*paths",     :action => "hil"
-      b.multi       "multi",          :action => "multi"
+      # b.text        "text/*paths",    :action => "text"
+      # b.raw         "raw/*paths",     :action => "raw"
+      # b.hil         "hil/*paths",     :action => "hil"
+      b.multi       "multi/:rev",          :action => "multi"
+      b.connect     "multi",               :action => 'multi'
       b.multi_list  "multi-list",     :action => "multi_list"
       b.search      "search",         :action => "search"
       # b.repo        "tree/*paths",    :action => "index"

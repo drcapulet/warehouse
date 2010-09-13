@@ -5,7 +5,9 @@
 	<div class="controls">
 		<div id="tabs"><ul>&nbsp;</ul></div>		
 	</div>
-	<div class="sub-controls">&nbsp;
+	<div class="sub-controls">
+		<span id="filename">&nbsp;</span>
+		<span style="float:right;"><%= select_tag 'tree', options_for_select(current_repository.heads.collect { |h| h.name }, params[:rev] || 'master'), :onchange => "location = '#{multi_path(:repo => current_repository, :rev => '')}' + this.options[this.selectedIndex].value;" %></span>
 	</div>
 	<div class="browse">
 		<div id="tree"><div id="treecont">
@@ -18,9 +20,10 @@
 		<div id="source">
 			<pre class="viewsource" id="blank-source"><code></code></pre>
 		</div>
+		<%= hidden_field_tag 'repotree', params[:rev] || 'master' %>
 		<script type="text/javascript">
 			$.ajax({
-				url: '<%= multi_list_path(:tree => params[:tree] || "master") %>',
+				url: '<%= multi_list_path(:tree => params[:rev] || "master") %>',
 				success: function(data) {
 					$('.loading').hide();
 					$('#treecont').html(data);

@@ -15,7 +15,7 @@ module BrowserHelper
   end
   
   def link_to_raw_for_node(node)
-    raw_path(:repo => current_repository, :paths => node.paths)
+    raw_path(:repo => current_repository, :paths => node.paths, :rev => params[:rev] || 'master')
   end
   
   def link_to_blame(node)
@@ -117,12 +117,12 @@ module BrowserHelper
     blame = node.blame(revision)
     blame.lines.each do |line|
       b << %(<tr#{ ' class="start-line"' if !previous.nil? && previous != line.commit}>)
-      b << %(<td nowrap=""><pre>#{link_to truncate(line.commit.sha, :length => 8, :omission => ''), commit_path_for_current(line.commit) unless previous == line.commit}</pre></td>)
+      b << %(<td nowrap=""><pre>#{link_to truncate(line.commit.sha, :length => 8, :omission => ''), commit_path(:repo => current_repository, :id => line.commit.sha) unless previous == line.commit}</pre></td>)
       b << %(<td nowrap="" class="name"><pre>#{h(line.commit.committer.name) unless previous == line.commit }</pre></td>)
       b << %(<td nowrap="" class="time"><pre>#{line.commit.date.strftime('%Y-%m-%d') unless previous == line.commit}</pre></td>)
       b << %(<td nowrap=""><pre>#{truncate(line.commit.message, :length => 25) unless previous == line.commit}</pre></td>)
       b << %(<td nowrap="" class="lineno">#{line.lineno}</td>)
-      b << %(<td nowrap="" class="src">#{highlight(node.mime_type, line.line, false)}</td>)
+      b << %(<td nowrap="" class="src">#{code_highlight(node.mime_type, line.line, false)}</td>)
       b << %(</tr>)
       previous = line.commit
     end

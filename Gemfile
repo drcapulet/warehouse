@@ -1,7 +1,6 @@
 source "http://gemcutter.org"
 source "http://gems.github.com"
 
-gem 'compass'
 gem 'gravtastic', '>= 2.2.0'
 gem 'grit'
 gem 'rails', '2.3.5'
