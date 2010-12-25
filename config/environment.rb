@@ -6,6 +6,13 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+# Required to use local gems inside the users home directory. Maybe helpful in production server
+# without root access. However, for RAILS_GEM_VERSION = '2.3.8' these should to be located before the
+# "require File.join(File.dirname(__FILE__), 'boot')" line
+if ENV['RAILS_ENV'] == 'production'  # don't bother on dev
+  ENV['GEM_PATH'] = File.expand_path('~/.gems') + ':/usr/lib/ruby/gems/1.8'
+end
+
 Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   # config.gem 'grit'
