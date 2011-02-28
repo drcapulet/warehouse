@@ -8,6 +8,7 @@ development:
   log_syncer: true
 
 production:
-  host: 
+  host: http://subdomain.yourdomain.com/
   commits_whenever: false
   git_timeout: 60
+  log_syncer: true
