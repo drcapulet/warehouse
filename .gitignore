@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 doc/
 features/
 tmp/
@@ -8,3 +9,4 @@ db/*.sqlite3
 .bundle/
 config/hooks/*
 config/bitly.yml
+Warehouse.iml
