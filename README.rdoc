@@ -99,35 +99,35 @@ Your initial repository should to be synchronized properly now. Login to warehou
 
 New Repository:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/new-repo.png
+http://apleben.com/content/screenshots/warehouse/new-repo.png
 
 Repository Browsing:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-dir.png
+http://apleben.com/content/screenshots/warehouse/repo-dir.png
 
 File Viewing:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-file.png
+http://apleben.com/content/screenshots/warehouse/repo-file.png
 
 File Blame:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-file-blame.png
+http://apleben.com/content/screenshots/warehouse/repo-file-blame.png
 
 Commits:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-commits.png
+http://apleben.com/content/screenshots/warehouse/repo-commits.png
 
 Commit:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-commit.png
+http://apleben.com/content/screenshots/warehouse/repo-commit.png
 
 Hooks:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/repo-hooks.png
+http://apleben.com/content/screenshots/warehouse/repo-hooks.png
 
 Multi-View:
 
-https://github.com/apupeikis/warehouse/raw/master/screens/screen-multi.png
+http://apleben.com/content/screenshots/warehouse/screen-multi.png
 
 == Contributing
 
@@ -135,7 +135,7 @@ I'd love your help, or your bug reports :) Some guides (like for hooks) will be 
 
 == License
 
-Copyright (c) 2010 Alex Coomans
+Copyright (c) 2011 Alex Coomans
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
