@@ -99,35 +99,35 @@ Your initial repository should to be synchronized properly now. Login to warehou
 
 New Repository:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/new-repo.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/new-repo.png
 
 Repository Browsing:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-dir.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-dir.png
 
 File Viewing:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-file.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-file.png
 
 File Blame:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-file-blame.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-file-blame.png
 
 Commits:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-commits.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-commits.png
 
 Commit:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-commit.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-commit.png
 
 Hooks:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/repo-hooks.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/repo-hooks.png
 
 Multi-View:
 
-https://github.com/drcapulet/warehouse/raw/master/screens/screen-multi.jpg
+https://github.com/apupeikis/warehouse/raw/master/screens/screen-multi.png
 
 == Contributing
 
