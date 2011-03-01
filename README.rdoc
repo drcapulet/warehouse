@@ -31,7 +31,7 @@ Then, use Bundler to manage and vendoring Gem dependencies. To install the Gems,
 
  gem install bundler && bundle install
 	
-After, check to make sure you have Pygments, (the library we use to highlight source code), if not, install using instructions from the Pygments[http://pygments.org/]
+After, check to make sure you have Pygments, (the library we use to highlight source code), if not, install using instructions from the {Pygments}[http://pygments.org/]
 
 Then, make sure you have the database created and load in the schema
 
@@ -42,6 +42,58 @@ Finally, add in a new repository, and run
  rake warehouse:sync
 	
 And then startup the server and view :)
+
+== Installation in Production
+
+Installation for production use is almost the same like for the development environment. Be aware, that domain has been
+configured with {Passenger}[http://www.modrails.com/] or {Mongrell}[http://rubygems.org/gems/mongrel] support
+(FastCGI is strongly NOT recommended).
+If you're running Warehouse on your server under some domain, first go inside the directory, where application will be
+installed. In most cases directory will have the name of the domain:
+
+  [server]$ cd ~/subdomain.yourdomain.com/
+
+Then, clone the project:
+
+  [server]$ git clone git://github.com/drcapulet/warehouse.git
+  [server]$ mv warehouse/* ~/subdomain.yourdomain.com/
+  [server]$ rm -rf warehouse
+
+Install dependencies:
+
+  [server]$ gem install bundler && bundle install
+
+Check out if you have the {pygments library}[http://pygments.org/] installed. This library is neccessary for source code
+highlighting.
+In production you probably do not want to use sqlite, instead MySQL is preferable. To use MySQL type this inside the
+RAILS_ROOT directory:
+
+  [server]$ rm config/database.yml
+  [server]$ cp config/database.mysql_sample.yml config/database.yml
+
+Then, make sure you have the database created and loaded in the schema. Again, from the RAILS_ROOT directory:
+
+  [server]$ RAILS_ENV=production rake db:schema:load
+
+Before starting the server make sure you properly configured your domain name in the RAILS_ROOT/config/warehouse.yml,
+otherwise application just will not start.
+Find the section and configure it properly:
+
+  production:
+    host: http://subdomain.yourdomain.com/
+
+Add in a new repository, and run:
+
+  [server]$ RAILS_ENV=production rake warehouse:sync
+
+Apparently, you'll cause an exception with the repository sync error. Don't worry, start the server and go to your
+domain in the browser window.
+Register new user, login and add new repository, where path to the repository will be something like this:
+/home/USERNAME/repositories/super_secret_project. After that, go back to the console prompt and type:
+
+  [server]$ RAILS_ENV=production rake warehouse:sync[/home/USERNAME/repositories/super_secret_project]
+
+Your initial repository should to be synchronized properly now. Login to warehouse and enjoy!
 
 == Screenshots
 
