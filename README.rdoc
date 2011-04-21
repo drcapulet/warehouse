@@ -99,35 +99,35 @@ Your initial repository should to be synchronized properly now. Login to warehou
 
 New Repository:
 
-http://apleben.com/content/screenshots/warehouse/new-repo.png
+http://drcapulet.github.com/warehouse/new-repo.png
 
 Repository Browsing:
 
-http://apleben.com/content/screenshots/warehouse/repo-dir.png
+http://drcapulet.github.com/warehouse/repo-dir.png
 
 File Viewing:
 
-http://apleben.com/content/screenshots/warehouse/repo-file.png
+http://drcapulet.github.com/warehouse/repo-file.png
 
 File Blame:
 
-http://apleben.com/content/screenshots/warehouse/repo-file-blame.png
+http://drcapulet.github.com/warehouse/repo-file-blame.png
 
 Commits:
 
-http://apleben.com/content/screenshots/warehouse/repo-commits.png
+http://drcapulet.github.com/warehouse/repo-commits.png
 
 Commit:
 
-http://apleben.com/content/screenshots/warehouse/repo-commit.png
+http://drcapulet.github.com/warehouse/repo-commit.png
 
 Hooks:
 
-http://apleben.com/content/screenshots/warehouse/repo-hooks.png
+http://drcapulet.github.com/warehouse/repo-hooks.png
 
 Multi-View:
 
-http://apleben.com/content/screenshots/warehouse/screen-multi.png
+http://drcapulet.github.com/warehouse/screen-multi.png
 
 == Contributing
 
